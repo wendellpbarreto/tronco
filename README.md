@@ -1,4 +1,4 @@
-mcc
+tronco
 ===
 
-MCC version of VirtualMuseum website.
+Museu "tronco, ramos e raízes" version of VirtualMuseum website.

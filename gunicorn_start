@@ -1,8 +1,8 @@
 #!/bin/bash
 
-NAME="mcc"                                 		# Name of the application
-DJANGODIR=/var/www/mcc/             				# Django project directory
-SOCKFILE=/var/www/mcc/run/gunicorn.sock  			# we will communicte using this unix socket
+NAME="tronco"                                 		# Name of the application
+DJANGODIR=/var/www/tronco/             				# Django project directory
+SOCKFILE=/var/www/tronco/run/gunicorn.sock  			# we will communicte using this unix socket
 USER=root                                      	  	# the user to run as
 GROUP=root                                    		# the group to run as
 NUM_WORKERS=3                                 		# how many worker processes should Gunicorn spawn
@@ -12,7 +12,7 @@ DJANGO_WSGI_MODULE=museuvirtual.wsgi                		# WSGI module name
 
 # Activate the virtual environment
 cd $DJANGODIR
-. /root/.virtualenvs/mcc/bin/activate
+. /root/.virtualenvs/tronco/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
@@ -22,7 +22,7 @@ test -d $RUNDIR || mkdir -p $RUNDIR
 
 # Start your django gunicorn
 # Programs meant to be run under supervisor should not daemonize themselves
-exec /root/.virtualenvs/mcc/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+exec /root/.virtualenvs/tronco/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
   --name $NAME \
   --workers $NUM_WORKERS \
   --user=$USER --group=$GROUP \

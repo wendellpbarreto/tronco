@@ -14,7 +14,7 @@ import os
 
 from django.utils.translation import ugettext_lazy as _
 
-ROOT_URL = 'http://mcc.museuvirtual.info/'
+ROOT_URL = 'http://tronco.museuvirtual.info/'
 
 PROJECT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -32,9 +32,9 @@ if USE_POSTGRESQL:
     DATABASES = {
         'default': {
             'ENGINE':'django.db.backends.postgresql_psycopg2',
-            'NAME': 'mcc_db',
-            'USER': 'mcc_admin',
-            'PASSWORD': 'p@$$:=dr@w!ng=mcc',
+            'NAME': 'tronco_db',
+            'USER': 'tronco_admin',
+            'PASSWORD': 'p@$$:=dr@w!ng=tronco',
             'HOST': 'localhost',
             'PORT': '',
         }
@@ -43,9 +43,9 @@ elif USE_MYSQL:
     DATABASES = {
          'default': {
              'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-             'NAME': 'mcc_db',                       # Or path to database file if using sqlite3.
-             'USER': 'mcc_admin',                    # Not used with sqlite3.
-             'PASSWORD': 'p@$$:=dr@w!ng=mcc',        # Not used with sqlite3.
+             'NAME': 'tronco_db',                       # Or path to database file if using sqlite3.
+             'USER': 'tronco_admin',                    # Not used with sqlite3.
+             'PASSWORD': 'p@$$:=dr@w!ng=tronco',        # Not used with sqlite3.
              'HOST': 'localhost',                    # Set to empty string for localhost. Not used with sqlite3.
              'PORT': '18000',                        # Set to empty string for default. Not used with sqlite3.
          }
