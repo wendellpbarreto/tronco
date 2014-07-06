@@ -1,0 +1,87 @@
+				<table class="column">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th >URL</th>
+							<th colspan='2'>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for link in links %}
+							<tr id='link{{ link.pk }}'>
+								<td>
+									<a href="/criacao/link/visualizar/{{ link.id }}" title="Ver"id="ver">
+										<h4>{{ link.name }}</h4>
+									</a>
+								</td>
+								<td>{{ link.url }}</td>
+								<td width='50'>
+									<a class="grid_3 alpha omega" href="/criacao/link/editar/{{ link.id }}/" title="Editar"  id="editar">
+										<span class="orange" data-icon='+'></span>		
+									</a>
+								</td>
+								<td width='50'>
+									<a class="grid_3 alpha omega" href="javascript: return false;" data-get="/criacao/link/excluir/{{ link.pk }}/" data-confirm="Tem certeza que deseja apagar esta link?" data-remove="#link{{ link.id }}" data-success="Link deletada com sucesso!" title="Excluir" id="excluir">
+										<span class="orange" data-icon="'"></span>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<div class="row pagination-centered">
+						<ul class="pagination">
+							{% if links.has_previous %}
+								<li class="arrow"><a data-get="/criacao/link/listar/{{ links.previous_page_number }}/" data-target="#main">&laquo;</a></li>
+							{% else %}
+								<li class="arrow unavailable"><a>&laquo;</a></li>
+							{% endif %}
+
+							{% if links.has_less_ten %}						
+								<li><a data-get="/criacao/link/listar/{{ links.has_less_ten }}/" data-target="#main">{{ links.has_less_ten }}</a></li>
+								<li><a data-get="/criacao/link/listar/{{ links.has_less_ten | add:"1" }}/" data-target="#main">{{ links.has_less_ten | add:"1" }}</a></li>
+								<li class="unavailable"><a>&hellip;</a></li>
+							{% endif %}
+
+							{% if links.has_less_three %}
+								<li><a data-get="/criacao/link/listar/{{ links.has_less_three }}/" data-target="#main">{{ links.has_less_three }}</a></li>
+							{% endif %}
+
+
+							{% if links.has_less_two %}
+								<li><a data-get="/criacao/link/listar/{{ links.has_less_two }}/" data-target="#main">{{ links.has_less_two }}</a></li>
+							{% endif %}
+
+
+							{% if links.has_previous %}
+								<li><a data-get="/criacao/link/listar/{{ links.previous_page_number }}/" data-target="#main">{{ links.previous_page_number }}</a></li>
+							{% endif %}
+
+							<li class="current"><a>{{ links.page }}</a></li>
+
+							{% if links.has_next %}
+								<li><a data-get="/criacao/link/listar/{{ links.next_page_number }}/" data-target="#main">{{ links.next_page_number }}</a></li>
+							{% endif %}
+
+							{% if links.has_more_two %}
+								<li><a data-get="/criacao/link/listar/{{ links.has_more_two }}/" data-target="#main">{{ links.has_more_two }}</a></li>
+							{% endif %}
+
+							{% if links.has_more_three %}
+								<li><a data-get="/criacao/link/listar/{{ links.has_more_three }}/" data-target="#main">{{ links.has_more_three }}</a></li>
+							{% endif %}
+
+							{% if links.has_more_ten %}
+								<li class="unavailable"><a>&hellip;</a></li>
+								<li><a data-get="/criacao/link/listar/{{ links.has_more_ten }}/" data-target="#main">{{ links.has_more_ten }}</a></li>
+								<li><a data-get="/criacao/link/listar/{{ links.has_more_ten | add:"1" }}/" data-target="#main">{{ links.has_more_ten | add:"1" }}</a></li>
+							{% endif %}
+
+							{% if links.has_next %}
+								<li class="arrow"><a data-get="/criacao/link/listar/{{ links.next_page_number }}/" data-target="#main">&raquo;</a></li>
+							{% else %}
+								<li class="arrow unavailable"><a>&raquo;</a></li>
+							{% endif %}					
+						</ul>
+					</div>
+				</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+    <style>
+    body {
+		border: 1px solid #000;
+        height: 1060px;
+        width: 775px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+	#titulo{
+		text-align: center;
+	}
+
+	#classificacao_titulo{
+		margin-left: 20px;
+	}
+
+	#classificacao_caixa{
+		margin-left: 20px;
+		height: 50px;
+		width: 300px;
+		border: 1px solid #000;
+	}
+	#classificacao_texto{
+		margin-left: 20px ;
+  		margin-right: auto ;
+	}
+
+    </style>
+  <head>
+  <body>
+	<h1 id="titulo"> TITULO_MUSEU </h1>
+	<p> </p>
+	
+	<p id="classificacao_titulo"> Classificação </p>
+	<div id="classificacao_caixa">
+	<p id="classificacao_texto"> CLASSIFICACAO </p>
+	
+  </body>
+</html>

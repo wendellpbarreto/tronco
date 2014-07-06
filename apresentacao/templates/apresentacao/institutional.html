@@ -1,0 +1,87 @@
+{% extends 'base-presentation.html' %}
+
+{% block title %}
+    Bem-vindo ao museu {{ informations.nome|lower }}
+{% endblock %}
+
+{% block header %}
+    {% include 'apresentacao/partials/header.html' %}
+{% endblock %}
+
+{% block container %}
+    <div id='container' class='clearfix'>
+        <div class='row collapse'>
+            <div class='large-8 columns'>
+                <section class='info-column'>
+                    <ul class='row'>
+                        <li>
+                            <a href='/apresentacao/institutional/who-we-are' {% if section == 'who-we-are' %} class='active' {% endif %}>Quem nós somos</a>
+                        </li>
+                        <li>
+                            <a href='/apresentacao/institutional/conception' {% if section == 'conception' %} class='active' {% endif %}>Concepção</a>
+                        </li>
+                        <li>
+                            <a href='/apresentacao/institutional/mission' {% if section == 'mission' %} class='active' {% endif %}>Missão</a>
+                        </li>
+                        <li>
+                            <a href='/apresentacao/institutional/goals' {% if section == 'goals' %} class='active' {% endif %}>Objetivos</a>
+                        </li>
+                        <li>
+                            <a href='/apresentacao/institutional/technical-description' {% if section == 'technical-description' %} class='active' {% endif %}>Descrição técnica</a>
+                        </li>
+                        <li>
+                            <a href='/apresentacao/institutional/acquis-characteristics' {% if section == 'acquis-characteristics' %} class='active' {% endif %}>Características do acervo</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class='large-16 columns'>
+                <section>
+                    <header class='row'>
+                        {% if section == 'who-we-are' %}
+                            <h4>Quem nós somos</h4>
+                        {% elif section == 'conception' %}
+                            <h4>Concepção</h4>
+                        {% elif section == 'mission' %}
+                            <h4>Missão</h4>
+                        {% elif section == 'goals' %}
+                            <h4>Objetivos</h4>
+                        {% elif section == 'technical-description' %}
+                            <h4>Descrição técnica</h4>
+                        {% elif section == 'acquis-characteristics' %}
+                            <h4>Características do acervo</h4>
+                        {% endif %}
+                    </header>
+                    <div class='desc row'>
+                        {% if section == 'who-we-are' %}
+                            <h5>Museu {{ informations.nome }}</h5>
+                            <h6>Fundado em {{ informations.data_fundacao }}</h6>
+                            <h6 class='text-justify'>{{ informations.apresentacao|safe }}</h6>
+                        {% elif section == 'conception' %}
+                            <h6 class='text-justify'>{{ informations.concepcao|safe }}</h6>
+                        {% elif section == 'mission' %}
+                            <h6 class='text-justify'>{{ informations.missao|safe }}</h6>
+                        {% elif section == 'goals' %}
+                            <h6 class='text-justify'>{{ informations.objetivos|safe }}</h6>
+                        {% elif section == 'technical-description' %}
+                            <h6 class='text-justify'>{{ informations.descricao_tecnica|safe }}</h6>
+                        {% elif section == 'acquis-characteristics' %}
+                            <h6 class='text-justify'>{{ informations.caracteristicas_acervo|safe }}</h6>
+                        {% endif %}
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'apresentacao/partials/footer.html' %}
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

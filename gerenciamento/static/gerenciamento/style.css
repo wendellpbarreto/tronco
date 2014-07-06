@@ -1,0 +1,46 @@
+#menu {
+margin:25px 0px 0px 0px;
+padding:0px;
+border-bottom:4px solid #000;
+}
+
+#menuList {
+list-style-type: none;
+padding:0px 0px 24px 30px;
+margin: 0px;
+}
+
+#menuList li {
+float: left;
+height: 24px;
+margin: 0px 1px 0 1px;
+}
+
+
+#menuList a {
+float: left;
+display: block;
+text-decoration: none;
+padding: 5px 15px 5px 15px;
+}
+
+#menuList a:link,
+#menuList a:visited {
+background-color:#CCC;
+color: #333;
+}
+
+#menuList a:hover {
+background: #333; color:#FFF;
+}
+
+#menuList li#active a:link,
+#menuList li#active a:visited {
+background-color: #000;
+color:#FFF;
+}
+
+#menuList li#active a:hover {
+background-color:#A90000;
+color: #FFF;
+}

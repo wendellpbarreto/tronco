@@ -1,0 +1,119 @@
+{% extends 'base-presentation.html' %}
+
+{% load thumbnail %}
+
+{% block title %}
+    Bem-vindo ao museu {{ informations.nome|lower }}
+{% endblock %}
+
+{% block header %}
+    {% include 'apresentacao/partials/header.html' %}
+{% endblock %}
+
+{% block container %}
+    <div id='container' class='clearfix'>
+        <div class='row collapse'>
+            <div class='large-8 columns'>
+                <section class='info-column'>
+                    <ul class='row'>
+                        {% if part.imagens %}
+                            <li>
+                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/photos' {% if section == 'photos' %} class='active' {% endif %}>Fotos</a>
+                            </li>
+                        {% endif %}
+                        {% if part.videos %}
+                            <li>
+                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/videos' {% if section == 'videos' %} class='active' {% endif %}>Vídeos</a>
+                            </li>
+                        {% endif %}
+                        {% if part.audios %}
+                            <li>
+                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/audios' {% if section == 'audios' %} class='active' {% endif %}>Áudios</a>
+                            </li>
+                        {% endif %}
+                        {% if part.documentos %}
+                            <li>
+                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/documents' {% if section == 'documents' %} class='active' {% endif %}>Documentos</a>
+                            </li>
+                        {% endif %}
+                        {% if part.iphan_informations %}
+                            <li>
+                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/iphan-informations' {% if section == 'iphan-informations' %} class='active' {% endif %}>Informações do IPHAN</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </section>
+            </div>
+            <div class='large-16 columns'>
+                <section>
+                    <header class='row'>
+                        {% if section == 'photos' %}
+                            <h4>Fotos</h4>
+                        {% elif section == 'videos' %}
+                            <h4>Vídeos</h4>
+                        {% elif section == 'audios' %}
+                            <h4>Áudios</h4>
+                        {% elif section == 'documents' %}
+                            <h4>Documentos</h4>
+                        {% elif section == 'iphan-informations' %}
+                            <h4>Informações do IPHAN</h4>
+                        {% endif %}
+                    </header>
+                    <div class='row'>
+                        {% if section == 'photos' %}
+                            {% for image in part.imagens.all %}
+                                {% thumbnail image.imagem "1200x675" crop="center" as im %}
+                                    <img src="{{ im.url }}">
+                                {% endthumbnail %}
+                            {% endfor %}
+                        {% elif section == 'videos' %}
+                            {% for video in part.videos.all %}
+                                {% if video.video %}
+                                    <video class='column' controls>
+                                        <source src='/media/{{ video.video }}' type='video/mp4'>
+                                        <source src='/media/{{ video.video }}' type='video/ogg'>
+                                        <p>Seu navegador não suporta vídeos H.264/MP4.</p>
+                                    </video>
+                                {% elif video.youtube %}
+                                    <iframe src='{{ video.youtube }}' width='560' height='315' frameborder='0' allowfullscreen></iframe>
+                                {% elif video.vimeo %}
+                                    <iframe src='{{ video.vimeo }}' width='560' height='315' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                {% endif %}
+                            {% endfor %}
+                        {% elif section == 'audios' %}
+                            {% for audio in part.audios.all %}
+                                <audio class='column' controls>
+                                    <source src='/media/{{ audio.audio }}' type="audio/ogg">
+                                    <source src='/media/{{ audio.audio }}'type="audio/mpeg">
+                                    <p>Seu navegador não suporta àudios.</p>
+                                </audio>
+                            {% endfor %}
+                        {% elif section == 'documents' %}
+                            {% for document in part.documentos.all %}
+                                <embed class='large-24 large-centered column' height='700' src='/media/{{ document.documento }}' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>
+                            {% endfor %}
+                        {% elif section == 'iphan-informations' %}
+                            <div class='column'>
+                                <h6 class='text-justify'>Memória e história: {{ part.iphan_informations.memoria_historia }}</h6>
+                                <h6 class='text-justify'>Saberes e fazeres: {{ part.iphan_informations.saberes_fazeres }}</h6>
+                                <h6 class='text-justify'>Celebrações: {{ part.iphan_informations.celebracoes }}</h6>
+                                <h6 class='text-justify'>Lugares: {{ part.iphan_informations.lugares }}</h6>
+                                <h6 class='text-justify'>Expressões: {{ part.iphan_informations.expressoes }}</h6>
+                            </div>
+                        {% endif %}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'apresentacao/partials/footer.html' %}
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

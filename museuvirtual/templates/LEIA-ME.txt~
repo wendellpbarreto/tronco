@@ -1,0 +1,1 @@
+Deixar diretório em branco. Para os arquivos estáticos virem para cá, deve-se rodar o 'python manage.py collecstatic'.

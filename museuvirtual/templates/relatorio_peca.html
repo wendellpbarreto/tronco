@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<!--This file was converted to xhtml by OpenOffice.org - see http://xml.openoffice.org/odf2xhtml for more info.-->
+
+<head profile="http://dublincore.org/documents/dcmi-terms/">
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+
+<title xml:lang="pt-BR"> Relatório da Peça </title>
+<meta name="DCTERMS.title" content="" xml:lang="pt-BR"/>
+<meta name="DCTERMS.language" content="en-US" scheme="DCTERMS.RFC4646"/>
+<meta name="DCTERMS.source" content="http://xml.openoffice.org/odf2xhtml"/>
+<meta name="DCTERMS.creator" content="Museu Virtual"/>
+<meta name="DCTERMS.issued" content="2013-12-21T15:33:01" scheme="DCTERMS.W3CDTF"/>
+<meta name="DCTERMS.contributor" content="Museu Virtual "/>
+<meta name="DCTERMS.modified" content="2013-12-21T16:03:50" scheme="DCTERMS.W3CDTF"/>
+<meta name="DCTERMS.provenance" content="" xml:lang="pt-BR"/>
+<meta name="DCTERMS.subject" content="," xml:lang="pt-BR"/>
+
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" hreflang="en"/>
+
+<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" hreflang="en"/>
+
+<link rel="schema.DCTYPE" href="http://purl.org/dc/dcmitype/" hreflang="en"/>
+
+<link rel="schema.DCAM" href="http://purl.org/dc/dcam/" hreflang="en"/>
+<style type="text/css">
+
+.quebra_linha{
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+ /* Non standard for webkit */
+     word-break: break-word;
+
+    -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
+}
+
+.texto_longo{
+	margin-left: 40px;
+}
+
+
+	@page {  }
+	table { border-collapse:collapse; border-spacing:0; empty-cells:show }
+	td, th { vertical-align:top; font-size:12pt;}
+	h1, h2, h3, h4, h5, h6 { clear:both }
+	ol, ul { margin:0; padding:0;}
+	li { list-style: none; margin:0; padding:0;}
+	
+	li span. { clear: both; line-height:0; width:0; height:0; margin:0; padding:0; }
+	span.footnodeNumber { padding-right:1em; }
+	span.annotation_style_by_filter { font-size:95%; font-family:Arial; background-color:#fff000;  margin:0; border:0; padding:0;  }
+	* { margin:0;}
+	.P1 { font-size:14pt; font-family:Arial; writing-mode:page; line-height:150%; text-align:center ! important; font-weight:bold; }
+	.P2 { font-size:12pt; font-family:Arial; writing-mode:page; line-height:150%; text-align:justify ! important; font-weight:bold; }
+	.P3 { font-size:12pt; font-family:Arial; writing-mode:page; line-height:150%; text-align:justify ! important; }
+	.P4 { font-size:12pt; font-family:Arial; writing-mode:page; line-height:150%; text-align:justify ! important; text-decoration:underline; font-weight:bold; }
+	.P5 { font-size:12pt; font-family:Arial; writing-mode:page; line-height:150%; text-align:justify ! important; text-decoration:underline; }
+	.P6 { font-size:12pt; font-family:Arial; writing-mode:page; line-height:150%; text-align:justify ! important; color:#000000; font-weight:bold; }
+	.P7 { font-size:12pt; font-family:Arial; writing-mode:page; line-height:150%; text-align:justify ! important; color:#000000; font-style:normal; font-weight:bold; }
+	.P8 { font-size:12pt; font-family:Arial; writing-mode:page; line-height:150%; text-align:justify ! important; color:#000000; font-style:normal; text-decoration:underline; font-weight:bold; }
+	.P9 { font-size:12pt; font-family:Times New Roman; writing-mode:page; line-height:150%; text-align:justify ! important; text-decoration:underline; font-weight:bold; }
+	.T1 { font-weight:normal; }
+	.T10 { letter-spacing:normal; font-style:normal; }
+	.T11 { letter-spacing:normal; font-style:normal; font-weight:normal; }
+	.T12 { letter-spacing:normal; font-weight:normal; }
+	.T13 { color:#000000; letter-spacing:normal; font-style:normal; }
+	.T14 { color:#000000; letter-spacing:normal; font-style:normal; font-weight:normal; }
+	.T15 { color:#000000; font-style:normal; }
+	.T16 { color:#000000; font-family:Arial; font-size:12pt; font-style:normal; font-weight:bold; }
+	.T2 { font-weight:bold; }
+	.T3 { font-style:normal; }
+	.T5 { font-style:normal; font-weight:normal; }
+	.T8 { color:#666666; letter-spacing:normal; font-weight:bold; }
+	.T9 { letter-spacing:normal; }
+	
+<!-- ODF styles with no properties representable as CSS -->
+	{ }
+	
+</style>
+
+<!-- "li span.odfLiEnd" - IE 7 issue-->
+</head>
+
+<body class="quebra_linha" dir="ltr" style="max-width:21.001cm;margin:0cm; margin-top:0cm; margin-bottom:0cm; margin-left:0cm; margin-right:0cm; writing-mode:lr-tb; ">
+
+<p class="P1"> </p>
+
+<p class="P1">RELATÓRIO DA PEÇA</p>
+
+
+{% if numero_registro or secao or colecao or sub_colecao or objeto or titulo or autores or data_criacao or descricao or categoria %}
+	
+	<p class="P2"> </p>
+
+	<p class="P4">INFORMAÇÕES PRINCIPAIS</p>
+
+{% endif %}
+
+<p class="P2"> </p>
+
+{% if numero_registro %}
+
+	<p class="P2">Número de Registro: 
+
+	<span class="T1"> {{ peca.numero_registro }} </span></p>
+
+{% endif %}
+
+{% if secao %}
+
+	<p class="P2">Seção:
+
+	<span class="T1"> {{ peca.secao }} </span></p>
+
+{% endif %}
+
+{% if colecao %}
+
+	<p class="P2">Coleção:
+
+	<span class="T1"> {{ peca.colecao }} </span></p>
+
+{% endif %}
+
+{% if sub_colecao %}
+
+	<p class="P2">Sub-coleção:
+
+	<span class="T1"> {{ peca.sub_colecao }} </span></p>
+
+{% endif %}
+
+{% if objeto %}
+
+	<p class="P2">Objeto:
+
+	<span class="T1">  {{ peca.objeto }} </span></p>
+
+{% endif %}
+
+{% if titulo %}
+
+	<p class="P2">Título:
+
+	<span class="T1">  {{ peca.titulo }} </span></p>
+
+{% endif %}
+
+{% if autores %}
+
+<p class="P2">Autores: </p>
+
+	{% for autor in peca.autores.all %}
+
+		<p class="P2 texto_longo"> <span class="T12"> <b> Nome: </b>  {{ autor.nome }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Nome Artístico: </b>  {{ autor.nome_artistico }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Função do Autor: </b>  {{ autor.funcao_autor }} </span></p>
+		
+		<br />
+
+	{% endfor %}
+
+{% endif %}
+
+{% if data_criacao %}
+
+	<p class="P2">Data de Criação:
+
+	<span class="T1"> {{ peca.data_criacao }} </span></p>
+
+{% endif %}
+
+{% if descricao %}
+
+	<p class="P2">Descrição:
+
+	<span class="T1"> {{ peca.descricao }} </span></p>
+
+{% endif %}
+
+{% if categoria %}
+
+	<p class="P2">Categoria:
+
+	<span class="T1"> {{ peca.categoria }} </span></p>
+
+{% endif %}
+
+<p class="P2">
+
+<span class="T1"/></p>
+
+<p class="P5">
+	
+
+
+{% if origem or iconografia or observacoes or dados_historicos or referencias or texto or procedencia or proprietario or forma_aquisicao or data_aquisicao or numero_processo or provisor or moeda or valor_aquisicao or valor_seguro or ex_proprietario or funcionario or data_cadastro or fonte_original  %}
+
+<br /> 
+
+<span class="T2">INFORMAÇÕES DETALHADAS</span></p>
+
+<br /> 
+
+{% endif %}
+
+
+
+<p class="P3">
+
+<span class="T8"/></p>
+
+{% if origem %}
+
+	<p class="P6">
+
+	<span class="T10">Origem: </span>
+
+	<span class="T11">{{ peca.origem }}</span></p>
+
+{% endif %}
+
+{% if iconografia %}
+
+<p class="P6">
+
+	<span class="T10">Iconografia: </span> </p>
+
+	<p class="P2 texto_longo"> <span class="T11">{{ peca.iconografia }}</span></p>
+
+{% endif %}
+
+{% if observacoes %}
+
+	<p class="P2">
+
+	<span class="T3">Observações: </span></p>
+
+	<p class="P2 texto_longo"><span class="T5">{{ peca.observacoes }}</span></p>
+
+{% endif %}
+
+{% if dados_historicos %}
+
+	<p class="P2">
+
+	<span class="T3">Dados Históricos: </span> </p>
+
+	<p class="P2 texto_longo"><span class="T5">{{ peca.dados_historicos }}</span> </p>
+
+{% endif %}
+
+{% if referencias %}
+
+	<p class="P2">
+
+	<span class="T3">Referências:</span> </p>
+
+	<p class="P2 texto_longo"> <span class="T5"> {{ peca.referencias }}</span></p>
+
+{% endif %}
+
+{% if texto %}
+
+	<p class="P2">
+
+	<span class="T3">Texto:</span> </p>
+
+	<p class="P2 texto_longo"><span class="T14"> {{ peca.texto}} </span></p>
+
+{% endif %}
+
+{% if procedencia %}
+
+	<p class="P6">
+
+	<span class="T3">Procedência: </span>
+
+	<span class="T5">{{ peca.procedencia }}</span></p>
+
+{% endif %}
+
+{% if proprietario %}
+
+	<p class="P6">
+
+	<span class="T3">Proprietário: </span>
+
+	<span class="T5">{{ peca.proprietario }}</span></p>
+
+{% endif %}
+
+{% if forma_aquisicao %}
+
+	<p class="P6">
+
+	<span class="T3">Forma de Aquisição:</span>
+
+	<span class="T5">{{ peca.forma_aquisicao }}</span></p>
+
+{% endif %}
+
+{% if data_aquisicao %}
+
+	<p class="P6">
+
+	<span class="T3">Data de Aquisição:  </span>
+
+	<span class="T5">{{ peca.data_aquisicao }}</span></p>
+
+{% endif %}
+
+{% if numero_processo %}
+
+	<p class="P6">
+
+	<span class="T3">Número do Processo:  </span>
+
+	<span class="T5">{{ peca.numero_processo }}</span></p>
+
+{% endif %}
+
+{% if provisor %}
+
+	<p class="P6">
+
+	<span class="T3">Provisor:  </span>
+
+	<span class="T5">{{ peca.provisor }}</span></p>
+
+{% endif %}
+
+{% if moeda %}
+
+	<p class="P6">
+
+	<span class="T3">Tipo de Moeda:  </span>
+
+	<span class="T5">{{ peca.moeda }}</span></p>
+
+{% endif %}
+
+{% if valor_aquisicao %}
+
+	<p class="P6">
+
+	<span class="T3">Valor de Aquisição:  </span>
+
+	<span class="T5">{{ peca.valor_aquisicao }}</span></p>
+
+{% endif %}
+
+{% if valor_seguro %}
+
+	<p class="P6">
+
+	<span class="T3">Valor do Seguro:  </span>
+
+	<span class="T5">{{ peca.valor_seguro }}</span></p>
+
+{% endif %}
+
+{% if ex_proprietario %}
+
+	<p class="P6">
+
+	<span class="T3">Ex-Proprietário:  </span>
+
+	<span class="T5">{{ peca.ex_proprietario }}</span></p>
+
+{% endif %}
+
+{% if funcionario %}
+
+	<p class="P6">
+
+	<span class="T3">Funcionário Responsável pelo Cadastro:  </span>
+
+	<span class="T5">{{ peca.funcionario }}</span></p>
+
+{% endif %}
+
+{% if data_cadastro %}
+
+	<p class="P6">
+
+	<span class="T3">Data do Cadastro:  </span>
+
+	<span class="T5">{{ peca.data_cadastro_texto }}</span></p>
+
+{% endif %}
+
+{% if fonte_original %}
+
+	<p class="P6">
+
+	<span class="T3">Fonte Original:  </span>
+
+	<span class="T5">{{ peca.fonte_original }}</span></p>
+
+{% endif %}
+
+<p class="P6">
+
+<span class="T1"/></p>
+
+<br /> 
+
+{% if numero_partes or material or tecnica or altura or circunferencia or diametro or comprimento or largura or peso or profundidade or palavras_chave  %}
+
+<p class="P9">MEDIDAS DA PEÇA</p>
+
+<br /> 
+
+{% endif %}
+
+
+
+<p class="P9">
+
+<span class="T16"/></p>
+
+{% if numero_partes %}
+
+	<p class="P7">
+
+	<span class="T9">Número de Partes: </span>
+
+	<span class="T12">{{ peca.numero_partes }}</span></p>
+
+{% endif %}
+
+{% if material %}
+
+	<p class="P7">Material: 
+
+	<span class="T12">{{ peca.material }}</span></p>
+
+{% endif %}
+
+{% if tecnica %}
+
+	<p class="P7">Técnica: 
+
+	<span class="T12">{{ peca.tecnica }}</span></p>
+
+{% endif %}
+
+{% if altura %}
+
+	<p class="P7">Altura: 
+
+	<span class="T12">{{ peca.altura }}</span></p>
+
+{% endif %}
+
+{% if circunferencia %}
+
+	<p class="P7">Circunferência: 
+
+	<span class="T12">{{ peca.circunferencia }}</span></p>
+
+{% endif %}
+
+{% if diametro %}
+
+	<p class="P7">Diâmetro: 
+
+	<span class="T12">{{ peca.diametro }}</span></p>
+
+{% endif %}
+
+{% if comprimento %}
+
+	<p class="P7">Comprimento: 
+
+	<span class="T12">{{ peca.comprimento }}</span></p>
+
+{% endif %}
+
+{% if largura %}
+
+	<p class="P7">Largura: 
+
+	<span class="T12">{{ peca.largura }}</span></p>
+
+{% endif %}
+
+{% if peso %}
+
+	<p class="P7">Peso: 
+
+	<span class="T12">{{ peca.peso }}</span></p>
+
+{% endif %}
+
+{% if profundidade  %}
+
+	<p class="P7">Profundidade: 
+
+	<span class="T12">{{ peca.profundidade }}</span></p>
+
+{% endif %}
+
+{% if palavras_chave %}
+
+	<p class="P7">Palavras-chave: 
+
+	<span class="T12">{{ peca.palavras_chave }}</span></p>
+
+{% endif %}
+
+<p class="P7">
+
+<span class="T12"/></p>
+
+<p class="P8">
+
+<br /> 
+
+{% if outros_numeros  or inscricoes or invervencoes or historico_conservacao or historico_movimentacao %}
+
+<span class="T9">OUTRAS INFORMAÇÕES</span></p>
+
+<br /> 
+
+{% endif %}
+
+<p class="P8">
+
+<span class="T9"/></p>
+
+{% if outros_numeros %}
+
+	<p class="P7">Outros Números: </p>
+
+	{% for outro_numero in peca.outros_numeros %}
+
+		<p class="P2 texto_longo"> <span class="T12"> <b> Número: </b>  {{ outro_numero.numero }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Observação: </b>  {{ outro_numero.observacao }} </span></p>
+		<br />
+
+	{% endfor %}
+
+{% endif %}
+
+{% if inscricoes %}
+
+	<p class="P7">Inscrições: 
+
+	{% for inscricao in peca.inscricoes %}
+
+		<p class="P2 texto_longo"> <span class="T12"> <b> Tipo da Inscrição: </b>  {{ inscricao.tipo_inscricao }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Peça Assinada: </b>  {{ inscricao.peca_assinada_texto  }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Descrição: </b>  {{ inscricao.descricao  }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Localização da Assinatura: </b>  {{ inscricao.localizacao_assinatura  }} </span></p>
+		<br />
+
+	{% endfor %}
+
+{% endif %}
+
+{% if intervencoes %}
+
+	<p class="P7">Intervenções: 
+
+	{% for intervencao in peca.intervencoes %}
+
+		<p class="P2 texto_longo"> <span class="T12"> <b> Momento da Inscrição: </b>  {{ intervencao.data_intervencao }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Descrição: </b>  {{ intervencao.descricao  }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Funcionário que fez a Intervenção: </b>  {{ intervencao.funcionario  }} </span></p>
+		<br />
+
+	{% endfor %}
+
+{% endif %}
+
+{% if historico_movimentacao %}
+
+	<p class="P7">Histórico de Movimentação: 
+
+	{% for historico_movimentacao in peca.historicos_movimentacao %}
+
+		<p class="P2 texto_longo"> <span class="T12"> <b> Momento da Mudança de Localização: </b>  {{ historico_movimentacao.data_alteracao_localizacao }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Descrição: </b>  {{ historico_movimentacao.descricao  }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Localização Atual: </b>  {{ historico_movimentacao.localizacao_atual  }} </span></p>
+		<p class="P2 texto_longo"> <span class="T12"> <b> Localização Fixa: </b>  {{ historico_movimentacao.localizacao_fixa  }} </span></p>
+		
+		<br />
+
+	{% endfor %}
+
+{% endif %}
+
+{% if historico_conservacao %}
+
+<p class="P7">Histórico de Conservação: 
+
+{% for historico_conservacao in peca.historicos_conservacao %}
+
+	<p class="P2 texto_longo"> <span class="T12"> <b> Momento da Avaliacao: </b>  {{ historico_conservacao.data_avaliacao }} </span></p>
+	<p class="P2 texto_longo"> <span class="T12"> <b> Estado de Conservação: </b>  {{ historico_conservacao.estado_conservacao }} </span></p>
+	<p class="P2 texto_longo"> <span class="T12"> <b> Descrição: </b>  {{ historico_conservacao.descricao  }} </span></p>
+	<p class="P2 texto_longo"> <span class="T12"> <b> Funcionário que fez a Avaliação: </b>  {{ historico_conservacao.funcionario  }} </span></p>
+	
+	<br />
+
+{% endfor %}
+
+{% endif %}
+
+<p class="P7"> </p>
+
+<p class="P7"> </p>
+
+<p class="P7"> </p>
+</body>
+</html>

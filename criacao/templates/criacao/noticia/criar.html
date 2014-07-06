@@ -1,0 +1,144 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+	{{ title }}  
+{% endblock %}
+
+{% block header %}
+<div id="header" class="full clearfix">
+	<header  id="main-header" class="row">
+		<div id="title-container" class="columns">
+		{% if request.user.is_authenticated %}
+			<a href="/criacao/sair/" title="Sair.">
+				<span class="orange p15" data-icon='%'></span>
+			</a>
+		{% endif %} 	
+			<h3>
+				museu
+				<span>
+					{{ museu_nome | lower }}
+				</span>	
+			</h3>		
+		</div>						
+	</header>
+</div>
+{% endblock %}
+
+{% block menu %}
+<div id="menu" class="full clearfix">
+	<section id="main-menu" class="row">
+		<div id="logo-container" class="large-6 columns">
+			<h2 class="float-left">museu<span>virtual</span></h2>
+			<div class="separator float-left"></div>
+			<h2 class="float-left">criação</h2>
+		</div>
+		<nav class="large-14 columns">
+			<ul>
+				<li><a href="/apresentacao/" target="_blank" title="Visualizar publicação do museu">Museu publicado</a></li>
+				<li><a href="/criacao/link/listar/" title="Área de links">Links</a></li>
+				<li><a href="/criacao/noticia/listar/" class="active">Notícias</a></li>
+				<li><a href="/criacao/coletanea/listar/" title="Área de coletâneas">Coletâneas</a></li>				
+				<li><a href="/criacao/informacoes/listar/" title="Área de informações do museu">Informações do museu</a></li>
+				<li><a href="/criacao/inicio/" title="Ir para tela inicial">Inicial</a></li>
+			</ul>
+		</nav>
+	</section> 
+</div>	
+{% endblock %}
+
+{% block container %}
+<div id="container" class="background_black full clearfix">
+	<!-- -  -   -    -     -      -      -        Article -->
+	<article id="content_main" class="container_20 clearfix">		
+		<!-- -  -   -    -     -      -      -        Section header -->
+		<section id="header" class="grid_20 alpha omega">		
+			<h1 class="white grid_16 alpha omega"><span class="orange-bar">\</span>Criação de notícia</h1>
+			<h4 class="white grid_4 alpha omega">
+				<a class="white" href="/criacao/noticia/listar/" title="Voltar à página anterior.">
+					<span class="orange p15" data-icon='-'></span>Voltar 
+				</a>
+				<div>|</div>
+				<a class="white" href="javascript: return false;" data-post="#new_news_form" title="Salvar notícia.">
+					<span class="orange p15" data-icon='*'></span>Salvar
+				</a>
+			</h4>
+		</section>
+		<!-- -  -   -    -     -      -      -        Section main -->-->
+		<section id="main" class="grid_20 alpha omega">
+			<form id="new_news_form" action="/criacao/noticia/criar/" method="post" class="news_form grid_20 white" accept-charset="utf-8">
+			{% csrf_token %}
+			    <div class="grid_20">
+			    	<div class="grid_5 omega"> <h3 class="white">Título</h3> </div>	
+			    	<div class="grid_15 alpha"> {{ form.titulo }} </div>	
+			    </div>	
+			    <div class="grid_20">
+			    	<div class="grid_5 omega"> <h3 class="white">Descrição breve</h3> </div>	
+			    	<div class="grid_15 alpha"> {{ form.descricao_breve }} </div>
+			    </div>	
+			    <div class="grid_20">
+			    	<div class="grid_5 omega"> <h3 class="white">Descrição completa</h3> </div>	
+			    	<div class="grid_15 alpha"> {{ form.descricao }} </div>	
+			    </div>			
+			</form>			
+			<!-- <div class="grid_20 alpha omega down-div">
+		        <h3 class="white">Agora escolha as obras relacionadas à noticia (se houver)</h3>
+		        <p>
+		            Clicando sobre as obras você poderá perceber uma mudança de cor da borda para laranja, são essas peças selecionadas e alaranjadas que farão parte da notícia criada.
+		        </p>
+		    </div>
+		    <div id="parts" class="grid_20 alpha omega">
+				<select id="multiple" multiple="multiple" class="grid_20 alpha omega image-picker show-html"></select>
+				<div id="parts_controls" class="grid_20 alpha omega"></div>
+			</div> -->
+		</section>
+		<!-- -  -   -    -     -      -      -        Section header-bottom -->
+		<section id="header" class="grid_20 alpha omega">		
+			<h4 class="white grid_20 alpha omega">
+				<a class="white" href="/criacao/noticia/listar/" title="Voltar à página anterior.">
+					<span class="orange p15" data-icon='-'></span> 
+				</a>
+				<div>|</div>
+				<a class="white" href="javascript: return false;" data-post="#new_news_form" title="Salvar notícia.">
+					<span class="orange p15" data-icon='*'></span>Salvar
+				</a>
+			</h4>
+		</section>
+	</article>		
+</div>
+{% endblock %}
+
+{% block footer %}
+<div id="footer" class="full clearfix">
+	<footer class="row">
+		<div class="footer-orangeborder">
+			<div class="footer-info large-4 columns">
+				<a class="row" href="/gerenciamento/" title="Ir à área de gerenciamento.">
+					<span class="p15" data-icon="6"></span>
+					&nbsp;gerenciamento
+				</a>
+				
+				{% if request.user.is_authenticated %}
+				<a class="row" href="/criacao/sair/" title="Sair.">
+					<span class="p15" data-icon="%"></span>
+					&nbsp;sair
+				</a>
+				{% endif %}
+				
+			</div>
+			<p class="white large-16 columns">
+				© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores. 
+			</p>
+		</div>
+	</footer>
+</div>	
+
+<div id="page-loading">
+	<div class="loader">Carregando...</div>
+</div>
+{% endblock %}
+
+{% block js %} 
+<script>
+	mostre_pecas(1);
+</script>
+{% endblock %}

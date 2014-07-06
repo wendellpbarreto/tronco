@@ -1,0 +1,193 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+	museuvirtual | listar informações do museu
+{% endblock %}
+
+{% block header %}
+	<div id="header" class="full clearfix">
+		<header  id="main-header" class="row">
+			<div id="title-container" class="columns">
+			{% if request.user.is_authenticated %}
+				<a href="/criacao/sair/" title="Sair.">
+					<span class="orange p15" data-icon='%'></span>
+				</a>
+			{% endif %} 	
+				<h3>
+					museu
+					<span>
+						{{ museu_nome | lower }}
+					</span>	
+				</h3>		
+			</div>						
+		</header>
+	</div>
+{% endblock %}
+
+{% block menu %}
+	<div id="menu" class="full clearfix">
+		<section id="main-menu" class="row">
+			<div id="logo-container" class="large-6 columns">
+				<h2 class="float-left">museu<span>virtual</span></h2>
+				<div class="separator float-left"></div>
+				<h2 class="float-left">criação</h2>
+			</div>
+			<nav class="large-14 columns">
+				<ul>
+					<li><a href="/apresentacao/" target="_blank" title="Visualizar publicação do museu">Museu publicado</a></li>
+					<li><a href="/criacao/link/listar/" title="Área de links">Links</a></li>
+					<li><a href="/criacao/noticia/listar/" title="Área de notícias">Notícias</a></li>
+					<li><a href="/criacao/coletanea/listar/" title="Área de coletâneas">Coletâneas</a></li>				
+					<li><a href="/criacao/informacoes/listar/" class="active">Informações do museu</a></li>
+					<li><a href="/criacao/inicio/" title="Ir para tela inicial">Inicial</a></li>
+				</ul>
+			</nav>
+		</section> 
+	</div>		
+{% endblock %}
+
+{% block container %}
+	<div id="container" class="background_black full clearfix">
+		<article id="content_main">		
+			<section id="header" class="row">		
+				<h1 class="white large-16 columns">
+					<div class="left">
+						<span class="orange-bar">\</span>
+						Edição de informações do museu
+					</div>
+					<div class="left button-help">
+						<a class='white' data-help data-icon="b"></a>
+					</div>
+				</h1>
+				<h4 class="white large-4 columns">
+					<a class="white" href="/criacao/informacoes/listar/" title="Voltar à página anterior.">
+						<span class="orange p15" data-icon='-'></span>
+						Voltar 
+					</a>
+					<div>|</div>
+					<a id='salvar' class="white" href="javascript: return false;" data-post="#info-form" title="Salvar coletânea.">
+						<span class="orange p15" data-icon='*'></span>
+						Salvar
+					</a>
+				</h4>
+			</section>
+			<!-- -  -   -    -     -      -      -        Section main -->
+			<section id="main" class="row">
+				<form id="info-form" class="info-form white columns" action="/criacao/informacoes/editar/" method="post" accept-charset="utf-8">
+					<div id='informacoes'></div>
+					{% csrf_token %}
+					<div class="row">
+						<div class="large-10 columns">
+							<h6 class="white">Nome do museu:</h6>
+							<h7>{{ form.nome }}</h7>
+						</div>
+						<div class="large-10 columns">
+							<h6 class="white">Data de fundação:</h6>
+							<h7>{{ form.data_fundacao }}</h7>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-10 columns">
+							<h6 class="white">Apresentacão:</h6> 
+							<h7>{{ form.apresentacao }}</h7>
+						</div> 
+						<div class="large-10 columns">
+							<h6 class="white">Concepcão:</h6> 
+							<h7>{{ form.concepcao }}</h7>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-10 columns">
+							<h6 class="white">Missão:</h6> 
+							<h7>{{ form.missao }}</h7>
+						</div> 
+						<div class="large-10 columns">
+							<h6 class="white">Objetivos:</h6> 
+							<h7>{{ form.objetivos }}</h7>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-10 columns">
+							<h6 class="white">Descrição técnica:</h6> 
+							<h7>{{ form.descricao_tecnica }}</h7>
+						</div> 
+						<div class="large-10 columns">
+							<h6 class="white">Características do acervo:</h6> 
+							<h7>{{ form.caracteristicas_acervo }}</h7>
+						</div>
+					</div>
+				</form>
+			</section>
+			<!-- -  -   -    -     -      -      -        Section header-bottom -->
+			<section id="header" class="row">		
+				<h4 class="white columns">
+					<a class="white" href="/criacao/informacoes/listar/" title="Voltar à página anterior.">
+						<span class="orange p15" data-icon='-'></span> 
+					</a>
+					<div>|</div>
+					<a class="white" href="javascript: return false;" data-post="#info-form" title="Salvar coletânea.">
+						<span class="orange p15" data-icon='*'></span>Salvar
+					</a>
+				</h4>
+			</section>
+		</article>		
+	</div>
+{% endblock %}
+
+{% block footer %}
+	<div id="footer" class="full clearfix">
+		<footer class="row">
+			<div class="footer-orangeborder">
+				<div class="footer-info large-4 columns">
+					<a class="row" href="/gerenciamento/" title="Ir à área de gerenciamento.">
+						<span class="p15" data-icon="6"></span>
+						&nbsp;gerenciamento
+					</a>
+					
+					{% if request.user.is_authenticated %}
+					<a class="row" href="/criacao/sair/" title="Sair.">
+						<span class="p15" data-icon="%"></span>
+						&nbsp;sair
+					</a>
+					{% endif %}
+					
+				</div>
+				<p class="white large-16 columns">
+					© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores. 
+				</p>
+			</div>
+		</footer>
+	</div>	
+
+	<div id="page-loading">
+		<div class="loader">Carregando...</div>
+	</div>
+	<!-- -  -   -    -     -      -      -       -        -        Joyride -->
+	<ol class="joyride-list" data-joyride>
+		<li data-id="informacoes" data-text="Próximo">
+			<h4>Informações</h4>
+			<p>Digite nas caixas de texto brancas as informações do museu.</p>
+		</li>
+		<li data-id="salvar" data-button="Fim">
+			<h4>Salvar</h4>
+			<p>Clique no botão salvar para terminar a edição das informações.</p>
+		</li>
+	</ol>
+{% endblock %}
+
+{% block js %} 
+<script>
+	$(document).ready(function(){  
+	    $('.init').trigger("click");
+	});
+
+	$(window).load(function(){
+		$('#id_data_fundacao').pickadate({
+		    formatSubmit: 'dd/mm/yyyy',
+			format: 'dd/mm/yyyy',
+		})
+	});
+
+	// CKEDITOR.replace('id_apresentacao');
+</script>
+{% endblock %}

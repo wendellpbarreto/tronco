@@ -1,0 +1,65 @@
+{% extends 'base-presentation.html' %}
+
+{% load thumbnail %}
+
+{% block title %}
+    Bem-vindo ao museu {{ informations.nome|lower }}
+{% endblock %}
+
+{% block header %}
+    {% include 'apresentacao/partials/header.html' %}
+{% endblock %}
+
+{% block container %}
+    <div id='container' class='clearfix'>
+        <div class='row collapse'>
+            <div class='large-8 columns'>
+                <section class='search-column'>
+                    <header class='row'>
+                        <h5>Pesquisa</h5>
+                    </header>
+                    <form action='/apresentacao/collectaneas/search' method='get' data-default='true' class='search row collapse'>
+                        <div class='large-20 columns'>
+                            <input id='search' name='keywords' type='text' placeholder='frases, palavras, termos e etc'>
+                        </div>
+                        <div class='large-4 columns'>
+                            <a class='magnifier' data-submit data-icon='8'></a>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <div class='large-16 columns'>
+                <ul class='collectaneas-list row collapse'>
+                    {% if collectaneas %}
+                        {% for collectanea in collectaneas %}
+                            <li class='large-12 medium-12 small-24 columns'>
+                                <a href='/apresentacao/collectanea/{{ collectanea.pk }}/'>
+                                    <figure>
+                                        <figcaption>
+                                            <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
+                                            <p>Criada em {{ collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</p>
+                                            <span class='arrow-down'></span>
+                                        </figcaption>
+                                        {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "570x320" crop="center" as im %}
+                                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                        {% endthumbnail %}
+                                    </figure>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'apresentacao/partials/footer.html' %}
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

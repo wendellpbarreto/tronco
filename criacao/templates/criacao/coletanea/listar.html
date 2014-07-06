@@ -1,0 +1,248 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+	museuvirtual | listar coletâneas 
+{% endblock %}
+
+{% block header %}
+	<div id="header" class="full clearfix">
+		<header  id="main-header" class="row">
+			<div id="title-container" class="columns">
+			{% if request.user.is_authenticated %}
+				<a href="/criacao/sair/" title="Sair.">
+					<span class="orange p15" data-icon='%'></span>
+				</a>
+			{% endif %} 	
+				<h3>
+					museu
+					<span>
+						{{ museu_nome | lower }}
+					</span>	
+				</h3>		
+			</div>						
+		</header>
+	</div>
+{% endblock %}
+
+{% block menu %}
+	<div id="menu" class="full clearfix">
+		<section id="main-menu" class="row">
+			<div id="logo-container" class="large-6 columns">
+				<h2 class="float-left">museu<span>virtual</span></h2>
+				<div class="separator float-left"></div>
+				<h2 class="float-left">criação</h2>
+			</div>
+			<nav class="large-14 columns">
+				<ul>
+					<li><a href="/apresentacao/" target="_blank" title="Visualizar publicação do museu">Museu publicado</a></li>
+					<li><a href="/criacao/link/listar/" title="Área de links">Links</a></li>
+					<li><a href="/criacao/noticia/listar/" title="Área de notícias">Notícias</a></li>
+					<li><a href="/criacao/coletanea/listar/" class="active">Coletâneas</a></li>				
+					<li><a href="/criacao/informacoes/listar/" title="Área de informações do museu">Informações do museu</a></li>
+					<li><a href="/criacao/inicio/" title="Ir para tela inicial">Inicial</a></li>
+				</ul>
+			</nav>
+		</section> 
+	</div>	
+{% endblock %}
+
+{% block container %}
+	<div id="container" class="background_white" class="full clearfix">
+		<article id="content_main">		
+			<section id="header" class="row">
+				<h1 class="black large-16 columns">
+					<div class="left">
+						<span class="orange-bar">\</span>
+						Coletâneas
+					</div>
+					<div class="left button-help">
+						<a data-help data-icon="b"></a>
+					</div>
+				</h1>
+				<h4 class="black lh48 large-4 columns right">
+					<a id='criar' href="/criacao/coletanea/criar/">
+						Criar coletânea<span class="orange" data-icon='7'></span>
+					</a>
+				</h4>
+			</section>
+			<!-- -  -   -    -     -      -      -        Section main -->
+			<section id="main">	
+
+			{% if coletaneas %}
+				<div id="listagem-de-coletaneas" class="row">
+					<ul style="min-height:750px;" class="large-block-grid-4 small-block-grid-2">
+					{% if coletanea_principal %}
+						<li id="coletanea_principal{{ coletanea_principal.id }}">
+							<div class="frame">		
+								<div>			
+									<a id='visualizar' href="/criacao/coletanea/visualizar/{{ coletanea_principal.id }}/">
+										<img src="/media/imagens/pecas/default/media.png" >
+									</a>
+								</div>
+								<div class="row">
+									<div class="large-17 columns">
+										<h7>
+											{{ coletanea_principal.nome }}
+										</h7>
+									</div>
+									<div class="large-3 columns text-right">
+										<a id="editar" href="/criacao/coletanea/editar/{{ coletanea_principal.id }}/" title="Editar" >
+											<span class="orange" data-icon='+'></span>		
+										</a>
+										<a id="excluir" href="javascript: return false;" data-get="/criacao/coletanea/excluir/{{ coletanea_principal.id }}/" data-confirm="Tem certeza que deseja apagar esta coletânea?" data-remove="#coletanea_principal{{ coletanea_principal.id }}" data-success="Coletânea deletada com sucesso!" title="Excluir">
+											<span class="orange" data-icon="'"></span>
+										</a>
+										<div class="clear-both"></div>
+									</div>
+								</div>
+							</div>
+						</li>
+					{% endif %}
+					{% for coletanea in coletaneas %}
+						<li id="coletanea{{ coletanea.id }}">
+							<div class="frame">		
+								<div>			
+									<a href="/criacao/coletanea/visualizar/{{ coletanea.id }}/">
+										<img src="/media/{{ coletanea.peca.imagens.0.media }}" >
+									</a>
+								</div>
+								<div class="row">
+									<div class="large-17 columns">
+										<h7>
+											{{ coletanea.nome }}
+										</h7>
+									</div>
+									<div class="large-3 columns text-right">
+										<a href="/criacao/coletanea/editar/{{ coletanea.id }}/" title="Editar">
+											<span class="orange" data-icon='+'></span>		
+										</a>
+										<a href="javascript: return false;" data-get="/criacao/coletanea/excluir/{{ coletanea.id }}/" data-confirm="Tem certeza que deseja apagar esta coletânea?" data-remove="#coletanea{{ coletanea.id }}" data-success="Coletânea deletada com sucesso!" title="Excluir">
+											<span class="orange" data-icon="'"></span>
+										</a>
+										<div class="clear-both"></div>
+									</div>
+								</div>
+							</div>
+						</li>
+					{% endfor %}
+					</ul>
+					<div class="row pagination-centered">
+						<ul class="pagination">
+							{% if coletaneas.has_previous %}
+								<li class="arrow"><a data-get="/criacao/coletanea/listar/{{ coletaneas.previous_page_number }}/" data-target="#listagem-de-coletaneas">&laquo;</a></li>
+							{% else %}
+								<li class="arrow unavailable"><a>&laquo;</a></li>
+							{% endif %}
+
+							{% if coletaneas.has_less_ten %}						
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_less_ten }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_less_ten }}</a></li>
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_less_ten | add:"1" }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_less_ten | add:"1" }}</a></li>
+								<li class="unavailable"><a>&hellip;</a></li>
+							{% endif %}
+
+							{% if coletaneas.has_less_three %}
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_less_three }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_less_three }}</a></li>
+							{% endif %}
+
+
+							{% if coletaneas.has_less_two %}
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_less_two }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_less_two }}</a></li>
+							{% endif %}
+
+
+							{% if coletaneas.has_previous %}
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.previous_page_number }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.previous_page_number }}</a></li>
+							{% endif %}
+
+							<li class="current"><a>{{ coletaneas.page }}</a></li>
+
+							{% if coletaneas.has_next %}
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.next_page_number }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.next_page_number }}</a></li>
+							{% endif %}
+
+							{% if coletaneas.has_more_two %}
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_more_two }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_more_two }}</a></li>
+							{% endif %}
+
+							{% if coletaneas.has_more_three %}
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_more_three }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_more_three }}</a></li>
+							{% endif %}
+
+							{% if coletaneas.has_more_ten %}
+								<li class="unavailable"><a>&hellip;</a></li>
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_more_ten }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_more_ten }}</a></li>
+								<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_more_ten | add:"1" }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_more_ten | add:"1" }}</a></li>
+							{% endif %}
+
+							{% if coletaneas.has_next %}
+								<li class="arrow"><a data-get="/criacao/coletanea/listar/{{ coletaneas.next_page_number }}/" data-target="#listagem-de-coletaneas">&raquo;</a></li>
+							{% else %}
+								<li class="arrow unavailable"><a>&raquo;</a></li>
+							{% endif %}					
+						</ul>
+					</div>
+				</div>
+			{% else %}
+				<div class="row">
+					<h2 class="large-centered column">Ainda não há nenhuma coletânea criada.</h2>
+				</div>
+			{% endif %}
+
+			</section>
+		</article>	
+	</div>
+{% endblock %}
+
+{% block footer %}
+	<div id="footer" class="full clearfix">
+		<footer class="row">
+			<div class="footer-orangeborder">
+				<div class="footer-info large-4 columns">
+					<a class="row" href="/gerenciamento/" title="Ir à área de gerenciamento.">
+						<span class="p15" data-icon="6"></span>
+						&nbsp;gerenciamento
+					</a>
+					
+					{% if request.user.is_authenticated %}
+					<a class="row" href="/criacao/sair/" title="Sair.">
+						<span class="p15" data-icon="%"></span>
+						&nbsp;sair
+					</a>
+					{% endif %}
+					
+				</div>
+				<p class="white large-16 columns">
+					© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores. 
+				</p>
+			</div>
+		</footer>
+	</div>	
+	<!-- -  -   -    -     -      -      -       -        -        Joyride -->
+	<ol class="joyride-list" data-joyride>
+		<li data-id="criar" data-text="Próximo">
+			<h4>Criar</h4>
+			<p>Clicando em criar coletânea é possível criar uma nova coletânea.</p>
+		</li>
+		<li data-id="visualizar" data-class="custom so-awesome" data-text="Próximo">
+			<h4>Visualizar</h4>
+			<p>Clicando sobre a coletânea é possível visualizá-la completamente.</p>
+		</li>
+		<li data-id="editar" data-button="Próximo">
+			<h4>Editar</h4>
+			<p>O ícone da caneta serve para editar uma coletânea.</p>
+		</li>
+		<li data-id="excluir" data-button="Próximo">
+			<h4>Excluir</h4>
+			<p>O ícone do X serve para excluir uma coletânea.</p>
+		</li>
+		<li data-button="Fim">
+			<h4>Pronto!</h4>
+			<p>Agora é por sua conta, obrigado.</p>
+		</li>
+	</ol>
+{% endblock %}
+
+{% block js %} 
+<script>
+</script>
+{% endblock %}

@@ -1,0 +1,84 @@
+<ul style="min-height:750px;" class="large-block-grid-4 small-block-grid-2">
+{% for coletanea in coletaneas %}
+	<li id="coletanea{{ coletanea.id }}">
+		<div class="frame">		
+			<div>			
+				<a href="/criacao/coletanea/visualizar/{{ coletanea.id }}/">
+					<img src="/media/{{ coletanea.peca.imagens.0.media }}" >
+				</a>
+			</div>
+			<div class="row">
+				<div class="large-17 columns">
+					<h7>
+						<em>{{ coletanea.nome }}</em>
+					</h7>
+				</div>
+				<div class="large-3 columns text-right">
+					<a href="/criacao/coletanea/editar/{{ coletanea.id }}/" title="Editar" id="editar">
+						<span class="orange" data-icon='+'></span>		
+					</a>
+					<a href="javascript: return false;" data-get="/criacao/coletanea/excluir/{{ coletanea.id }}/" data-confirm="Tem certeza que deseja apagar esta coletânea?" data-remove="#coletanea{{ coletanea.id }}" data-success="Coletânea deletada com sucesso!" id="excluir" title="Excluir">
+						<span class="orange" data-icon="'"></span>
+					</a>
+					<div class="clear-both"></div>
+				</div>
+			</div>
+		</div>
+	</li>
+{% endfor %}
+</ul>
+<div class="row pagination-centered">
+	<ul class="pagination">
+		{% if coletaneas.has_previous %}
+			<li class="arrow"><a data-get="/criacao/coletanea/listar/{{ coletaneas.previous_page_number }}/" data-target="#listagem-de-coletaneas">&laquo;</a></li>
+		{% else %}
+			<li class="arrow unavailable"><a>&laquo;</a></li>
+		{% endif %}
+
+		{% if coletaneas.has_less_ten %}						
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_less_ten }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_less_ten }}</a></li>
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_less_ten | add:"1" }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_less_ten | add:"1" }}</a></li>
+			<li class="unavailable"><a>&hellip;</a></li>
+		{% endif %}
+
+		{% if coletaneas.has_less_three %}
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_less_three }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_less_three }}</a></li>
+		{% endif %}
+
+
+		{% if coletaneas.has_less_two %}
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_less_two }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_less_two }}</a></li>
+		{% endif %}
+
+
+		{% if coletaneas.has_previous %}
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.previous_page_number }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.previous_page_number }}</a></li>
+		{% endif %}
+
+		<li class="current"><a>{{ coletaneas.page }}</a></li>
+
+		{% if coletaneas.has_next %}
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.next_page_number }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.next_page_number }}</a></li>
+		{% endif %}
+
+		{% if coletaneas.has_more_two %}
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_more_two }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_more_two }}</a></li>
+		{% endif %}
+
+		{% if coletaneas.has_more_three %}
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_more_three }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_more_three }}</a></li>
+		{% endif %}
+
+		{% if coletaneas.has_more_ten %}
+			<li class="unavailable"><a>&hellip;</a></li>
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_more_ten }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_more_ten }}</a></li>
+			<li><a data-get="/criacao/coletanea/listar/{{ coletaneas.has_more_ten | add:"1" }}/" data-target="#listagem-de-coletaneas">{{ coletaneas.has_more_ten | add:"1" }}</a></li>
+		{% endif %}
+
+		{% if coletaneas.has_next %}
+			<li class="arrow"><a data-get="/criacao/coletanea/listar/{{ coletaneas.next_page_number }}/" data-target="#listagem-de-coletaneas">&raquo;</a></li>
+		{% else %}
+			<li class="arrow unavailable"><a>&raquo;</a></li>
+		{% endif %}					
+	</ul>
+</div>

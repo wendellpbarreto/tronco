@@ -1,0 +1,35 @@
+<div id='header' class='clearfix'>
+    <header class='row'>
+        <section class='column'>
+            <div class='logo large-10 columns'>
+                <img src='/static/apresentacao/img/logo/favicon.png' alt='Logo'>
+                <div class='museum'>
+                    {% if informations.nome %}
+                        <h4> museu <strong>{{ informations.nome|lower }}</strong></h4>
+                    {% endif %}
+                </div>
+            </div>
+            <div class='search show-for-medium-up large-8 columns'>
+                <form class='row collapse' action='/apresentacao/collectaneas/search' method='get' data-default='true'>
+                    <div class='large-20 columns'>
+                        <input id='search' name='keywords' type='text' placeholder='pesquisa'>
+                    </div>
+                    <div class='large-4 columns'>
+                        <a class='magnifier' data-submit data-icon='8'></a>
+                    </div>
+                    <div style='float: right; top:10px; 'class='fb-like' data-href='https://www.museuvirtual.info' data-width='30' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'></div>
+                </form>
+            </div>
+        </section>
+        <nav class='show-for-medium-up column'>
+            <ul class='no-bullet'>
+                <li><a href='/apresentacao/home' {% if slug = 'home'  %} class='active' {% endif %}>Inicial</a></li>
+                <li><a href='/apresentacao/collectaneas' {% if slug = 'collectaneas' %} class='active' {% endif %}>Coletâneas</a></li>
+                <li><a href='/apresentacao/institutional' {% if slug = 'institutional' %} class='active' {% endif %}>Institucional</a></li>
+                <li><a href='' {% if slug = 'art-and-education' %} class='active' {% endif %}>Arte & Educação</a></li>
+                <li><a href='/apresentacao/news' {% if slug = 'news'%} class='active' {% endif %}>Notícias</a></li>
+                <li><a href='/apresentacao/contact' {% if slug = 'contact' %} class='active' {% endif %}>Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+</div>

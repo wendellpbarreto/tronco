@@ -1,0 +1,271 @@
+{% extends 'base-presentation.html' %}
+
+{% load thumbnail %}
+
+{% block title %}
+    Bem-vindo ao museu {{ informations.nome|lower }}
+{% endblock %}
+
+{% block header %}
+    {% include 'apresentacao/partials/header.html' %}
+{% endblock %}
+
+{% block container %}
+    <div id='banner' class='row'>
+        <ul data-orbit>
+            {% for part in main_parts %}
+                <li>
+                    {% thumbnail part.imagens.0.imagem "1200x675" crop="center" as im %}
+                        <img src="{{ im.url }}">
+                    {% endthumbnail %}
+                    <div class="orbit-caption">
+                        <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ main_collectanea.pk }}/'>
+                            <div class='desc column'>
+                                <div class='title large-8 columns'>
+                                    <h5>{{ part.titulo | truncatechars:'50' }}</h5>
+                                </div>
+                                <div class='others large-16 columns'>
+                                    <span class="cell-divider"></span>
+                                    {% if part.descricao %}
+                                        <h6>{{ part.descricao|truncatechars:'256' }}</h6>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id='container' class='clearfix'>
+        <ul class='collectaneas-list row collapse'>
+            {% if main_collectanea %}
+                <li class='large-8 medium-12 small-24 columns'>
+                    <a href='/apresentacao/collectanea/{{ main_collectanea.pk }}/'>
+                        <figure>
+                            <figcaption>
+                                <h5>{{ main_collectanea.nome|truncatechars:45 }}</h5>
+                                <p>Criada em {{ main_collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</p>
+                                <span class='arrow-down'></span>
+                            </figcaption>
+                            {% thumbnail main_collectanea.pecas.all.0.imagens.0.imagem "570x320" crop="center" as im %}
+                                <img src="{{ im.url }}">
+                            {% endthumbnail %}
+                        </figure>
+                    </a>
+                </li>
+            {% endif %}
+            {% if collectaneas %}
+                {% for collectanea in collectaneas %}
+                    <li class='large-8 medium-12 small-24 columns'>
+                        <a href='/apresentacao/collectanea/{{ collectanea.pk }}/'>
+                            <figure>
+                                <figcaption>
+                                    <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
+                                    <p>Criada em {{ collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</p>
+                                    <span class='arrow-down'></span>
+                                </figcaption>
+                                {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "1200x675" crop="center" as im %}
+                                    <img src="{{ im.url }}">
+                                {% endthumbnail %}
+                            </figure>
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        {% if news %}
+            <section class='latest-news'>
+                <header class='row'>
+                    <h5>Últimas notícias</h5>
+                    <span class='arrow-down'></span>
+                    <span class='arrow-down-inner'></span>
+                </header>
+                <ul class='row collapse'>
+                    {% for new in news %}
+                        <li class='large-6 medium-8 small-12 columns'>
+                            <figure>
+                                <figcaption>
+                                    <h6>{{ new.titulo }}</h6>
+                                    <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+                                    <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+
+  <!--   <div id='initial' class='bg_squares parallax clearfix'>
+        <header class='row'>
+            <h1 class='column'>Bem-vindo ao museu</h1>
+            <h1 class='column'><span>{{ museu_nome | lower }}</span></h1>
+        </header>
+        <article id='' class='row'>
+            {% if pecas_principais %}
+                <section class='banner large-10 large-centered column'>
+                    <ul class='slides'>
+                        {% for peca in pecas_principais %}
+                        <li>
+                            <a data-get='/apresentacao/controle_pecas/{{ peca.id }}/{{ coletanea_principal.pk }}/' data-target='#large-modal2' data-reveal-id='large-modal2'>
+                                {% if peca.imagens %}
+                                    <img src='/media/{{ peca.imagens.0.grande}}' />
+                                {% else %}
+                                    <img src='/media/imagens/pecas/default/grande.png' />
+                                {% endif %}
+                                <div class='desc'>
+                                    <div class='meta row'>
+                                        <div class='large-10 large-centered column'>
+                                            <div class='row'>
+                                                <div class='title large-5 columns'>
+                                                    <h4>{{ peca.titulo | truncatewords:'7' }}</h4>
+                                                </div>
+                                                <div class='others large-7 columns'>
+                                                {% if peca.descricao %}
+                                                    <h4>{{ peca.descricao|truncatewords:'15' }}</h4>
+                                                {% endif %}
+
+                                                {% if peca.data_criacao.data_especifica %}
+                                                    <h4>Criada dia {{ peca.data_criacao.data_especifica|date:'d \d\e M \d\e Y' }}</h4>
+                                                {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% endif %}
+            <section id='main-header' class='large-10 large-centered columns'>
+                {% if informacoes %}
+                    <p class='dark align-center italic'>{{ informacoes.apresentacao }}</p>
+                    <p class='dark align-right'>Museu fundado dia {{ informacoes.data_fundacao }}</p>
+                    <div style='float: right; 'class='fb-like' data-href='https://www.museuvirtual.info' data-width='30' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'></div>
+                {% else %}
+                    <p class='dark align-center italic'>As informações deste museu ainda não foram cadastradas.</p>
+                {% endif %}
+            </section>
+            </section>
+        </article>
+    </div>
+
+    <div id='institutional' class='bg_white clearfix'>
+        <article id='content_main'>
+            <section id='main-header' class='row'>
+                <div class='large-12 columns'>
+                    <h2 class='show-for-medium-up'>Institucional<span class='border'></span></h2>
+                    <h2 class='show-for-small'>Institucional<span class='border'></span></h2>
+                </div>
+            </section>
+            <section id='main' class='row'>
+            {% if informacoes %}
+                <div class='large-12 columns flexslider-control-nav'>
+                    <ul class='controls filtering no-bullet'>
+                        <li>
+                            concepção
+                        </li>
+                        <li>
+                            objetivos
+                        </li>
+                        <li>
+                            descrição técnica
+                        </li>
+                        <li>
+                            características do acervo
+                        </li>
+                    </ul>
+                </div>
+                <div class='large-12 columns flexslider'>
+                    <ul class='slides no-bullet'>
+                        <li>
+                            <p class='dark'>{{ informacoes.concepcao|safe }}</p>
+                        </li>
+                        <li>
+                            <p class='dark'>{{ informacoes.objetivos|safe }}</p>
+                        </li>
+                        <li>
+                            <p class='dark'>{{ informacoes.descricao_tecnica|safe }}</p>
+                        </li>
+                        <li>
+                            <p class='dark'>{{ informacoes.caracteristicas_acervo|safe }}</p>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <p class='italic dark'> As informações institucionais deste museu não foram cadastradas ainda. Quem sabe em breve? (:</p>
+            {% endif %}
+            </section>
+        </article>
+    </div>
+
+    <div id='news' class='bg_black parallax clearfix'>
+        <article id='content_main'>
+            <section id='main-header' class='row'>
+                <div class='large-12 columns'>
+                    <h2 class='show-for-medium-up white'>Notícias<span class='border'></span></h2>
+                </div>
+            </section>
+            <section id='main' class='row'>
+            {% if news %}
+                <div id='news-control' class='column'>
+                    <a data-get='/apresentacao/news/1/' data-target='#news-control' data-trigger='true'></a>
+                </div>
+            {% else %}
+                <p class='italic light'> Ainda não existe nenhuma notícia. </p>
+            {% endif %}
+            </section>
+        </article>
+    </div>
+
+
+
+    <div id='contact' class='bg_black parallax clearfix'>
+        <article id='content_main'>
+            <section id='main' class='row'>
+                {% if links %}
+                <div class='large-6 columns'>
+                    <h3 class='white'>LINKS</h3>
+                    {% for link in links %}
+                        <a href='{{ link.url }}' target='_blank' class='white'>{{ link.name }}</a>
+                        <br>
+                    {% endfor %}
+                </div>
+                <div class='large-6 columns'>
+                    <h3 class='white'>CONTATO</h3>
+                    <form action='/apresentacao/mail/' method='post' data-default='true'>
+                        {% csrf_token %}
+                        {{ contact_form }}
+                        <input type='submit' value='Enviar'>
+                    </form>
+                </div>
+                {% else %}
+                <div class='large-9 large-centered column'>
+                    <h3 class='white'>CONTATO</h3>
+                    <form action='/apresentacao/mail/' method='post' data-default='true'>
+                        {% csrf_token %}
+                        {{ contact_form }}
+                        <input type='submit' value='Enviar'>
+                    </form>
+                </div>
+                {% endif %}
+            </section>
+        </article>
+    </div> -->
+{% endblock %}
+
+{% block footer %}
+    {% include 'apresentacao/partials/footer.html' %}
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

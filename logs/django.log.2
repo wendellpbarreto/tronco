@@ -1,0 +1,541 @@
+[23/Apr/2014 14:20:50] ERROR [django.request:226] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/core/handlers/base.py", line 114, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 87, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 115, in get
+    return self._request(request, args, kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 107, in _request
+    return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader.py", line 169, in render_to_string
+    return t.render(context_instance)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 304, in render
+    if match:
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/models/query.py", line 100, in __nonzero__
+    self._fetch_all()
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/models/query.py", line 854, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/models/query.py", line 220, in iterator
+    for row in compiler.results_iter():
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 709, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 782, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/backends/util.py", line 69, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/utils.py", line 99, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: column "sds" does not exist
+LINE 1: SELECT (sds) AS "type", "core_notice"."id", "core_notice"."v...
+                ^
+
+[23/Apr/2014 14:20:51] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:21:05] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 14:26:41] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:29:47] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 14:47:03] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:47:15] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 14:47:19] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:47:45] INFO [fotec.apps.core.models:375] Notice matching query does not exist.
+[23/Apr/2014 14:47:51] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 14:48:23] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 14:51:37] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:52:16] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:52:17] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:52:36] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:52:37] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:56:48] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:57:07] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 14:59:07] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:09:18] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:12:37] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 15:12:53] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:13:16] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:13:26] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:14:19] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:14:19] ERROR [django.request:226] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/core/handlers/base.py", line 114, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 87, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 115, in get
+    return self._request(request, args, kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 107, in _request
+    return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader.py", line 169, in render_to_string
+    return t.render(context_instance)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 196, in render
+    nodelist.append(node.render(context))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 88, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 585, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 735, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 789, in _resolve_lookup
+    current = current()
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/models.py", line 550, in video
+    result = u"<iframe width=\"100%\" src=\"http://www.youtube.com/embed/%s\"></iframe>" % self.youtube
+ValueError: unsupported format character '"' (0x22) at index 19
+[23/Apr/2014 15:14:19] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 15:14:26] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:14:26] ERROR [django.request:226] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/core/handlers/base.py", line 114, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 87, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 115, in get
+    return self._request(request, args, kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 107, in _request
+    return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader.py", line 169, in render_to_string
+    return t.render(context_instance)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 196, in render
+    nodelist.append(node.render(context))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 88, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 585, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 735, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 789, in _resolve_lookup
+    current = current()
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/models.py", line 550, in video
+    result = u"<iframe width=\"100%\" src=\"http://www.youtube.com/embed/%s\"></iframe>" % self.youtube
+ValueError: unsupported format character '"' (0x22) at index 19
+[23/Apr/2014 15:14:27] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 15:14:29] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:14:29] ERROR [django.request:226] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/core/handlers/base.py", line 114, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 87, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 115, in get
+    return self._request(request, args, kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 107, in _request
+    return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader.py", line 169, in render_to_string
+    return t.render(context_instance)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 196, in render
+    nodelist.append(node.render(context))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 88, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 585, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 735, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 789, in _resolve_lookup
+    current = current()
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/models.py", line 550, in video
+    result = u"<iframe width=\"100%\" src=\"http://www.youtube.com/embed/%s\"></iframe>" % self.youtube
+ValueError: unsupported format character '"' (0x22) at index 19
+[23/Apr/2014 15:14:30] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 15:14:37] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:14:37] ERROR [django.request:226] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/core/handlers/base.py", line 114, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 87, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 115, in get
+    return self._request(request, args, kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 107, in _request
+    return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader.py", line 169, in render_to_string
+    return t.render(context_instance)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 196, in render
+    nodelist.append(node.render(context))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 88, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 585, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 735, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 789, in _resolve_lookup
+    current = current()
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/models.py", line 550, in video
+    result = u"<iframe width=\"100%\" src=\"http://www.youtube.com/embed/%s\"></iframe>" % self.youtube
+ValueError: unsupported format character '"' (0x22) at index 19
+[23/Apr/2014 15:14:50] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:14:50] ERROR [django.request:226] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/core/handlers/base.py", line 114, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 87, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 115, in get
+    return self._request(request, args, kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 107, in _request
+    return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader.py", line 169, in render_to_string
+    return t.render(context_instance)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 196, in render
+    nodelist.append(node.render(context))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 88, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 585, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 735, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 789, in _resolve_lookup
+    current = current()
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/models.py", line 550, in video
+    result = u"<iframe width=\"100%\" src=\"http://www.youtube.com/embed/%s\"></iframe>" % self.youtube
+ValueError: unsupported format character '"' (0x22) at index 19
+[23/Apr/2014 15:14:50] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 15:14:54] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:14:59] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:15:47] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:15:47] ERROR [django.request:226] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/core/handlers/base.py", line 114, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 87, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 115, in get
+    return self._request(request, args, kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 107, in _request
+    return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader.py", line 169, in render_to_string
+    return t.render(context_instance)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 196, in render
+    nodelist.append(node.render(context))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 88, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 585, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 735, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 789, in _resolve_lookup
+    current = current()
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/models.py", line 550, in video
+    result = u"<iframe width=\"100\\%\" src=\"http://www.youtube.com/embed/%s\"></iframe>" % self.youtube
+ValueError: unsupported format character '"' (0x22) at index 20
+[23/Apr/2014 15:15:48] WARNING [django.request:145] Not Found: /favicon.ico
+[23/Apr/2014 15:15:55] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html
+[23/Apr/2014 15:15:55] ERROR [django.request:226] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/core/handlers/base.py", line 114, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/views/generic/base.py", line 87, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 115, in get
+    return self._request(request, args, kwargs)
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/views.py", line 107, in _request
+    return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader.py", line 169, in render_to_string
+    return t.render(context_instance)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 196, in render
+    nodelist.append(node.render(context))
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/defaulttags.py", line 305, in render
+    return nodelist.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 78, in render_node
+    return node.render(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/debug.py", line 88, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 585, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 735, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/wendellpbarreto/.virtualenvs/fotec/lib/python2.7/site-packages/django/template/base.py", line 789, in _resolve_lookup
+    current = current()
+  File "/Users/wendellpbarreto/Projects/python/fotec/fotec/apps/core/models.py", line 550, in video
+    result = u"<iframe width=\"100% \" src=\"http://www.youtube.com/embed/%s\"></iframe>" % self.youtube
+ValueError: unsupported format character '"' (0x22) at index 20
+[23/Apr/2014 15:16:08] INFO [fotec.apps.core.views:171] Template loaded: gui/home.html

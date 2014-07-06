@@ -1,0 +1,55 @@
+<div id='footer' class='clearfix'>
+    <footer class='row collapse'>
+        <section class='large-8 columns'>
+            <header>
+                <h6>Contato</h6>
+            </header>
+            <div>
+                <p>Museu Câmara Cascudo</p>
+                <p>Avenida Hermes da Fonseca</p>
+                <p>Tirol, Natal - RN</p>
+                <p>1398</p>
+
+                <p>000 0000 0000</p>
+
+                <a href='/apresentacao/contact/' class='underline'>Entre em contato</a>
+            </div>
+        </section>
+        <section class='large-8 columns'>
+            <header>
+                <h6>Links</h6>
+                <span class='cell-divider'></span>
+            </header>
+            <div>
+                {% for link in links %}
+                    <a href='{{ link.url }}' target='_blank'>{{ link.name }}</a>
+                {% endfor %}
+            </div>
+        </section>
+        <section class='large-8 columns'>
+            <header>
+                <h6>Redes</h6>
+                <span class='cell-divider'></span>
+            </header>
+            <div>
+
+            </div>
+        </section>
+    </footer>
+    <div class='copyright row'>
+        <p>
+            © 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores.</h1>
+        </p>
+    </div>
+</div>
+
+<div id='tiny-modal' class='reveal-modal tiny'></div>
+<div id='tiny-modal2' class='reveal-modal tiny'></div>
+<div id='small-modal' class='reveal-modal small'></div>
+<div id='small-modal2' class='reveal-modal small'></div>
+<div id='medium-modal' class='reveal-modal medium'></div>
+<div id='medium-modal2' class='reveal-modal medium'></div>
+<div id='large-modal' class='reveal-modal large'></div>
+<div id='large-modal2' class='reveal-modal large'></div>
+<div id='xlarge-modal' class='reveal-modal xlarge'></div>
+<div id='xlarge-modal2' class='reveal-modal xlarge'></div>

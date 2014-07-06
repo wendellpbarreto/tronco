@@ -1,0 +1,69 @@
+{% extends 'base-presentation.html' %}
+
+{% load thumbnail %}
+
+{% block title %}
+    Bem-vindo ao museu {{ informations.nome|lower }}
+{% endblock %}
+
+{% block header %}
+    {% include 'apresentacao/partials/header.html' %}
+{% endblock %}
+
+{% block container %}
+    <div id='container' class='clearfix'>
+        <div class='row collapse'>
+            <div class='large-8 columns'>
+                <section class='search-column'>
+                    <header class='row'>
+                        <h5>Pesquisa</h5>
+                    </header>
+                    <form action='/apresentacao/collectanea/{{ collectanea.pk }}/search' method='get' data-default='true' class='search row collapse'>
+                        <div class='large-20 columns'>
+                            <input id='search' name='keywords' type='text' placeholder='frases, palavras, termos e etc'>
+                        </div>
+                        <div class='large-4 columns'>
+                            <a class='magnifier' data-submit data-icon='8'></a>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <section class='large-16 columns'>
+                <header class='row'>
+                    <h5>Coletânea {{ collectanea.nome|lower }}</h5>
+                    <h6>{{ collectanea.descricao }}</h6>
+                </header>
+                <ul class='collectaneas-list row collapse'>
+                    {% if parts %}
+                        {% for part in parts %}
+                            <li class='large-12 medium-12 small-24 columns'>
+                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/'>
+                                    <figure>
+                                        <figcaption>
+                                            <h5>{{ part.titulo|truncatechars:45 }}</h5>
+                                            <p>{{ part.descricao|truncatechars:100 }}</p>
+                                            <span class='arrow-down'></span>
+                                        </figcaption>
+                                        {% thumbnail part.imagens.0.media "570x320" crop="center" as im %}
+                                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                        {% endthumbnail %}
+                                    </figure>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'apresentacao/partials/footer.html' %}
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

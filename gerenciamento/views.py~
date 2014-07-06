@@ -1,0 +1,21 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+from django.http import HttpResponse
+
+from reports import RelatorioPeca
+from geraldo.generators import PDFGenerator
+from models import Peca
+
+def relatorio(request, peca_id):
+    resp = HttpResponse(mimetype='application/pdf')
+    
+    peca = Peca.objects.filter(id=peca_id)
+    if peca:
+    	rel = RelatorioPeca(queryset=peca)
+    	rel.generate_by(PDFGenerator, filename=resp)
+
+    return resp

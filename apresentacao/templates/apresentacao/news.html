@@ -1,0 +1,47 @@
+{% extends 'base-presentation.html' %}
+
+{% block title %}
+    Bem-vindo ao museu {{ informations.nome|lower }}
+{% endblock %}
+
+{% block header %}
+    {% include 'apresentacao/partials/header.html' %}
+{% endblock %}
+
+{% block container %}
+    <div id='container' class='clearfix'>
+        {% if news %}
+            <section class='latest-news'>
+                <header class='row'>
+                    <h5>Últimas notícias</h5>
+                    <span class='arrow-down'></span>
+                    <span class='arrow-down-inner'></span>
+                </header>
+                <ul class='row collapse'>
+                    {% for new in news %}
+                        <li class='column'>
+                            <figure>
+                                <figcaption>
+                                    <h6>{{ new.titulo }}</h6>
+                                    <p class='text-justify'>{{ new.descricao_breve }}</p>
+                                    <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+                                    <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'apresentacao/partials/footer.html' %}
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

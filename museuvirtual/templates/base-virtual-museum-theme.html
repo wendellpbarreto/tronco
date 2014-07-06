@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+        <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8">       <![endif]-->
+        <!--[if IE 8]>         <html class="no-js lt-ie9">              <![endif]-->
+        <!--[if gt IE 8]><!--> <html class="no-js">                     <!--<![endif]-->
+        <head>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <title>{% block title %} {% endblock %}</title>
+                <meta name="description" content="">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+
+                <link rel="shortcut icon" href="{{ STATIC_URL }}{{ app_nome }}/img/logo/favicon.png">
+
+                <!-- -  -   -    -     -      -      -        Fonts:default -->
+                <link rel="stylesheet" href="{{ STATIC_URL }}{{ app_nome }}/css/font/source-sans-pro.css">
+                <link rel="stylesheet" href="{{ STATIC_URL }}{{ app_nome }}/css/font/ico-moon.css">
+
+                <!-- -  -   -    -     -      -      -        Stylesheets:default -->   
+                <link rel="stylesheet" href="{{ STATIC_URL }}{{ app_nome }}/css/normalize.css">
+                <link rel="stylesheet" href="{{ STATIC_URL }}{{ app_nome }}/css/foundation.css">
+                <link rel="stylesheet" href="{{ STATIC_URL }}{{ app_nome }}/css/flexslider.css">
+                <link rel="stylesheet" href="{{ STATIC_URL }}{{ app_nome }}/css/main.css">
+                <link rel="stylesheet" href="{{ STATIC_URL }}{{ app_nome }}/css/codedrawing.style.css">
+
+                <!-- -  -   -    -     -      -      -        Javascripts:default -->
+                <script src="{{ STATIC_URL }}{{ app_nome }}/js/vendor/modernizr.js"></script>
+                <script src="{{ STATIC_URL }}{{ app_nome }}/js/vendor/smoothscroll.js"></script>
+                
+                <script type="text/javascript" src="{{ STATIC_URL }}{{ app_nome }}/js/validacao.js"></script>
+                
+        </head>
+        <body>
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+
+
+                <!--[if lt IE 7]>
+                        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]-->
+                <!-- -  -   -    -     -      -      -        Menu -->
+                {% block menu %} {% endblock %} 
+                <!-- -  -   -    -     -      -      -        Container -->
+                {% block container %} {% endblock %} 
+                <!-- -  -   -    -     -      -      -        Footer -->
+                {% block footer %} {% endblock %} 
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+                <script> 
+                        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+                </script>    
+                <script src="{{ STATIC_URL }}{{ app_nome }}/js/vendor/foundation.min.js"></script>
+                <script src="{{ STATIC_URL }}{{ app_nome }}/js/vendor/flexslider.min.js"></script>
+                <script src="{{ STATIC_URL }}{{ app_nome }}/js/plugins.js"></script>
+                <script src="{{ STATIC_URL }}{{ app_nome }}/js/main.js"></script>
+                <script src="{{ STATIC_URL }}{{ app_nome }}/js/app.js"></script>
+
+                <script>
+                    $(document).foundation();            
+                    $(document).on('click', '.button-help', function(e){ 
+                        e.preventDefault();
+                        $(document).foundation('joyride', 'start');
+                    });
+                </script>
+
+                <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+                <script>
+                        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+                        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+                        e.src='//www.google-analytics.com/analytics.js';
+                        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+                        ga('create','UA-XXXXX-X');ga('send','pageview');
+                </script>
+
+                <!-- -  -   -    -     -      -      -        Stylesheets:utils -->
+                {% block stylesheets %} {% endblock %}                
+                <!-- -  -   -    -     -      -      -        Javascripts:utils -->
+                {% block js %} {% endblock %}
+        </body>
+</html>

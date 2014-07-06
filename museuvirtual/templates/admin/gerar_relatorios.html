@@ -1,0 +1,90 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Gerenciamento do Museu Virtual' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'Gerenciamento do Museu Virtual' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+
+{% block content %}
+	<h1> Escolha os campos a serem preenchidos nos relatórios </h1>
+
+<form method="post" action="/gerar_relatorios/"> {% csrf_token %}
+
+
+	<h2> Informações Principais <h2>
+
+	<h3> <input type="checkbox" name="numero_registro" value="numero_registro" checked/> Número de Registro </h3>
+	<h3> <input type="checkbox" name="secao" value="secao" checked/> Seção </h3>
+	<h3> <input type="checkbox" name="colecao" value="colecao" checked/> Coleção </h3>
+	<h3> <input type="checkbox" name="sub_colecao" value="sub_colecao" checked/> Sub-coleção </h3>
+
+	<h3> <input type="checkbox" name="objeto" value="objeto" checked/> Objeto </h3>
+	<h3> <input type="checkbox" name="titulo" value="titulo" checked/> Título </h3>
+	<h3> <input type="checkbox" name="autores" value="autores" checked/> Autores </h3>
+	<h3> <input type="checkbox" name="data_criacao" value="data_criacao" checked/> Data de Criação </h3>
+	<h3> <input type="checkbox" name="descricao" value="descricao" checked/> Descrição </h3>
+	<h3> <input type="checkbox" name="categoria" value="categoria" checked/> Categoria </h3>
+
+	<h2> Informações Detalhadas <h2>
+
+
+	<h3> <input type="checkbox" name="origem" value="origem" checked/> Origem </h3>
+	<h3> <input type="checkbox" name="iconografia" value="iconografia" checked/> Iconografia </h3>
+	<h3> <input type="checkbox" name="observacoes" value="observacoes" checked/> Observações </h3>
+	<h3> <input type="checkbox" name="dados_historicos" value="dados_historicos" checked/> Dados Históricos </h3>
+	<h3> <input type="checkbox" name="referencias" value="referencias" checked/> Referências </h3>
+	<h3> <input type="checkbox" name="texto" value="texto" checked/> Texto </h3>
+
+
+	<h3> <input type="checkbox" name="procedencia"  value="procedencia" checked/> Procedência </h3>
+	<h3> <input type="checkbox" name="proprietario" value="proprietario" checked/> Proprietário </h3>
+	<h3> <input type="checkbox" name="forma_aquisicao" value="forma_aquisicao" checked/> Forma de Aquisição </h3>
+	<h3> <input type="checkbox" name="data_aquisicao" value="data_aquisicao" checked/> Data de Aquisição </h3>
+
+	<h3> <input type="checkbox" name="numero_processo" value="numero_processo" checked/> Número do Processo</h3>
+	<h3> <input type="checkbox" name="provisor" value="provisor" checked/> Provisor </h3>
+	<h3> <input type="checkbox" name="moeda" value="moeda" checked/> Moeda </h3>
+	<h3> <input type="checkbox" name="valor_aquisicao" value="valor_aquisicao" checked/> Valor de Aquisição </h3>
+	<h3> <input type="checkbox" name="valor_seguro" value="valor_seguro" checked/> Valor do Seguro </h3>
+
+	<h3> <input type="checkbox" name="ex_proprietario" value="ex_proprietario" checked/> Ex-Proprietário </h3>
+	<h3> <input type="checkbox" name="funcionario" value="funcionario" checked/> Funcionário Responsável pelo Cadastro </h3>
+	<h3> <input type="checkbox" name="data_cadastro" value="data_cadastro" checked/> Data do Cadastro </h3>
+	<h3> <input type="checkbox" name="fonte_original" value="fonte_original" checked/> Fonte Original </h3>
+
+
+	<h2> Medidas da Peça <h2>
+
+	<h3> <input type="checkbox" name="numero_partes" value="numero_partes" checked/> Número de Partes </h3>
+	<h3> <input type="checkbox" name="material" value="material" checked/> Material </h3>
+	<h3> <input type="checkbox" name="tecnica" value="tecnica" checked/> Técnica </h3>
+	<h3> <input type="checkbox" name="altura" value="altura" checked/> Altura </h3>
+	<h3> <input type="checkbox" name="circunferencia" value="circunferencia" checked/> Circunferência </h3>
+	<h3> <input type="checkbox" name="diametro" value="fonte_original" checked/> Diâmetro </h3>
+	<h3> <input type="checkbox" name="comprimento" value="fonte_original" checked/> Comprimento </h3>
+	<h3> <input type="checkbox" name="largura" value="fonte_original" checked/> Largura </h3>
+	<h3> <input type="checkbox" name="peso" value="fonte_original" checked/> Peso </h3>
+	<h3> <input type="checkbox" name="profundidade" value="fonte_original" checked/> Profundidade </h3>
+	<h3> <input type="checkbox" name="palavras_chave" value="fonte_original" checked/> Palavras-chave </h3>
+
+	<h2> Outras informações </h2>
+
+	<h3> <input type="checkbox" name="outros_numeros" value="outros_numeros" checked/> Outros Números </h3>
+	<h3> <input type="checkbox" name="inscricoes" value="inscricoes" checked/> Inscrições </h3>
+	<h3> <input type="checkbox" name="intervencoes" value="intervencoes" checked/> Intervenções </h3>
+	<h3> <input type="checkbox" name="historico_movimentacao" value="historico_movimentacao" checked/> Histórico de Movimentação </h3>
+	<h3> <input type="checkbox" name="historico_conservacao" value="historico_conservacao" checked/> Histórico de Conservação </h3>
+
+	<h3> <input type="submit" value="Gerar Relatórios" /> </h3>
+
+
+</form>
+
+
+
+{% endblock %}

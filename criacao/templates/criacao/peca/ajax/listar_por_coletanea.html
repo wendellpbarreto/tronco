@@ -1,0 +1,71 @@
+{% if pecas %}
+	<ul class="lp row" style="min-height:590px;">
+		{% for peca in pecas %}
+			<li class="large-5 columns">
+				<a class="peca" data-peca="{{ peca.numero_registro }}">
+					<img class="image_picker_image" src="/media/{{ peca.imagens.0.media }}">
+					<div class="desc">
+						<p>{{ peca.titulo }}</p>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="pagination-centered">
+		<ul class="pagination">
+			{% if pecas.has_previous %}
+				<li class="arrow"><a data-get="/criacao/peca/listar/{{ pecas.previous_page_number }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">&laquo;</a></li>
+			{% else %}
+				<li class="arrow unavailable"><a>&laquo;</a></li>
+			{% endif %}
+
+			{% if pecas.has_less_ten %}						
+				<li><a data-get="/criacao/peca/listar/{{ pecas.has_less_ten }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_less_ten }}</a></li>
+				<li><a data-get="/criacao/peca/listar/{{ pecas.has_less_ten | add:"1" }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_less_ten | add:"1" }}</a></li>
+				<li class="unavailable"><a>&hellip;</a></li>
+			{% endif %}
+
+			{% if pecas.has_less_three %}
+				<li><a data-get="/criacao/peca/listar/{{ pecas.has_less_three }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_less_three }}</a></li>
+			{% endif %}
+
+
+			{% if pecas.has_less_two %}
+				<li><a data-get="/criacao/peca/listar/{{ pecas.has_less_two }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_less_two }}</a></li>
+			{% endif %}
+
+
+			{% if pecas.has_previous %}
+				<li><a data-get="/criacao/peca/listar/{{ pecas.previous_page_number }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.previous_page_number }}</a></li>
+			{% endif %}
+
+			<li class="current"><a>{{ pecas.page }}</a></li>
+
+			{% if pecas.has_next %}
+				<li><a data-get="/criacao/peca/listar/{{ pecas.next_page_number }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.next_page_number }}</a></li>
+			{% endif %}
+
+			{% if pecas.has_more_two %}
+				<li><a data-get="/criacao/peca/listar/{{ pecas.has_more_two }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_more_two }}</a></li>
+			{% endif %}
+
+			{% if pecas.has_more_three %}
+				<li><a data-get="/criacao/peca/listar/{{ pecas.has_more_three }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_more_three }}</a></li>
+			{% endif %}
+
+			{% if pecas.has_more_ten %}
+				<li class="unavailable"><a>&hellip;</a></li>
+				<li><a data-get="/criacao/peca/listar/{{ pecas.has_more_ten }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_more_ten }}</a></li>
+				<li><a data-get="/criacao/peca/listar/{{ pecas.has_more_ten | add:"1" }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_more_ten | add:"1" }}</a></li>
+			{% endif %}
+
+			{% if pecas.has_next %}
+				<li class="arrow"><a data-get="/criacao/peca/listar/{{ pecas.next_page_number }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">&raquo;</a></li>
+			{% else %}
+				<li class="arrow unavailable"><a>&raquo;</a></li>
+			{% endif %}					
+		</ul>
+	</div>
+{% else %}
+	
+{% endif %}
