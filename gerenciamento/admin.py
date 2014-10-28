@@ -4,7 +4,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User
-from gerenciamento.models import * 
+from gerenciamento.models import *
 
 from sorl.thumbnail.admin import AdminImageMixin
 
@@ -20,7 +20,7 @@ from django.template import RequestContext
 class CategoriaAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class FonteOriginalAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
@@ -41,16 +41,16 @@ class UserAdmin(UserAdmin):
 	inlines = [InformacoesFuncionaisInline]
 	verbose_name = 'Funcionário'
 	verbose_name_plural = 'Funcionários'
-	
+
 class FuncaoAutorAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class AutorAdmin(admin.ModelAdmin):
 	list_display = ('nome','nome_artistico','funcao_autor',)
 	search_fields = ('nome',)
 	list_filter = ('funcao_autor',)
-	
+
 class OrigemAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
@@ -58,64 +58,71 @@ class OrigemAdmin(admin.ModelAdmin):
 class ProcedenciaAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class ProprietarioAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class SecaoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class ColecaoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class SubColecaoAdmin(admin.ModelAdmin):
 	list_display = ('nome','colecao',)
 	search_fields = ('nome',)
-	
+
 class MaterialAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
 	verbose_name = u"Material"
 	verbose_name_plural = u"Materiais"
-	
+
 class TecnicaAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
 	search_fields = ('nome',)
 	verbose_name = u"Técnica"
 	verbose_name_plural = u"Técnicas"
-	
+
 class FormaAquisicaoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	model = Imagem
+	model = ImagemPeca
 	can_delete = True
-	
+
 class ProvisorAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class ExProprietarioAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class CargoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class EquipeAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
 
-class ImagemInline(AdminImageMixin, admin.TabularInline):
-	model = Imagem
+class ImagemPecaInline(AdminImageMixin, admin.TabularInline):
+	model = ImagemPeca
 	can_delete = True
-	verbose_name = 'Imagem'
-	verbose_name_plural = 'Imagens'
+	verbose_name = 'Imagem Peca'
+	verbose_name_plural = 'Imagens Peca'
 	extra = 0
+
+class ImagemFotogaleriaInline(admin.TabularInline):
+	model = ImagemFotogaleria
+	can_delete = True
+	verbose_name = 'Imagem Fotogaleria'
+	verbose_name_plural = 'Imagens Fotogaleria'
+	extra = 1
 
 class AudioInline(admin.TabularInline):
 	model = Audio
@@ -144,8 +151,7 @@ class DocumentoInline(admin.TabularInline):
 	verbose_name = 'Documento'
 	verbose_name_plural = 'Documentos'
 	extra = 0
-	
-	
+
 class EstadoConservacaoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
@@ -153,20 +159,19 @@ class EstadoConservacaoAdmin(admin.ModelAdmin):
 class ObjetoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class LocalAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class TipoMoedaAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
 
-	
 class TipoInscricaoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	
+
 class HistoricoConservacaoInline(admin.TabularInline):
 	model = HistoricoConservacao
 	can_delete = True
@@ -194,15 +199,13 @@ class InscricaoInline(AdminImageMixin, admin.TabularInline):
 	verbose_name = 'Inscrição'
 	verbose_name_plural = 'Inscrições'
 	extra = 0
-	
-	
+
 class InformacoesIPHANInline(admin.StackedInline):
 	model = InformacoesIPHAN
 	can_delete = True
 	verbose_name = "Informações do IPHAN"
 	verbose_name_plural = "Informações do IPHAN"
 	extra = 0
-
 
 # Lista de filtros
 
@@ -211,9 +214,11 @@ class SecaoListFilter(admin.FieldListFilter):
     # right admin sidebar just above the filter options.
     title = 'Seção'
 
+class FotogaleriaAdmin(admin.ModelAdmin):
+	inlines = [ImagemFotogaleriaInline,]
 
 class PecaAdmin(AutocompleteModelAdmin):
-	
+
 	def todos_os_autores(self, obj):
 		lista_autores = '\n'
 		for a in obj.autores.all():
@@ -225,11 +230,11 @@ class PecaAdmin(AutocompleteModelAdmin):
 	actions = ['gerar_relatorios',]
 
 	def gerar_relatorios(self, request, queryset):
-		
+
 		lista_pecas = list(queryset)
 
 		request.session['pecas_relatorio'] = lista_pecas
-		
+
 		return render_to_response('admin/gerar_relatorios.html', locals(), context_instance=RequestContext(request))
 
 	gerar_relatorios.short_description = "Gerar relatórios das peças"
@@ -255,16 +260,16 @@ class PecaAdmin(AutocompleteModelAdmin):
 
 
     )
-	
+
 	inlines = [
 			InscricaoInline,
-			OutroNumeroInline, 
-			ImagemInline, 
-			AudioInline, 
+			OutroNumeroInline,
+			ImagemPecaInline,
+			AudioInline,
 			VideoInline,
-			DocumentoInline,			
-			HistoricoMovimentacaoInline, 
-			HistoricoConservacaoInline, 
+			DocumentoInline,
+			HistoricoMovimentacaoInline,
+			HistoricoConservacaoInline,
 			InvervencaoInline,
 			#InformacoesIPHANInline,
 			]
@@ -286,7 +291,7 @@ class PecaAdmin(AutocompleteModelAdmin):
 				'ex_proprietario__nome',
 				'funcionario__first_name',
 				)
-	related_search_fields = { 
+	related_search_fields = {
 
                 #'objeto': ('nome',),
                 'autores': ('nome','nome_artistico',),
@@ -341,10 +346,10 @@ class PecaAdmin(AutocompleteModelAdmin):
 			obj.funcionario = request.user
 
 		super(self.__class__, self).save_model(request, obj, form, change)
-	
+
 class DataFormatadaAdmin(admin.ModelAdmin):
 	pass
-	
+
 admin.site.unregister(User)
 admin.site.register(Funcionario, UserAdmin)
 
@@ -372,6 +377,7 @@ admin.site.register(TipoMoeda, TipoMoedaAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(FonteOriginal, FonteOriginalAdmin)
 
+admin.site.register(Fotogaleria, FotogaleriaAdmin)
 admin.site.register(Peca, PecaAdmin)
 admin.site.register(EstadoConservacao, EstadoConservacaoAdmin)
 

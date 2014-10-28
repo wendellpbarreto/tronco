@@ -288,6 +288,7 @@ FLUENT_DASHBOARD_APP_ICONS = {
     'gerenciamento/equipe': 'system-users.png',
     'gerenciamento/estadoconservacao': 'view-calendar-agenda.png',
     'gerenciamento/peca': 'utilities-file-archiver.png',
+    'gerenciamento/fotogaleria': 'folder-image.png',
     'gerenciamento/exproprietario': 'meeting-participant.png',
     'gerenciamento/formaaquisicao': 'view-form.png',
     'gerenciamento/fornecedor': 'meeting-participant.png',
@@ -372,6 +373,7 @@ FLUENT_DASHBOARD_APP_GROUPS = (
     (_(u'Gerenciamento'), {
         'models': (
             'gerenciamento.models.Peca',
+            'gerenciamento.models.Fotogaleria',
             'gerenciamento.models.Autor',
             'gerenciamento.models.FuncaoAutor',
             'gerenciamento.models.Secao',

@@ -179,7 +179,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.loader import render_to_string
-from gerenciamento.models import Peca, Autor, Funcionario, Imagem, Video, Audio
+from gerenciamento.models import Peca, Autor, Funcionario, ImagemPeca, Video, Audio
 from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.auth.decorators import login_required
@@ -214,7 +214,7 @@ def ver_noticia(request, id_noticia):
 	pecas = noticia.pecas.all()
 
 	for peca in pecas:
-		peca.imagem = Imagem.objects.filter(peca=peca)[0].imagem
+		peca.imagem = ImagemPeca.objects.filter(peca=peca)[0].imagem
 
 	noticia.lista_pecas = pecas
 
@@ -303,7 +303,7 @@ def UTIL_pecas():
 	pecas = Peca.objects.all()
 
 	for peca in pecas:
-		peca.imagem = Imagem.objects.filter(peca=peca)[0].imagem
+		peca.imagem = ImagemPeca.objects.filter(peca=peca)[0].imagem
 
 	return pecas
 
