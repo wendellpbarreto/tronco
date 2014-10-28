@@ -170,6 +170,7 @@ INSTALLED_APPS = (
     'admin_tools.theming',
     'admin_tools.menu',
     'admin_tools.dashboard',
+    'django_extensions',
 
     'sorl.thumbnail',
     'kronos',
@@ -428,3 +429,9 @@ KRONOS_POSTFIX=''
 
 REDACTOR_OPTIONS = {'lang': 'en'}
 REDACTOR_UPLOAD = os.path.join(MEDIA_ROOT, 'uploads')
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
+
