@@ -25,6 +25,29 @@ class ImagemTestCase(TestCase):
 			)
 		fotogaleria = Fotogaleria.objects.create(titulo="Titulo")
 
+	def test_creation_objeto(self):
+		objeto = Objeto.objects.create(nome="Objeto2")
+		self.assertEqual(Objeto.objects.all()[1], objeto)
+
+
+	def test_creation_autor(self):
+		autor = Autor.objects.create(nome="Autor")
+		self.assertEqual(Autor.objects.all()[1], autor)
+
+	def test_creation_data_criacao(self):
+		data_criacao = DataFormatada.objects.create()
+		self.assertEqual(DataFormatada.objects.all()[1], data_criacao)
+
+	def test_creation_peca(self):
+		peca = Peca.objects.create(
+				titulo="Titulo",
+				descricao="Descricao",
+				objeto=Objeto.objects.all()[0],
+				data_criacao=DataFormatada.objects.all()[0],
+				numero_registro=1
+			)
+		self.assertEqual(Peca.objects.all()[1], peca)
+
 	def test_creation_imagem_peca(self):
 		imagem = ImagemPeca.objects.create(
 			peca=Peca.objects.all()[0],
@@ -32,7 +55,7 @@ class ImagemTestCase(TestCase):
 			)
 		self.assertEqual(ImagemPeca.objects.all()[0], imagem)
 
-	def test_creation_imagem_peca(self):
+	def test_creation_imagem_fotogaleria(self):
 		imagem = ImagemFotogaleria.objects.create(
 			peca=Fotogaleria.objects.all()[0],
 			imagem="imagens/pecas/03/imagem1-grande.png"
