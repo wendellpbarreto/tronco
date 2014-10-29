@@ -9,11 +9,24 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from gerenciamento.models import *
+from django.core.files import File
 
+class ImagemTestCase(TestCase):
+	def setUp(self):
+		objeto = Objeto.objects.create(nome="Objeto")
+		autor = Autor.objects.create(nome="Autor")
+		data_criacao = DataFormatada.objects.create()
+		peca = Peca.objects.create(
+				titulo="Titulo",
+				descricao="Descricao",
+				objeto=objeto,
+				data_criacao=data_criacao
+			)
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+	def test_creation(self):
+		imagem = Imagem.objects.create(
+			peca=Peca.objects.all()[0],
+			imagem="imagens/pecas/03/imagem1-grande.png"
+			)
+		self.assertEqual(Imagem.objects.all()[0], imagem)
