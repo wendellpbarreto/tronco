@@ -23,10 +23,18 @@ class ImagemTestCase(TestCase):
 				objeto=objeto,
 				data_criacao=data_criacao
 			)
+		fotogaleria = Fotogaleria.objects.create(titulo="Titulo")
 
-	def test_creation(self):
-		imagem = Imagem.objects.create(
+	def test_creation_imagem_peca(self):
+		imagem = ImagemPeca.objects.create(
 			peca=Peca.objects.all()[0],
 			imagem="imagens/pecas/03/imagem1-grande.png"
 			)
-		self.assertEqual(Imagem.objects.all()[0], imagem)
+		self.assertEqual(ImagemPeca.objects.all()[0], imagem)
+
+	def test_creation_imagem_peca(self):
+		imagem = ImagemFotogaleria.objects.create(
+			peca=Fotogaleria.objects.all()[0],
+			imagem="imagens/pecas/03/imagem1-grande.png"
+			)
+		self.assertEqual(ImagemFotogaleria.objects.all()[0], imagem)
