@@ -1,6 +1,6 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block title %} 
+{% block title %}
 	museuvirtual | listar informações do museu
 {% endblock %}
 
@@ -12,14 +12,14 @@
 				<a href="/criacao/sair/" title="Sair.">
 					<span class="orange p15" data-icon='%'></span>
 				</a>
-			{% endif %} 	
+			{% endif %}
 				<h3>
 					museu
 					<span>
 						{{ museu_nome | lower }}
-					</span>	
-				</h3>		
-			</div>						
+					</span>
+				</h3>
+			</div>
 		</header>
 	</div>
 {% endblock %}
@@ -37,19 +37,19 @@
 					<li><a href="/apresentacao/" target="_blank" title="Visualizar publicação do museu">Museu publicado</a></li>
 					<li><a href="/criacao/link/listar/" title="Área de links">Links</a></li>
 					<li><a href="/criacao/noticia/listar/" title="Área de notícias">Notícias</a></li>
-					<li><a href="/criacao/coletanea/listar/" title="Área de coletâneas">Coletâneas</a></li>				
+					<li><a href="/criacao/coletanea/listar/" title="Área de coletâneas">Coletâneas</a></li>
 					<li><a href="/criacao/informacoes/listar/" class="active">Informações do museu</a></li>
 					<li><a href="/criacao/inicio/" title="Ir para tela inicial">Inicial</a></li>
 				</ul>
 			</nav>
-		</section> 
-	</div>		
+		</section>
+	</div>
 {% endblock %}
 
 {% block container %}
 	<div id="container" class="background_black full clearfix">
-		<article id="content_main">		
-			<section id="header" class="row">		
+		<article id="content_main">
+			<section id="header" class="row">
 				<h1 class="white large-16 columns">
 					<div class="left">
 						<span class="orange-bar">\</span>
@@ -62,7 +62,7 @@
 				<h4 class="white large-4 columns">
 					<a class="white" href="/criacao/informacoes/listar/" title="Voltar à página anterior.">
 						<span class="orange p15" data-icon='-'></span>
-						Voltar 
+						Voltar
 					</a>
 					<div>|</div>
 					<a id='salvar' class="white" href="javascript: return false;" data-post="#info-form" title="Salvar coletânea.">
@@ -76,53 +76,19 @@
 				<form id="info-form" class="info-form white columns" action="/criacao/informacoes/editar/" method="post" accept-charset="utf-8">
 					<div id='informacoes'></div>
 					{% csrf_token %}
-					<div class="row">
-						<div class="large-10 columns">
-							<h6 class="white">Nome do museu:</h6>
-							<h7>{{ form.nome }}</h7>
+					{% for key, value in informacoes.data.items %}
+						<div class="row">
+					    	<div class="large-5 columns"> <h3 class="white">{{ key.capitalize }}: </h3> </div>
+					    	<div class="large-15 columns"><input type="text" id="{{ key }}" name="{{ key }}" value="{{ value }}"> </div>
 						</div>
-						<div class="large-10 columns">
-							<h6 class="white">Data de fundação:</h6>
-							<h7>{{ form.data_fundacao }}</h7>
-						</div>
-					</div>
-					<div class="row">
-						<div class="large-10 columns">
-							<h6 class="white">Apresentacão:</h6> 
-							<h7>{{ form.apresentacao }}</h7>
-						</div> 
-						<div class="large-10 columns">
-							<h6 class="white">Concepcão:</h6> 
-							<h7>{{ form.concepcao }}</h7>
-						</div>
-					</div>
-					<div class="row">
-						<div class="large-10 columns">
-							<h6 class="white">Missão:</h6> 
-							<h7>{{ form.missao }}</h7>
-						</div> 
-						<div class="large-10 columns">
-							<h6 class="white">Objetivos:</h6> 
-							<h7>{{ form.objetivos }}</h7>
-						</div>
-					</div>
-					<div class="row">
-						<div class="large-10 columns">
-							<h6 class="white">Descrição técnica:</h6> 
-							<h7>{{ form.descricao_tecnica }}</h7>
-						</div> 
-						<div class="large-10 columns">
-							<h6 class="white">Características do acervo:</h6> 
-							<h7>{{ form.caracteristicas_acervo }}</h7>
-						</div>
-					</div>
+					{% endfor %}
 				</form>
 			</section>
 			<!-- -  -   -    -     -      -      -        Section header-bottom -->
-			<section id="header" class="row">		
+			<section id="header" class="row">
 				<h4 class="white columns">
 					<a class="white" href="/criacao/informacoes/listar/" title="Voltar à página anterior.">
-						<span class="orange p15" data-icon='-'></span> 
+						<span class="orange p15" data-icon='-'></span>
 					</a>
 					<div>|</div>
 					<a class="white" href="javascript: return false;" data-post="#info-form" title="Salvar coletânea.">
@@ -130,7 +96,7 @@
 					</a>
 				</h4>
 			</section>
-		</article>		
+		</article>
 	</div>
 {% endblock %}
 
@@ -143,21 +109,21 @@
 						<span class="p15" data-icon="6"></span>
 						&nbsp;gerenciamento
 					</a>
-					
+
 					{% if request.user.is_authenticated %}
 					<a class="row" href="/criacao/sair/" title="Sair.">
 						<span class="p15" data-icon="%"></span>
 						&nbsp;sair
 					</a>
 					{% endif %}
-					
+
 				</div>
 				<p class="white large-16 columns">
-					© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores. 
+					© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores.
 				</p>
 			</div>
 		</footer>
-	</div>	
+	</div>
 
 	<div id="page-loading">
 		<div class="loader">Carregando...</div>
@@ -175,9 +141,9 @@
 	</ol>
 {% endblock %}
 
-{% block js %} 
+{% block js %}
 <script>
-	$(document).ready(function(){  
+	$(document).ready(function(){
 	    $('.init').trigger("click");
 	});
 

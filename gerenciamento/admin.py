@@ -243,7 +243,7 @@ class PecaAdmin(AutocompleteModelAdmin):
         ("Informações Principais", {
         	'description': 'Aqui ficam as informações principais da peça.',
         	'classes': ('wide', 'extrapretty'),
-            'fields': ('numero_registro',('secao','colecao','sub_colecao'),('objeto','titulo'),'autores','data_criacao','descricao','categoria'),
+            'fields': ('numero_registro',('secao','colecao','sub_colecao'),('objeto','titulo'),'autores','data_criacao','descricao','categoria', 'data'),
         }),
 
        ("Informações Detalhadas", {

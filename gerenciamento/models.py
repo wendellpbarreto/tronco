@@ -10,15 +10,12 @@ except ImportError:
 
 from django.db.models import signals
 from django.dispatch.dispatcher import receiver
-
+from django_hstore import hstore
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-
 from django.db import models
 from django.contrib.auth.models import User, Group
-
 from sorl.thumbnail import ImageField
 from museuvirtual.settings import MEDIA_ROOT
-
 from decimal import Decimal
 
 import museuvirtual.create_auto_admin
@@ -281,6 +278,8 @@ class TipoMoeda(models.Model):
 		verbose_name_plural = "Tipos de Moeda"
 
 class Peca(models.Model):
+	data = hstore.DictionaryField(verbose_name="Campos dinâmicos")  # can pass attributes like null, blank, ecc.
+	objects = hstore.HStoreManager()
 
 	# Informações essenciais
 

@@ -177,6 +177,7 @@ INSTALLED_APPS = (
     'django_social_share',
     'autocomplete',
     'south',
+    'django_hstore',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
