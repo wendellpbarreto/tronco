@@ -4,7 +4,6 @@
 from gerenciamento.models import *
 from criacao.views.views import *
 from criacao.forms import *
-from .views import UTIL_informacoes_museu
 
 from django.contrib.auth.models import User
 
@@ -19,7 +18,7 @@ class TemaView(GenericView):
 				try:
 					if request.method == 'GET':
 						museu, museu_nome = UTIL_informacoes_museu()
-						form = ColetaneaForm()
+						form = ColetaneaForm()					
 
 						return {'template' : {
 										'request' : request,
@@ -45,12 +44,12 @@ class TemaView(GenericView):
 										'alert-success' : 'Coletânea criada com sucesso!',
 										'redirect' : '/criacao/coletanea/listar/'
 									},
-								}
+								}						
 				except:
 					return None
 			elif slug == 'visualizar':
 				try:
-					key = self.kwargs['key']
+					key = self.kwargs['key']					
 
 					museu, museu_nome = UTIL_informacoes_museu()
 
@@ -72,19 +71,19 @@ class TemaView(GenericView):
 					return None
 			elif slug == 'editar':
 				try:
-					key = self.kwargs['key']
+					key = self.kwargs['key']					
 
 					if request.method == 'GET':
 						museu, museu_nome = UTIL_informacoes_museu()
-
+	
 						coletanea = Coletanea.objects.get(id = key)
 						pecas = coletanea.pecas.all()
-
+						
 						for peca in pecas:
 							peca.imagem = Imagem.objects.filter(peca=peca)[0].imagem
-
+						
 						coletanea.lista_pecas = pecas
-
+						
 						form = ColetaneaForm(initial = {'nome' : coletanea.nome, 'descricao' : coletanea.descricao})
 
 						return {'template' : {
@@ -105,7 +104,7 @@ class TemaView(GenericView):
 						cltn.save()
 
 						cltn.pecas.clear()
-
+						
 						for peca in pecas:
 							peca = Peca.objects.get(numero_registro=peca)
 							cltn.pecas.add(peca)
@@ -119,7 +118,7 @@ class TemaView(GenericView):
 					return None
 			elif slug == 'excluir':
 				try:
-					key = self.kwargs['key']
+					key = self.kwargs['key']	
 
 					Coletanea.objects.get(pk = key).delete()
 
@@ -130,7 +129,7 @@ class TemaView(GenericView):
 				except:
 					return None
 			else:
-				museu, museu_nome = UTIL_informacoes_museu()
+				museu, museu_nome = UTIL_informacoes_museu()	
 				coletaneas = UTIL_buscar_coletaneas()
 
 				return {'template' : {

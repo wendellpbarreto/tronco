@@ -19,7 +19,7 @@
 				<li class="arrow unavailable"><a>&laquo;</a></li>
 			{% endif %}
 
-			{% if pecas.has_less_ten %}
+			{% if pecas.has_less_ten %}						
 				<li><a data-get="/criacao/peca/listar/{{ pecas.has_less_ten }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_less_ten }}</a></li>
 				<li><a data-get="/criacao/peca/listar/{{ pecas.has_less_ten | add:"1" }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">{{ pecas.has_less_ten | add:"1" }}</a></li>
 				<li class="unavailable"><a>&hellip;</a></li>
@@ -63,9 +63,9 @@
 				<li class="arrow"><a data-get="/criacao/peca/listar/{{ pecas.next_page_number }}/" data-callback="atualizar_listagem_de_pecas" data-target="#listagem-de-pecas">&raquo;</a></li>
 			{% else %}
 				<li class="arrow unavailable"><a>&raquo;</a></li>
-			{% endif %}
+			{% endif %}					
 		</ul>
 	</div>
 {% else %}
-
+	
 {% endif %}

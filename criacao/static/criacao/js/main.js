@@ -34,10 +34,10 @@
 	// placeholder($('.new_collectanea_form #id_inicio_exposicao'), 'Data do ínicio da exposição*');
 	// placeholder($('.new_collectanea_form #id_fim_exposicao'), 'Data do fim da exposição*');
 
-
+	
 /* Global calls
  *************************************************************************/
-
+ 
 $(document).on('click', 'a[data-get]', function(e){
 	e.preventDefault();
 
@@ -55,7 +55,7 @@ $(document).on('click', 'a[data-get]', function(e){
 		    	});
 
 				if(el.attr('data-remove')){
-					$(el.attr('data-remove')).fadeOut(1000, function(){
+					$(el.attr('data-remove')).fadeOut(1000, function(){ 
 			        	$(this).remove();
 			      	})
 				}
@@ -70,11 +70,12 @@ $(document).on('click', 'a[data-get]', function(e){
 		});
 	} else {
     	$.get(href, function(data){
+
     		if(el.attr('data-target')){
     			$(el.attr('data-target')).html(data['template']);
     		}
 
-
+    		
     	}).complete(function(){
     		if(el.attr('data-callback')){
     			callback = el.attr('data-callback');
@@ -86,7 +87,7 @@ $(document).on('click', 'a[data-get]', function(e){
     	})
 
 		if(el.attr('data-remove')){
-			$(el.attr('data-remove')).fadeOut(1000, function(){
+			$(el.attr('data-remove')).fadeOut(1000, function(){ 
 	        	$(this).remove();
 	      	})
 		}
@@ -100,7 +101,7 @@ $(document).on('click', 'a[data-post]', function(e){
 	var el = $(this);
 
 	if (!el.hasClass("inactive")){
-		el.addClass('inactive');
+		el.addClass('inactive');		
 
 		var form = $(el.attr('data-post'));
 		var href = form.attr('action');
@@ -119,8 +120,8 @@ $(document).on('click', 'a[data-post]', function(e){
 				   window.location.replace(data['redirect']);
 				}, 1000);
 			} else{
-				el.removeClass('inactive');
-			}
+				el.removeClass('inactive');		
+			}	
 		}).complete(function(data){
 			//unlock_screen();
 		});
@@ -144,7 +145,7 @@ $(document).on('click', 'a.peca', function(e){
 		input = $('#new_collectanea_form').find('input[value='+ id +']').remove();
 	} else {
 		el.addClass('selected');
-
+		
 		$('#new_collectanea_form').append("<input class='elemento_peca' type='hidden' name='lista_de_pecas[]' value='" + id + "' >");
 	}
 });
@@ -174,7 +175,7 @@ $(document).ready(function() {
 		var username = $("#username").val();
 		var password = $("#password").val();
 
-		if (username == "" && password == "") {
+		if (username == "" && password == "") {		
 			$("span.error").text("Por favor, digite um nome de usuário e senha.").show().fadeOut(800).fadeIn(1000).fadeOut(800);
 			$("#username").focus();
 		} else if(username == ""){
@@ -186,7 +187,7 @@ $(document).ready(function() {
 		} else {
 			resp = true;
 		}
-
+		
 		return resp;
 	});
 	/* end of entrar.html */
@@ -200,13 +201,13 @@ $(document).ready(function() {
 	        scrollTop: $("#"+id).offset().top},'slow');
 	}
 
-	$("#link_contact").click(function(e) {
-	    e.preventDefault();
-	    goToByScroll($(this).attr("id"));
+	$("#link_contact").click(function(e) { 
+	    e.preventDefault(); 
+	    goToByScroll($(this).attr("id"));           
 	});
 
 	/* selection form focus/blur */
-
+	
 });
 
 
@@ -218,7 +219,7 @@ function salve_coletanea(){
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_nome").removeClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_nome").addClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_nome").removeClass("invalid"); $("#id_nome").focus(); });
-
+		
 	} else if ($('#id_descricao').val() == 'Descrição*' ||
 		$('#id_descricao').val() == ''){
 
@@ -229,7 +230,7 @@ function salve_coletanea(){
 	} else {
 
 		var resp = confirm("Pressione OK para confirmar a criação.");
-
+		
 		if (resp == true) {
 			var multipleValues = $("#multiple").val() || [];
 
@@ -245,7 +246,7 @@ function salve_coletanea_editada(id, nivel){
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_nome").removeClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_nome").addClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_nome").removeClass("invalid"); $("#id_nome").focus(); });
-
+		
 	} else if ($('#id_descricao').val() == ''){
 
 		$("#id_descricao").animate({"opacity" : 1}, 500, function(){  $("#id_descricao").addClass("invalid"); })
@@ -254,22 +255,22 @@ function salve_coletanea_editada(id, nivel){
 						  .animate({"opacity" : 1}, 500, function(){  $("#id_descricao").removeClass("invalid"); $("#id_descricao").focus(); });
 	} else {
 		var resp = confirm("Pressione OK para confirmar a edição da coletânea ou cancele se não tiver certeza.");
-
+	
 		if (resp == true) {
 			var multipleValues = $("#multiple").val() || [];
 
 			Dajaxice.criacao.salvar_coletanea_editada(Dajax.process,{'id':id, 'nivel':nivel, 'nome':$('#id_nome').val(), 'descricao':$('#id_descricao').val(), 'pecas':multipleValues});
-
-		}
+		
+		} 
 	}
 }
 
 function delete_coletanea(id){
 	var resp = confirm("Pressione OK para confirmar a exclusão da coletânea ou cancele se não tiver certeza.");
-
+	
 	if (resp == true) {
-		Dajaxice.criacao.deletar_coletanea(Dajax.process, {'id':id});
-	}
+		Dajaxice.criacao.deletar_coletanea(Dajax.process, {'id':id});	
+	} 
 }
 
 function salve_noticia(){
@@ -278,7 +279,7 @@ function salve_noticia(){
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_titulo").removeClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_titulo").addClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_titulo").removeClass("invalid"); $("#id_titulo").focus(); });
-
+		
 	} else if ($('#id_descricao_breve').val() == ''){
 
 		$("#id_descricao_breve").animate({"opacity" : 1}, 500, function(){  $("#id_descricao_breve").addClass("invalid"); })
@@ -293,7 +294,7 @@ function salve_noticia(){
 						  .animate({"opacity" : 1}, 500, function(){  $("#id_descricao").removeClass("invalid"); $("#id_descricao").focus(); });
 	} else {
 		var resp = confirm("Pressione OK para confirmar a criação.");
-
+		
 		if (resp == true) {
 			var multipleValues = $("#multiple").val() || [];
 
@@ -309,7 +310,7 @@ function salve_noticia_editada(id){
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_titulo").removeClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_titulo").addClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_titulo").removeClass("invalid"); $("#id_titulo").focus(); });
-
+		
 	} else if ($('#id_descricao_breve').val() == ''){
 
 		$("#id_descricao_breve").animate({"opacity" : 1}, 500, function(){  $("#id_descricao_breve").addClass("invalid"); })
@@ -318,13 +319,13 @@ function salve_noticia_editada(id){
 						  .animate({"opacity" : 1}, 500, function(){  $("#id_descricao_breve").removeClass("invalid"); $("#id_descricao_breve").focus(); });
 	} else {
 		var resp = confirm("Pressione OK para confirmar a edição da notícia ou cancele se não tiver certeza.");
-
+	
 		if (resp == true) {
 			var multipleValues = $("#multiple").val() || [];
 
 			Dajaxice.criacao.salvar_noticia_editada(Dajax.process,{'id':id, 'titulo':$('#id_titulo').val(), 'descricao_breve':$('#id_descricao_breve').val(), 'descricao':$('#id_descricao').val(), 'pecas':multipleValues});
-
-		}
+		
+		} 
 	}
 }
 

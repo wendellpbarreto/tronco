@@ -4,7 +4,9 @@
             <div class='logo large-10 columns'>
                 <img src='/static/apresentacao/img/logo/favicon.png' alt='Logo'>
                 <div class='museum'>
-                    <h4> museu <strong>{{ nome_museu|lower }}</strong></h4>
+                    {% if informations.nome %}
+                        <h4> museu <strong>{{ informations.nome|lower }}</strong></h4>
+                    {% endif %}
                 </div>
             </div>
             <div class='search show-for-medium-up large-8 columns'>
