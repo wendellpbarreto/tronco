@@ -10,12 +10,15 @@ except ImportError:
 
 from django.db.models import signals
 from django.dispatch.dispatcher import receiver
-from django_hstore import hstore
+
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+
 from django.db import models
 from django.contrib.auth.models import User, Group
+
 from sorl.thumbnail import ImageField
 from museuvirtual.settings import MEDIA_ROOT
+
 from decimal import Decimal
 
 import museuvirtual.create_auto_admin
@@ -50,6 +53,7 @@ class FuncaoAutor(models.Model):
 	class Meta:
 		verbose_name = "Função do Autor"
 		verbose_name_plural = "Funções do Autor"
+
 
 class Autor(models.Model):
 	nome = models.CharField(max_length=200, help_text="Nome do autor (200 caracteres, no máximo).", null=False, blank=False)
@@ -104,6 +108,7 @@ class Procedencia(models.Model):
 	class Meta:
 		verbose_name = "Procedência"
 		verbose_name_plural = "Procedências"
+
 
 class Proprietario(models.Model):
 	nome = models.CharField(max_length=200, help_text="Nome do atual proprietário (200 caracteres, no máximo).", unique=True)
@@ -176,6 +181,7 @@ class Tecnica(models.Model):
 		verbose_name = "Técnica"
 		verbose_name_plural = "Técnicas"
 
+
 class FormaAquisicao(models.Model):
 	nome = models.CharField(max_length=200,  help_text="Nome da forma de aquisição (200 caracteres, no máximo).", unique=True)
 
@@ -237,6 +243,7 @@ class InformacoesFuncionais(models.Model):
 	equipe = models.ForeignKey(Equipe, help_text="Equipe a qual o funcionário pertence no momento.", blank=True, null=True)
 	funcao_funcionario = models.ForeignKey(FuncaoFuncionario, verbose_name="Função do Funcionário.", help_text="Função que o funcionário exerce no museu.", blank=True, null=True)
 
+
 class DataFormatada(models.Model):
 	data_especifica = models.DateField(verbose_name="Data específica", help_text="Data específica, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
 	decada_ano = models.CharField(verbose_name="Década/ Ano", max_length=4, help_text="Década ou ano (até quatro caracteres).", blank=True, null=True)
@@ -267,6 +274,7 @@ class Objeto(models.Model):
 		verbose_name = "Objeto"
 		verbose_name_plural = "Objetos"
 
+
 class TipoMoeda(models.Model):
 	nome = models.CharField(max_length=200, help_text="Tipo da Moeda (real, cruzeiro, dolar etc., com 200 caracteres, no máximo).", unique=True)
 
@@ -278,8 +286,6 @@ class TipoMoeda(models.Model):
 		verbose_name_plural = "Tipos de Moeda"
 
 class Peca(models.Model):
-	# data = hstore.DictionaryField(verbose_name="Campos dinâmicos")  # can pass attributes like null, blank, ecc.
-	objects = hstore.HStoreManager()
 
 	# Informações essenciais
 
@@ -403,35 +409,26 @@ class Peca(models.Model):
 
 		return HistoricoConservacao.objects.filter(peca=self)
 
-class Fotogaleria(models.Model):
-	titulo = models.CharField(max_length=124, verbose_name="Título", help_text="Título da fotogaleria.")
-
-	def __unicode__(self):
-		return "Fotogaleria %s" % (unicode(self.pk))
-
-	class Meta:
-		verbose_name = "Fotogaleria"
-		verbose_name_plural = "Fotogalerias"
-
 def validar_formato_imagem(value):
 	if not (value.name.lower().endswith('.jpg') or value.name.lower().endswith('.jpeg') or value.name.lower().endswith('.png') or value.name.lower().endswith('.bmp') or  value.name.lower().endswith('.gif')):
 		raise ValidationError(u'Formato não suportado. Por favor, envie um arquivo no formato .jpg, .jpeg, .png., .bmp ou .gif.')
 
 class Imagem(models.Model):
+	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor da imagem.", blank=True, null=True)
 	data = models.DateField(help_text="Data que a imagem foi criada, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
 
 	def imagem_dinamica(self, filename):
 		try:
-			caminho = os.path.join(MEDIA_ROOT, 'imagens', unicode(self.pk))
+			caminho = os.path.join(MEDIA_ROOT, 'imagens', 'pecas', unicode(self.peca.numero_registro))
 			lista_imagens = os.listdir(caminho)
 			quantidade = len(lista_imagens)/4
 			for i in range(1,quantidade+2):
 				if not ("imagem%d.png" %i) in lista_imagens:
-					return os.path.join('imagens', unicode(self.pk), ("imagem%d.png" %i))
+					return os.path.join("imagens", "pecas", unicode(self.peca.numero_registro), ("imagem%d.png" %i))
 					break
 		except Exception:
-			return os.path.join('imagens', unicode(self.pk), "imagem1.png")
+			return os.path.join("imagens", "pecas", unicode(self.peca.numero_registro), "imagem1.png")
 
 
 	def pequena(self):
@@ -446,26 +443,11 @@ class Imagem(models.Model):
 		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
 		return self.imagem.__unicode__().replace("." + extensao, '-grande.png')
 
-	imagem = ImageField(upload_to=imagem_dinamica, max_length=200, help_text="Imagem.", validators=[validar_formato_imagem])
+	imagem = ImageField(upload_to=imagem_dinamica, max_length=200, help_text="Imagem da peça.", validators=[validar_formato_imagem])
 
-	class Meta:
-		abstract = True
-
-class ImagemPeca(Imagem):
-	peca = models.ForeignKey(Peca)
 
 	def __unicode__(self):
-		return "Imagem %s" % (unicode(self.pk))
-
-	class Meta:
-		verbose_name = "Imagem"
-		verbose_name_plural = "Imagens"
-
-class ImagemFotogaleria(Imagem):
-	peca = models.ForeignKey(Fotogaleria)
-
-	def __unicode__(self):
-		return "Imagem %s" % (unicode(self.pk))
+		return "Imagem %s" %(unicode(self.id))
 
 	class Meta:
 		verbose_name = "Imagem"
@@ -509,6 +491,7 @@ class Audio(models.Model):
 def validar_formato_video(value):
 	if not (value.name.lower().endswith('.mp4') or value.name.lower().endswith('.webm') or value.name.lower().endswith('.ogg')):
 		raise ValidationError(u'Formato não suportado. Por favor, envie um arquivo no formato .mp4, .webm ou .ogg.')
+
 
 class Video(models.Model):
 	peca = models.ForeignKey(Peca)
@@ -562,6 +545,8 @@ class OutroNumero(models.Model):
 		verbose_name = "Outro Número"
 		verbose_name_plural = "Outros Números"
 
+
+# Ver onde esse documento realmente é anexado.
 class Documento(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor do documento.", blank=True, null=True)
@@ -591,6 +576,7 @@ class Documento(models.Model):
 	class Meta:
 		verbose_name = "Documento"
 		verbose_name_plural = "Documentos"
+
 
 class EstadoConservacao(models.Model):
 	nome = models.CharField(max_length=200, help_text="Nome do estado de conservação (200 caracteres, no máximo).", unique=True)
@@ -738,20 +724,21 @@ def apagar_arquivos_imagem(imagem):
 	except OSError:
 		print u"Não foi possível apagar %s." %(caminho_imagem)
 
-@receiver(signals.pre_save, sender=ImagemPeca)
+@receiver(signals.pre_save, sender=Imagem)
 def editar_imagens(sender, instance, **kwargs):
 	try:
-		imagem_antiga = ImagemPeca.objects.get(id=instance.id).imagem
+		imagem_antiga = Imagem.objects.get(id=instance.id).imagem
 		apagar_arquivos_imagem(imagem_antiga)
 	except ObjectDoesNotExist:
 		pass
 
-@receiver(signals.pre_delete, sender=ImagemPeca)
+@receiver(signals.pre_delete, sender=Imagem)
 def apagar_imagens_peca(sender, instance, **kwargs):
 	imagem = instance.imagem
 	apagar_arquivos_imagem(imagem)
 
-@receiver(signals.post_save, sender=ImagemPeca)
+
+@receiver(signals.post_save, sender=Imagem)
 def criar_outras_imagens(sender, instance, **kwargs):
 
 	objeto = instance
@@ -799,6 +786,7 @@ def criar_outras_imagens(sender, instance, **kwargs):
 	pequeno = Image.new("RGBA", (tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), DEFAULT_COLOR)
 	pequeno.paste(im, ((tamanhos['pequeno']['largura'] - im.size[0]) / 2, (tamanhos['pequeno']['altura'] - im.size[1]) / 2))
 	pequeno.save(os.path.join(diretorio, nome_arquivo + "-pequena.png"), 'PNG', quality=100)
+
 
 @receiver(signals.post_save, sender=Inscricao)
 def renomear_imagem_inscricao(sender, instance, **kwargs):
@@ -863,6 +851,7 @@ def apagar_imagem_intervencoes(sender, instance, **kwargs):
 	imagem = instance.imagem
 	apagar_arquivos_imagem(imagem)
 
+
 @receiver(signals.pre_delete, sender=Audio)
 def apagar_audio(sender, instance, **kwargs):
 	caminho_audio = unicode(instance.audio.path)
@@ -871,6 +860,7 @@ def apagar_audio(sender, instance, **kwargs):
 		os.remove(caminho_audio)
 	except OSError:
 		print u"Não foi possível apagar %s." %(caminho_audio)
+
 
 @receiver(signals.pre_save, sender=Audio)
 def editar_audio(sender, instance, **kwargs):
@@ -882,6 +872,7 @@ def editar_audio(sender, instance, **kwargs):
 			print u"Não foi possível apagar %s." %(audio_antigo.path)
 	except ObjectDoesNotExist:
 		pass
+
 
 @receiver(signals.pre_delete, sender=Video)
 def apagar_video(sender, instance, **kwargs):
@@ -903,6 +894,7 @@ def editar_video(sender, instance, **kwargs):
 	except:
 		pass
 
+
 @receiver(signals.pre_delete, sender=Documento)
 def apagar_documento(sender, instance, **kwargs):
 	caminho_documento = unicode(instance.documento.path)
@@ -911,6 +903,7 @@ def apagar_documento(sender, instance, **kwargs):
 		os.remove(caminho_documento)
 	except OSError:
 		print u"Não foi possível apagar %s." %(caminho_documento)
+
 
 @receiver(signals.pre_save, sender=Documento)
 def editar_documento(sender, instance, **kwargs):
