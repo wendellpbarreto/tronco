@@ -738,67 +738,67 @@ def apagar_arquivos_imagem(imagem):
 	except OSError:
 		print u"Não foi possível apagar %s." %(caminho_imagem)
 
-@receiver(signals.pre_save, sender=ImagemPeca)
-def editar_imagens(sender, instance, **kwargs):
-	try:
-		imagem_antiga = ImagemPeca.objects.get(id=instance.id).imagem
-		apagar_arquivos_imagem(imagem_antiga)
-	except ObjectDoesNotExist:
-		pass
+# @receiver(signals.pre_save, sender=ImagemPeca)
+# def editar_imagens(sender, instance, **kwargs):
+# 	try:
+# 		imagem_antiga = ImagemPeca.objects.get(id=instance.id).imagem
+# 		apagar_arquivos_imagem(imagem_antiga)
+# 	except ObjectDoesNotExist:
+# 		pass
 
-@receiver(signals.pre_delete, sender=ImagemPeca)
-def apagar_imagens_peca(sender, instance, **kwargs):
-	imagem = instance.imagem
-	apagar_arquivos_imagem(imagem)
+# @receiver(signals.pre_delete, sender=ImagemPeca)
+# def apagar_imagens_peca(sender, instance, **kwargs):
+# 	imagem = instance.imagem
+# 	apagar_arquivos_imagem(imagem)
 
-@receiver(signals.post_save, sender=ImagemPeca)
-def criar_outras_imagens(sender, instance, **kwargs):
+# @receiver(signals.post_save, sender=ImagemPeca)
+# def criar_outras_imagens(sender, instance, **kwargs):
 
-	objeto = instance
-	tamanhos = {'pequeno': {'altura': 24, 'largura': 24}, 'medio': {'altura': 300, 'largura': 300}, 'grande': {'altura': 600, 'largura': 600},}
+# 	objeto = instance
+# 	tamanhos = {'pequeno': {'altura': 24, 'largura': 24}, 'medio': {'altura': 300, 'largura': 300}, 'grande': {'altura': 600, 'largura': 600},}
 
-	caminho_imagem = unicode(objeto.imagem.path)
-
-
-	im = Image.open(caminho_imagem)
-
-	extensao = caminho_imagem.rsplit('.', 1)[1]
-	nome_arquivo = caminho_imagem.rsplit("/",1)[1].rsplit(".")[0]
-	diretorio = caminho_imagem.rsplit('/', 1)[0]
-
-	if im.mode not in ("L", "RGB"):
-		im = im.convert("RGB")
-
-	# Lança uma exceção em caso de imagem em formato desconhecido.
-	if extensao not in ['jpg', 'jpeg', 'gif', 'png']:
-		sys.exit()
-
-	DEFAULT_COLOR = (255, 255, 255, 0)
-
-	# Criar o tamanho grande.
-
-	im.thumbnail((tamanhos['grande']['largura'], tamanhos['grande']['altura']), Image.ANTIALIAS)
-
-	grande = Image.new("RGBA", (tamanhos['grande']['largura'], tamanhos['grande']['altura']), DEFAULT_COLOR)
-	grande.paste(im, ((tamanhos['grande']['largura'] - im.size[0]) / 2, (tamanhos['grande']['altura'] - im.size[1]) / 2))
-	grande.save(os.path.join(diretorio, nome_arquivo + "-grande.png"), 'PNG', quality=100)
-
-	# Criar o tamanho medio.
+# 	caminho_imagem = unicode(objeto.imagem.path)
 
 
-	im.thumbnail((tamanhos['medio']['largura'], tamanhos['medio']['altura']), Image.ANTIALIAS)
+# 	im = Image.open(caminho_imagem)
 
-	medio = Image.new("RGBA", (tamanhos['medio']['largura'], tamanhos['medio']['altura']), DEFAULT_COLOR)
-	medio.paste(im, ((tamanhos['medio']['largura'] - im.size[0]) / 2, (tamanhos['medio']['altura'] - im.size[1]) / 2))
-	medio.save(os.path.join(diretorio, nome_arquivo + "-media.png"), 'PNG', quality=100)
+# 	extensao = caminho_imagem.rsplit('.', 1)[1]
+# 	nome_arquivo = caminho_imagem.rsplit("/",1)[1].rsplit(".")[0]
+# 	diretorio = caminho_imagem.rsplit('/', 1)[0]
 
-	# Criar o icone.
+# 	if im.mode not in ("L", "RGB"):
+# 		im = im.convert("RGB")
 
-	im.thumbnail((tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), Image.ANTIALIAS)
+# 	# Lança uma exceção em caso de imagem em formato desconhecido.
+# 	if extensao not in ['jpg', 'jpeg', 'gif', 'png']:
+# 		sys.exit()
 
-	pequeno = Image.new("RGBA", (tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), DEFAULT_COLOR)
-	pequeno.paste(im, ((tamanhos['pequeno']['largura'] - im.size[0]) / 2, (tamanhos['pequeno']['altura'] - im.size[1]) / 2))
-	pequeno.save(os.path.join(diretorio, nome_arquivo + "-pequena.png"), 'PNG', quality=100)
+# 	DEFAULT_COLOR = (255, 255, 255, 0)
+
+# 	# Criar o tamanho grande.
+
+# 	im.thumbnail((tamanhos['grande']['largura'], tamanhos['grande']['altura']), Image.ANTIALIAS)
+
+# 	grande = Image.new("RGBA", (tamanhos['grande']['largura'], tamanhos['grande']['altura']), DEFAULT_COLOR)
+# 	grande.paste(im, ((tamanhos['grande']['largura'] - im.size[0]) / 2, (tamanhos['grande']['altura'] - im.size[1]) / 2))
+# 	grande.save(os.path.join(diretorio, nome_arquivo + "-grande.png"), 'PNG', quality=100)
+
+# 	# Criar o tamanho medio.
+
+
+# 	im.thumbnail((tamanhos['medio']['largura'], tamanhos['medio']['altura']), Image.ANTIALIAS)
+
+# 	medio = Image.new("RGBA", (tamanhos['medio']['largura'], tamanhos['medio']['altura']), DEFAULT_COLOR)
+# 	medio.paste(im, ((tamanhos['medio']['largura'] - im.size[0]) / 2, (tamanhos['medio']['altura'] - im.size[1]) / 2))
+# 	medio.save(os.path.join(diretorio, nome_arquivo + "-media.png"), 'PNG', quality=100)
+
+# 	# Criar o icone.
+
+# 	im.thumbnail((tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), Image.ANTIALIAS)
+
+# 	pequeno = Image.new("RGBA", (tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), DEFAULT_COLOR)
+# 	pequeno.paste(im, ((tamanhos['pequeno']['largura'] - im.size[0]) / 2, (tamanhos['pequeno']['altura'] - im.size[1]) / 2))
+# 	pequeno.save(os.path.join(diretorio, nome_arquivo + "-pequena.png"), 'PNG', quality=100)
 
 @receiver(signals.post_save, sender=Inscricao)
 def renomear_imagem_inscricao(sender, instance, **kwargs):
