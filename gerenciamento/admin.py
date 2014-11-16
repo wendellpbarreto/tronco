@@ -91,7 +91,7 @@ class TecnicaAdmin(admin.ModelAdmin):
 class FormaAquisicaoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-	model = Imagem
+	model = ImagemPeca
 	can_delete = True
 
 class ProvisorAdmin(admin.ModelAdmin):
@@ -110,12 +110,19 @@ class EquipeAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
 
-class ImagemInline(AdminImageMixin, admin.TabularInline):
-	model = Imagem
+class ImagemPecaInline(AdminImageMixin, admin.TabularInline):
+	model = ImagemPeca
 	can_delete = True
-	verbose_name = 'Imagem'
-	verbose_name_plural = 'Imagens'
+	verbose_name = 'Imagem Peca'
+	verbose_name_plural = 'Imagens Peca'
 	extra = 0
+
+class ImagemFotogaleriaInline(admin.TabularInline):
+	model = ImagemFotogaleria
+	can_delete = True
+	verbose_name = 'Imagem Fotogaleria'
+	verbose_name_plural = 'Imagens Fotogaleria'
+	extra = 1
 
 class AudioInline(admin.TabularInline):
 	model = Audio
@@ -145,7 +152,6 @@ class DocumentoInline(admin.TabularInline):
 	verbose_name_plural = 'Documentos'
 	extra = 0
 
-
 class EstadoConservacaoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
@@ -161,7 +167,6 @@ class LocalAdmin(admin.ModelAdmin):
 class TipoMoedaAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
 	search_fields = ('nome',)
-
 
 class TipoInscricaoAdmin(admin.ModelAdmin):
 	list_display = ('nome',)
@@ -195,14 +200,12 @@ class InscricaoInline(AdminImageMixin, admin.TabularInline):
 	verbose_name_plural = 'Inscrições'
 	extra = 0
 
-
 class InformacoesIPHANInline(admin.StackedInline):
 	model = InformacoesIPHAN
 	can_delete = True
 	verbose_name = "Informações do IPHAN"
 	verbose_name_plural = "Informações do IPHAN"
 	extra = 0
-
 
 # Lista de filtros
 
@@ -211,6 +214,8 @@ class SecaoListFilter(admin.FieldListFilter):
     # right admin sidebar just above the filter options.
     title = 'Seção'
 
+class FotogaleriaAdmin(admin.ModelAdmin):
+	inlines = [ImagemFotogaleriaInline,]
 
 class PecaAdmin(AutocompleteModelAdmin):
 
@@ -372,6 +377,7 @@ admin.site.register(TipoMoeda, TipoMoedaAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(FonteOriginal, FonteOriginalAdmin)
 
+admin.site.register(Fotogaleria, FotogaleriaAdmin)
 admin.site.register(Peca, PecaAdmin)
 admin.site.register(EstadoConservacao, EstadoConservacaoAdmin)
 

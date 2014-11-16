@@ -170,12 +170,14 @@ INSTALLED_APPS = (
     'admin_tools.theming',
     'admin_tools.menu',
     'admin_tools.dashboard',
+    'django_extensions',
 
     'sorl.thumbnail',
     'kronos',
     'django_social_share',
     'autocomplete',
     'south',
+    'django_hstore',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -287,6 +289,7 @@ FLUENT_DASHBOARD_APP_ICONS = {
     'gerenciamento/equipe': 'system-users.png',
     'gerenciamento/estadoconservacao': 'view-calendar-agenda.png',
     'gerenciamento/peca': 'utilities-file-archiver.png',
+    'gerenciamento/fotogaleria': 'folder-image.png',
     'gerenciamento/exproprietario': 'meeting-participant.png',
     'gerenciamento/formaaquisicao': 'view-form.png',
     'gerenciamento/fornecedor': 'meeting-participant.png',
@@ -430,3 +433,9 @@ KRONOS_POSTFIX=''
 
 REDACTOR_OPTIONS = {'lang': 'en'}
 REDACTOR_UPLOAD = os.path.join(MEDIA_ROOT, 'uploads')
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
+
