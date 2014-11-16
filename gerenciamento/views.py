@@ -4,7 +4,7 @@ import os
 
 from django.http import HttpResponse
 
-# from reports import RelatorioPeca, preencher_relatorio
+from reports import RelatorioPeca, preencher_relatorio
 from geraldo.generators import PDFGenerator
 from models import Peca
 
@@ -107,18 +107,18 @@ def gerar_relatorios(request):
 	#return render_to_pdf('saida_relatorio/saida.html', RequestContext(request))
 
 
-# def relatorio(request, peca_id):
+def relatorio(request, peca_id):
 
-#     funcionario = request.user # Verificar se é o funcionário que cadastrou ou que gerou o relatório...
-#     resposta = HttpResponse(mimetype='application/pdf')
+    funcionario = request.user # Verificar se é o funcionário que cadastrou ou que gerou o relatório...
+    resposta = HttpResponse(mimetype='application/pdf')
 
-#     peca = Peca.objects.get(id=peca_id)
+    peca = Peca.objects.get(id=peca_id)
 
-#     if peca:
-#         relatorio = RelatorioPeca(queryset=[peca,],)
-#         relatorio.band_detail.elements = preencher_relatorio(peca, funcionario)
-#         relatorio.generate_by(PDFGenerator, filename=resposta)
+    if peca:
+        relatorio = RelatorioPeca(queryset=[peca,],)
+        relatorio.band_detail.elements = preencher_relatorio(peca, funcionario)
+        relatorio.generate_by(PDFGenerator, filename=resposta)
 
-#     return resposta
+    return resposta
 
 
