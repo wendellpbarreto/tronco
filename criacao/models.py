@@ -118,8 +118,8 @@ class Tema(models.Model):
 
 
 class InformacoesMuseu(models.Model):
-	data = hstore.DictionaryField(verbose_name="Campos")  # can pass attributes like null, blank, ecc.
-	objects = hstore.HStoreManager()
+	# data = hstore.DictionaryField(verbose_name="Campos")  # can pass attributes like null, blank, ecc.
+	# objects = hstore.HStoreManager()
 
 	class Meta:
 		verbose_name = 'Informação do Museu'
