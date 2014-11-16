@@ -167,17 +167,6 @@ def inicio(request):
 
 	return render_to_response('criacao/inicio.html', locals(), context_instance=RequestContext(request))
 
-# --------------------------------------
-
-@login_required
-def configurations(request):
-	museu, museu_nome = UTIL_informacoes_museu()
-
-	custom_fields = CustomField.objects.all()
-
-	return render_to_response('criacao/configurations.html', locals(), context_instance=RequestContext(request))
-
-# --------------------------------------
 
 
 from criacao.forms import *
@@ -190,7 +179,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.loader import render_to_string
-from gerenciamento.models import Peca, Autor, Funcionario, ImagemPeca, Video, Audio
+from gerenciamento.models import Peca, Autor, Funcionario, Imagem, Video, Audio
 from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.auth.decorators import login_required
@@ -225,7 +214,7 @@ def ver_noticia(request, id_noticia):
 	pecas = noticia.pecas.all()
 
 	for peca in pecas:
-		peca.imagem = ImagemPeca.objects.filter(peca=peca)[0].imagem
+		peca.imagem = Imagem.objects.filter(peca=peca)[0].imagem
 
 	noticia.lista_pecas = pecas
 
@@ -240,12 +229,14 @@ def ver_noticia(request, id_noticia):
 
 def UTIL_informacoes_museu():
 	try:
-		informacoes = InformacoesMuseu.objects.all()[0]
-		museu_nome = informacoes.data['Nome']
-		museu = 'Museu %s' % museu_nome
-	except Exception, e:
-		museu = 'Museu "tronco, ramos e raízes"'
-		museu_nome = '"tronco, ramos e raízes"'
+		museu = InformacoesMuseu.objects.get(id=1)
+	except ObjectDoesNotExist:
+		museu = None
+
+	if museu:
+		museu_nome = museu.nome
+	else:
+		museu_nome = 'Virtual'
 
 	return (museu, museu_nome)
 
@@ -312,7 +303,7 @@ def UTIL_pecas():
 	pecas = Peca.objects.all()
 
 	for peca in pecas:
-		peca.imagem = ImagemPeca.objects.filter(peca=peca)[0].imagem
+		peca.imagem = Imagem.objects.filter(peca=peca)[0].imagem
 
 	return pecas
 

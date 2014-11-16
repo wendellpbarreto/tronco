@@ -10,29 +10,19 @@ logger = logging.getLogger(__name__)
 from .generic import *
 
 from criacao.forms import *
-from criacao.models import *
-from .views import UTIL_informacoes_museu
+from criacao.models import * 
 
 class InformacoesView(GenericView):
 
 	def editar(self, request):
-		museu, museu_nome = UTIL_informacoes_museu()
-
 		if request.method == 'POST':
 			try:
 				informacoes = InformacoesMuseu.objects.all()[0]
-				customfields = CustomField.objects.all()
-
-				for customfield in customfields:
-					try:
-						informacoes.data[customfield.name] = request.POST[customfield.name]
-					except Exception, e:
-						informacoes.data[customfield.name] = ''
-
-				informacoes.save()
+				form = InformacoesMuseuForm(request.POST, instance=informacoes)
+				form.save()
 			except Exception, e:
 				logger.error(str(e))
-
+				
 				data = {
 					'leftover' : {
 						'alert-error' : 'Ocorreu um erro na edição, tentar novamente mais tarde!',
@@ -51,7 +41,6 @@ class InformacoesView(GenericView):
 		else:
 			try:
 				informacoes = InformacoesMuseu.objects.all()[0]
-				customfields = CustomField.objects.all()
 			except Exception, e:
 				logger.error(str(e))
 
@@ -61,25 +50,20 @@ class InformacoesView(GenericView):
 					}
 				}
 			else:
+				form = InformacoesMuseuForm(instance=informacoes)
 
 				data = {
 					'template' : {
-						'informacoes' : informacoes,
-						'customfields' : customfields,
-						'museu' : museu,
-						'museu_nome' : museu_nome,
+						'form' : form,
 					}
 				}
 			finally:
 				return data
 
 	def listar(self, request):
-		museu, museu_nome = UTIL_informacoes_museu()
-		try:
-			informacoes = InformacoesMuseu.objects.all()[0]
-		except Exception, e:
-			informacoes = InformacoesMuseu().save()
-
+		informacoes = InformacoesMuseu.objects.all()[0]
+		museu, museu_nome = UTIL_informacoes_museu()	
+		
 		return {
 			'template' : {
 				'informacoes' : informacoes,

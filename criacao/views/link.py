@@ -6,15 +6,14 @@ import logging
 from .generic import *
 
 from criacao.forms import *
-from criacao.models import *
+from criacao.models import * 
 from gerenciamento.models import *
-from .views import UTIL_informacoes_museu
 
 logger = logging.getLogger(__name__)
 
 class LinkView(GenericView):
 
-	def criar(self, request):
+	def criar(self, request): 
 
 		if request.method == 'POST':
 			try:
@@ -31,7 +30,7 @@ class LinkView(GenericView):
 			else:
 				link = Link(name=name, url=url)
 				try:
-					link.save()
+					link.save() 
 				except Exception, e:
 					logger.error(str(e))
 
@@ -40,7 +39,7 @@ class LinkView(GenericView):
 						'alert-success' : 'Link criado com sucesso!',
 						'redirect' : '/criacao/link/listar/'
 					},
-				}
+				}	 
 			finally:
 				return data
 		else:
@@ -53,14 +52,14 @@ class LinkView(GenericView):
 					'museu_nome' : museu_nome,
 					'form' : form,
 				},
-			}
+			}	
 
 			return data
 
 	def visualizar(self, request):
 
 		try:
-			pk = self.kwargs['key']
+			pk = self.kwargs['key']					
 		except Exception, e:
 			logger.error(str(e))
 
@@ -104,7 +103,7 @@ class LinkView(GenericView):
 
 				link.name=name
 				link.url=url
-				link.save()
+				link.save() 
 
 				data = {
 					'leftover' : {
@@ -131,8 +130,8 @@ class LinkView(GenericView):
 				link = Link.objects.get(pk=pk);
 
 				form = LinkForm(initial={
-					'name': link.name,
-					'url': link.url,
+					'name': link.name, 
+					'url': link.url, 
 				})
 
 				data = {
@@ -142,13 +141,13 @@ class LinkView(GenericView):
 						'link' : link,
 						'form' : form,
 					},
-				}
+				} 
 			finally:
 				return data
 
 	def excluir(self, request):
 		try:
-			pk = self.kwargs['key']
+			pk = self.kwargs['key']	
 		except Exception, e:
 			logger.error(str(e))
 
@@ -167,9 +166,9 @@ class LinkView(GenericView):
 			}
 		finally:
 			return data
-
+ 
 	def listar(self, request):
-		museu, museu_nome = UTIL_informacoes_museu()
+		museu, museu_nome = UTIL_informacoes_museu()	
 		links = Link.objects.all()
 
 		try:
@@ -186,6 +185,6 @@ class LinkView(GenericView):
 				'museu_nome' : museu_nome,
 				'links' : links,
 			},
-		}
+		} 
 
 		return data

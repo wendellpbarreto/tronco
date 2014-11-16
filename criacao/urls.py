@@ -13,9 +13,6 @@ urlpatterns = patterns('',
     url(r'^inicio', 'criacao.views.views.inicio', name='inicio'),
     url(r'^sair', 'criacao.views.views.sair', name='sair'),
 
-    # [NEW]
-    url(r'^configurations', 'criacao.views.views.configurations', name='configurations'),
-
     # informacoes
     url(r'^informacoes/(?P<slug>\w+)/$', login_required(informacoes.InformacoesView.as_view()), name='informacoes',),
     url(r'^informacoes/(?P<slug>\w+)/(?P<key>\d+)/$', login_required(informacoes.InformacoesView.as_view()), name='informacoes',),
@@ -26,19 +23,14 @@ urlpatterns = patterns('',
 
     # noticia
     url(r'^noticia/(?P<slug>\w+)/$', login_required(noticia.NoticiaView.as_view()), name='noticia',),
-    url(r'^noticia/(?P<slug>\w+)/(?P<key>\d+)/$', login_required(noticia.NoticiaView.as_view()), name='noticia',),
+    url(r'^noticia/(?P<slug>\w+)/(?P<key>\d+)/$', login_required(noticia.NoticiaView.as_view()), name='noticia',), 
 
     # links
     url(r'^link/(?P<slug>\w+)/$', login_required(link.LinkView.as_view()), name='link',),
     url(r'^link/(?P<slug>\w+)/(?P<key>\d+)/$', login_required(link.LinkView.as_view()), name='link',),
-
+    
     # peca
     url(r'^peca/(?P<slug>\w+)/$', login_required(peca.PecaView.as_view()), name='peca',),
     url(r'^peca/(?P<slug>\w+)/(?P<key>\d+)/$', login_required(peca.PecaView.as_view()), name='peca',),
     url(r'^peca/(?P<slug>\w+)/(?P<key>\d+)/(?P<key2>\d+)/$', login_required(peca.PecaView.as_view()), name='peca',),
-
-    # peca
-    url(r'^customfield/(?P<slug>\w+)/$', login_required(customfield.CustomFieldView.as_view()), name='customfield',),
-    url(r'^customfield/(?P<slug>\w+)/(?P<key>\d+)/$', login_required(customfield.CustomFieldView.as_view()), name='customfield',),
-    url(r'^customfield/(?P<slug>\w+)/(?P<key>\d+)/(?P<key2>\d+)/$', login_required(customfield.CustomFieldView.as_view()), name='customfield',),
 )

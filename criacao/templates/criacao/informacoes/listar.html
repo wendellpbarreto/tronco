@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
-{% block title %}
+{% block title %} 
 	museuvirtual | listar informações do museu
 {% endblock %}
 
@@ -12,14 +12,14 @@
 				<a href="/criacao/sair/" title="Sair.">
 					<span class="orange p15" data-icon='%'></span>
 				</a>
-			{% endif %}
+			{% endif %} 	
 				<h3>
 					museu
 					<span>
 						{{ museu_nome | lower }}
-					</span>
-				</h3>
-			</div>
+					</span>	
+				</h3>		
+			</div>						
 		</header>
 	</div>
 {% endblock %}
@@ -37,18 +37,18 @@
 					<li><a href="/apresentacao/" target="_blank" title="Visualizar publicação do museu">Museu publicado</a></li>
 					<li><a href="/criacao/link/listar/" title="Área de links">Links</a></li>
 					<li><a href="/criacao/noticia/listar/" title="Área de notícias">Notícias</a></li>
-					<li><a href="/criacao/coletanea/listar/" title="Área de coletâneas">Coletâneas</a></li>
+					<li><a href="/criacao/coletanea/listar/" title="Área de coletâneas">Coletâneas</a></li>				
 					<li><a href="/criacao/informacoes/listar/" class="active">Informações do museu</a></li>
 					<li><a href="/criacao/inicio/" title="Ir para tela inicial">Inicial</a></li>
 				</ul>
 			</nav>
-		</section>
-	</div>
+		</section> 
+	</div>	
 {% endblock %}
 
 {% block container %}
 	<div id="container" class="background_white" class="full clearfix">
-		<article id="content_main">
+		<article id="content_main">		
 			<section id="header" class="row">
 				<h1 class="black large-16 columns">
 					<div class="left">
@@ -64,17 +64,55 @@
 					{% endif %}
 				</h4>
 			</section>
-			<section id="main">
-			{% if informacoes %}
-				<div class="info">
-					{% for key, value in informacoes.data.items %}
+			<section id="main">	
+			{% if informacoes %}	
+				<div class="info">		
 					<div class="row">
 						<div class="large-10 columns">
-							<h6>{{ key.capitalize }}: </h6>
-							<h7>{{ value }}</h7>
+							<h6>Nome do museu:</h6>
+							<h7>{{ informacoes.nome }}</h7>
+						</div>
+						<div class="large-10 columns">
+							<h6>Data de fundação:</h6>
+							<h7>{{ informacoes.data_fundacao }}</h7>
 						</div>
 					</div>
-					{% endfor %}
+					<div class="row">
+						<div class="column">
+							<h6>Apresentacão:</h6> 
+							{{ informacoes.apresentacao|safe }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+							<h6>Concepcão:</h6> 
+							<h7>{{ informacoes.concepcao|safe }}</h7>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+							<h6>Missão:</h6> 
+							<h7>{{ informacoes.missao|safe }}</h7>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+							<h6>Objetivos:</h6> 
+							<h7>{{ informacoes.objetivos|safe }}</h7>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+							<h6>Descrição técnica:</h6> 
+							<h7>{{ informacoes.descricao_tecnica|safe }}</h7>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+							<h6>Características do acervo:</h6> 
+							<h7>{{ informacoes.caracteristicas_acervo|safe }}</h7>
+						</div>
+					</div>
 				</div>
 			{% else %}
 				<div class="row">
@@ -84,7 +122,7 @@
 				</div>
 			{% endif %}
 			</section>
-		</article>
+		</article>	
 	</div>
 {% endblock %}
 
@@ -97,17 +135,17 @@
 						<span class="p15" data-icon="6"></span>
 						&nbsp;gerenciamento
 					</a>
-
+					
 					{% if request.user.is_authenticated %}
 					<a class="row" href="/criacao/sair/" title="Sair.">
 						<span class="p15" data-icon="%"></span>
 						&nbsp;sair
 					</a>
 					{% endif %}
-
+					
 				</div>
 				<p class="white large-16 columns">
-					© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores.
+					© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores. 
 				</p>
 			</div>
 		</footer>

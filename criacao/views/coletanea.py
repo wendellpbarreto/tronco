@@ -12,22 +12,21 @@ from datetime import datetime, date, time
 from .generic import *
 
 from criacao.forms import *
-from criacao.models import *
+from criacao.models import * 
 from gerenciamento.models import *
-from .views import UTIL_informacoes_museu
 
 class ColetaneaView(GenericView):
 
-	def criar(self, request):
+	def criar(self, request): 
 
 		if request.method == 'POST':
 			try:
 				nome = request.POST['nome']
-				descricao = request.POST['descricao']
+				descricao = request.POST['descricao']							
 				informacoes_iphan = request.POST['informacoes_iphan']
-				informacoes_tecnicas = request.POST['informacoes_tecnicas']
+				informacoes_tecnicas = request.POST['informacoes_tecnicas']	
 				fim_exposicao = request.POST['fim_exposicao']
-				inicio_exposicao = request.POST['inicio_exposicao']
+				inicio_exposicao = request.POST['inicio_exposicao']	
 			except Exception, e:
 				logger.error(str(e))
 
@@ -38,9 +37,9 @@ class ColetaneaView(GenericView):
 				}
 			else:
 				try:
-					inicio_exposicao = datetime.strptime(inicio_exposicao, "%d/%m/%Y")
+					inicio_exposicao = datetime.strptime(inicio_exposicao, "%d/%m/%Y")		
 				except:
-					inicio_exposicao = datetime.strptime("01/01/2013", "%d/%m/%Y")
+					inicio_exposicao = datetime.strptime("01/01/2013", "%d/%m/%Y")	
 
 				try:
 					fim_exposicao = datetime.strptime(fim_exposicao, "%d/%m/%Y")
@@ -49,7 +48,7 @@ class ColetaneaView(GenericView):
 
 				try:
 					lista_de_pecas = request.POST.getlist('lista_de_pecas[]')
-				except:
+				except:	
 					pass
 
 				if not lista_de_pecas:
@@ -58,7 +57,7 @@ class ColetaneaView(GenericView):
 						'leftover' : {
 							'alert-error' : 'Coletânea precisa ter pelo menos uma peça!',
 						},
-					}
+					} 
 
 				coletanea = Coletanea(
 					nome=nome,
@@ -82,11 +81,11 @@ class ColetaneaView(GenericView):
 					},
 				}
 			finally:
-				return data
+				return data   
 		else:
-			museu, museu_nome = UTIL_informacoes_museu()
-			form = ColetaneaForm()
-			pecas = Peca.objects.all()
+			museu, museu_nome = UTIL_informacoes_museu() 
+			form = ColetaneaForm() 
+			pecas = Peca.objects.all()	 
 
 			data = {
 				'template' : {
@@ -95,14 +94,14 @@ class ColetaneaView(GenericView):
 						'form' : form,
 						'pecas' : pecas,
 					},
-				}
-			print data
+				} 
+
 			return data
 
 	def visualizar(self, request):
-
+		
 		try:
-			pk = self.kwargs['key']
+			pk = self.kwargs['key']					
 		except Exception, e:
 			logger.error(str(e))
 
@@ -136,7 +135,7 @@ class ColetaneaView(GenericView):
 
 		if request.method == 'POST':
 			try:
-				pk = self.kwargs['key']
+				pk = self.kwargs['key'] 
 				nome = request.POST['nome']
 				descricao = request.POST['descricao']
 				inicio_exposicao = request.POST['inicio_exposicao']
@@ -153,22 +152,22 @@ class ColetaneaView(GenericView):
 				}
 			else:
 				try:
-					inicio_exposicao = datetime.strptime(inicio_exposicao, "%d/%m/%Y")
+					inicio_exposicao = datetime.strptime(inicio_exposicao, "%d/%m/%Y")		
 				except:
-					inicio_exposicao = datetime.strptime("01/01/2013", "%d/%m/%Y")
+					inicio_exposicao = datetime.strptime("01/01/2013", "%d/%m/%Y")	
 
 				try:
 					fim_exposicao = datetime.strptime(fim_exposicao, "%d/%m/%Y")
 				except:
 					fim_exposicao = datetime.strptime("01/01/2113", "%d/%m/%Y")
-
+				
 				try:
 					lista_de_pecas = request.POST.getlist('lista_de_pecas[]')
-				except:
+				except:	
 					pass
 
 				if not lista_de_pecas:
-
+					
 					return {
 						'leftover' : {
 							'alert-error' : 'Coletânea precisa ter pelo menos uma peça!',
@@ -177,15 +176,15 @@ class ColetaneaView(GenericView):
 
 				coletanea = Coletanea.objects.get(pk=pk);
 				coletanea.nome = nome
-				coletanea.descricao = descricao
+				coletanea.descricao = descricao 
 				coletanea.inicio_exposicao = inicio_exposicao
-				coletanea.fim_exposicao = fim_exposicao
-				coletanea.informacoes_iphan = informacoes_iphan
+				coletanea.fim_exposicao = fim_exposicao 
+				coletanea.informacoes_iphan = informacoes_iphan 
 				coletanea.informacoes_tecnicas = informacoes_tecnicas
 				coletanea.save()
 
 				coletanea.pecas.clear()
-
+				
 				for peca in lista_de_pecas:
 					peca = Peca.objects.get(numero_registro = peca)
 					coletanea.pecas.add(peca)
@@ -195,7 +194,7 @@ class ColetaneaView(GenericView):
 						'alert-success' : 'Coletânea editada com sucesso!',
 						'redirect' : '/criacao/coletanea/listar/'
 					},
-				}
+				} 
 			finally:
 				return data
 		else:
@@ -214,15 +213,15 @@ class ColetaneaView(GenericView):
 
 				coletanea = Coletanea.objects.get(pk=pk)
 				pecas = coletanea.pecas.all()
-
+				
 				for peca in pecas:
 					peca.imagem = Imagem.objects.filter(peca=peca)[0].imagem
-
+				
 				coletanea.lista_pecas = pecas
 
 				form = ColetaneaForm(initial={
-					'nome' : coletanea.nome,
-					'descricao' : coletanea.descricao,
+					'nome' : coletanea.nome, 
+					'descricao' : coletanea.descricao, 
 					'inicio_exposicao' : coletanea.inicio_exposicao,
 					'fim_exposicao' : coletanea.fim_exposicao,
 					'informacoes_iphan' : coletanea.informacoes_iphan,
@@ -239,11 +238,11 @@ class ColetaneaView(GenericView):
 				}
 			finally:
 				return data
-
+				
 	def excluir(self, request):
 
 		try:
-			pk = self.kwargs['key']
+			pk = self.kwargs['key']	
 		except Exception, e:
 			logger.error(str(e))
 
@@ -263,18 +262,18 @@ class ColetaneaView(GenericView):
 		finally:
 			return data
 
-	def listar(self, request):
-		print '*' * 200
+	def listar(self, request): 
 		listagem = False
-		museu, museu_nome = UTIL_informacoes_museu()
-		coletanea_principal, coletaneas = UTIL_buscar_coletaneas()
+		museu, museu_nome = UTIL_informacoes_museu()	
+		coletanea_principal, coletaneas = UTIL_buscar_coletaneas()	
 
 		try:
 			page = int(self.kwargs['key'])
 		except:
 			page = 1
 		finally:
-			coletaneas = paginate(obj=coletaneas, page=page, num_per_page=8)
+			coletaneas = paginate(obj=coletaneas, page=page, num_per_page=8)				
+
 		data = {
 			'template' : {
 				'request' : request,

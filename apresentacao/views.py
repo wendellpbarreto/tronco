@@ -24,24 +24,23 @@ from criacao.models import (
     Coletanea,
     Noticia,
     Link,
-    CustomField,
 )
 from gerenciamento.models import (
     Peca,
     InformacoesIPHAN,
 )
-from criacao.views.views import UTIL_informacoes_museu
 
 class View(GenericView):
-    def __init__(self):
-        self.museu, self.nome_museu = "asd", "asdas"
-        self.informations = InformacoesMuseu.objects.all()[0]
 
     def home(self, request):
         data = None
         contact_form = ContactForm()
         links = Link.objects.all()
 
+        try:
+            informations = InformacoesMuseu.objects.all()[0]
+        except Exception, e:
+            informations = None
 
         try:
             news = Noticia.objects.order_by('data_de_criacao')[:4]
@@ -53,7 +52,6 @@ class View(GenericView):
             main_parts = main_collectanea.pecas.all().order_by('?')[:5]
         except Exception, e:
             main_collectanea = None
-            main_parts = None
 
         try:
             collectaneas = Coletanea.objects.filter(nivel=1)[:5]
@@ -63,9 +61,7 @@ class View(GenericView):
         data = {
             'template': {
                 'links': links,
-                'nome_museu' : self.nome_museu.encode('utf-8'),
-                'museu' : self.museu.encode('utf-8'),
-                'informations': self.informations,
+                'informations': informations,
                 'news': news,
                 'main_collectanea': main_collectanea,
                 'main_parts': main_parts,
@@ -79,6 +75,10 @@ class View(GenericView):
         data = None
         links = Link.objects.all()
 
+        try:
+            informations = InformacoesMuseu.objects.all()[0]
+        except Exception, e:
+            informations = None
 
         try:
             keywords = request.GET['keywords'].split()
@@ -91,9 +91,7 @@ class View(GenericView):
         data = {
             'template': {
                 'links': links,
-                'nome_museu' : self.nome_museu.encode('utf-8'),
-                'museu' : self.museu.encode('utf-8'),
-                'informations': self.informations,
+                'informations': informations,
                 'collectaneas': collectaneas,
             }
         }
@@ -104,6 +102,10 @@ class View(GenericView):
         data = None
         links = Link.objects.all()
 
+        try:
+            informations = InformacoesMuseu.objects.all()[0]
+        except Exception, e:
+            informations = None
 
         try:
             pk = self.kwargs['pk']
@@ -122,9 +124,7 @@ class View(GenericView):
         data = {
             'template': {
                 'links': links,
-                'nome_museu' : self.nome_museu.encode('utf-8'),
-                'museu' : self.museu.encode('utf-8'),
-                'informations': self.informations,
+                'informations': informations,
                 'collectanea': collectanea,
                 'parts': parts,
             }
@@ -137,6 +137,10 @@ class View(GenericView):
         sections = ['photos', 'videos', 'audios', 'documents', 'iphan-informations']
         links = Link.objects.all()
 
+        try:
+            informations = InformacoesMuseu.objects.all()[0]
+        except Exception, e:
+            informations = None
 
         try:
             section = self.kwargs['section']
@@ -170,9 +174,7 @@ class View(GenericView):
         data = {
             'template': {
                 'links': links,
-                'nome_museu' : self.nome_museu.encode('utf-8'),
-                'museu' : self.museu.encode('utf-8'),
-                'informations': self.informations,
+                'informations': informations,
                 'section': section,
                 'collectanea': collectanea,
                 'part': part,
@@ -183,7 +185,13 @@ class View(GenericView):
 
     def institutional(self, request):
         data = None
+        sections = ['who-we-are', 'conception', 'mission', 'goals', 'technical-description', 'acquis-characteristics']
         links = Link.objects.all()
+
+        try:
+            informations = InformacoesMuseu.objects.all()[0]
+        except Exception, e:
+            informations = None
 
         try:
             section = self.kwargs['section']
@@ -192,15 +200,13 @@ class View(GenericView):
 
             section = 'who-we-are'
         else:
-            if not section in self.informations.data:
-                section = 'Nome'
+            if not section in sections:
+                section = 'who-we-are'
 
         data = {
             'template': {
                 'links': links,
-                'nome_museu' : self.nome_museu.encode('utf-8'),
-                'museu' : self.museu.encode('utf-8'),
-                'informations': self.informations,
+                'informations': informations,
                 'section': section,
             }
         }
@@ -211,6 +217,10 @@ class View(GenericView):
         data = None
         links = Link.objects.all()
 
+        try:
+            informations = InformacoesMuseu.objects.all()[0]
+        except Exception, e:
+            informations = None
 
         try:
             news = Noticia.objects.order_by('-data_de_criacao')
@@ -220,9 +230,7 @@ class View(GenericView):
         data = {
             'template': {
                 'links': links,
-                'nome_museu' : self.nome_museu.encode('utf-8'),
-                'museu' : self.museu.encode('utf-8'),
-                'informations': self.informations,
+                'informations': informations,
                 'news': news,
             }
         }
@@ -233,6 +241,10 @@ class View(GenericView):
         data = None
         links = Link.objects.all()
 
+        try:
+            informations = InformacoesMuseu.objects.all()[0]
+        except Exception, e:
+            informations = None
 
         try:
             pk = self.kwargs['pk']
@@ -245,9 +257,7 @@ class View(GenericView):
         data = {
             'template': {
                 'links': links,
-                'nome_museu' : self.nome_museu.encode('utf-8'),
-                'museu' : self.museu.encode('utf-8'),
-                'informations': self.informations,
+                'informations': informations,
                 'new': new,
             }
         }
@@ -259,13 +269,15 @@ class View(GenericView):
         links = Link.objects.all()
         contact_form = ContactForm()
 
+        try:
+            informations = InformacoesMuseu.objects.all()[0]
+        except Exception, e:
+            informations = None
 
         data = {
             'template': {
                 'links': links,
-                'nome_museu' : self.nome_museu.encode('utf-8'),
-                'museu' : self.museu.encode('utf-8'),
-                'informations': self.informations,
+                'informations': informations,
                 'contact_form': contact_form,
             }
         }

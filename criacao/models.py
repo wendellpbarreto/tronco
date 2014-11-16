@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os, sys
-
 try:
     from PIL import Image
 except ImportError:
@@ -17,26 +16,11 @@ from django.utils import timezone
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField
-from django_hstore import hstore
 
 from gerenciamento.models import (
 	Funcionario,
 	Peca
 )
-
-#------------------------------------------------------------------------
-
-class CustomField(models.Model):
-	name = models.CharField(_('Name'), max_length=64, help_text=_('Custom Field Name'))
-
-	class Meta:
-		verbose_name = _('Custom Field')
-		verbose_name_plural = _('Custom Fields')
-
-	def __unicode__(self):
-		return '%' % self.name
-
-#------------------------------------------------------------------------
 
 class Link(models.Model):
 	name = models.CharField(_('Name'), max_length=32, help_text=_('Link name'))
@@ -118,15 +102,22 @@ class Tema(models.Model):
 
 
 class InformacoesMuseu(models.Model):
-	# data = hstore.DictionaryField(verbose_name="Campos")  # can pass attributes like null, blank, ecc.
-	# objects = hstore.HStoreManager()
+	nome = models.CharField(verbose_name='Nome', max_length=100, blank=True)
+	data_fundacao = models.DateField(verbose_name='Data de Fundação', blank=True)
+	apresentacao = models.CharField(verbose_name='Apresentação', max_length=1000, blank=True)
+	concepcao = models.CharField(verbose_name='Concepção', max_length=1000, blank=True)
+	missao = models.CharField(verbose_name='Missão', max_length=500, blank=True)
+	objetivos = models.CharField(verbose_name='Objetivos', max_length=500, blank=True)
+	descricao_tecnica = models.CharField(verbose_name='Descrição Técnica', max_length=500, blank=True)
+	caracteristicas_acervo = models.CharField(verbose_name='Características do Acervo', max_length=500, blank=True)
+	tema = models.ForeignKey(Tema, blank=True, null=True, verbose_name='Tema')
 
 	class Meta:
 		verbose_name = 'Informação do Museu'
 		verbose_name_plural = 'Informações do Museu'
 
 	def __unicode__(self):
-		return '%s' % (self.pk)
+		return '%s' % (self.nome)
 
 @receiver(signals.post_save, sender=Noticia)
 def renomear_imagem_noticia(sender, instance, **kwargs):
