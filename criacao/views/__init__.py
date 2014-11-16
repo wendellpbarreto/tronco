@@ -1,7 +1,8 @@
 __all__ = [
 		"coletanea",
-		"noticia", 
+		"noticia",
 		"peca",
 		"informacoes",
-		"link",
+        "link",
+		"customfield",
 	]

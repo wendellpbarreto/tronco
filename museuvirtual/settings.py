@@ -170,12 +170,14 @@ INSTALLED_APPS = (
     'admin_tools.theming',
     'admin_tools.menu',
     'admin_tools.dashboard',
+    'django_extensions',
 
     'sorl.thumbnail',
     'kronos',
     'django_social_share',
     'autocomplete',
     'south',
+    'django_hstore',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -287,6 +289,7 @@ FLUENT_DASHBOARD_APP_ICONS = {
     'gerenciamento/equipe': 'system-users.png',
     'gerenciamento/estadoconservacao': 'view-calendar-agenda.png',
     'gerenciamento/peca': 'utilities-file-archiver.png',
+    'gerenciamento/fotogaleria': 'folder-image.png',
     'gerenciamento/exproprietario': 'meeting-participant.png',
     'gerenciamento/formaaquisicao': 'view-form.png',
     'gerenciamento/fornecedor': 'meeting-participant.png',
@@ -364,39 +367,41 @@ FLUENT_DASHBOARD_APP_GROUPS = (
 
     (_(u'Criação'), {
         'models': (
-            'criacao.*',
+            'criacao.models.Coletanea',
+            'criacao.models.InformacoesMuseu',
+            'criacao.models.Noticia'
         ),
     }),
 
     (_(u'Gerenciamento'), {
         'models': (
             'gerenciamento.models.Peca',
-            'gerenciamento.models.Autor',
-            'gerenciamento.models.FuncaoAutor',
-            'gerenciamento.models.Secao',
-            'gerenciamento.models.Colecao',
-            'gerenciamento.models.SubColecao',
-            'gerenciamento.models.Categoria',
-            'gerenciamento.models.Funcionario',
-            'gerenciamento.models.FuncaoFuncionario',
-            'gerenciamento.models.Cargo',
-            'gerenciamento.models.Equipe',
-            'gerenciamento.models.Proprietario',
-            'gerenciamento.models.ExProprietario',
-            'gerenciamento.models.Objeto',
-            'gerenciamento.models.EstadoConservacao',
-            'gerenciamento.models.Origem',
-            'gerenciamento.models.Procedencia',
-            'gerenciamento.models.Local',
-            'gerenciamento.models.Objeto',
-            'gerenciamento.models.TipoMoeda',
-            'gerenciamento.models.FormaAquisicao',
-            'gerenciamento.models.Provisor',
-            'gerenciamento.models.FonteOriginal',
-            'gerenciamento.models.Material',
-            'gerenciamento.models.Tecnica',
-            'gerenciamento.models.TipoInscricao',
-            'gerenciamento.models.Data',
+            # 'gerenciamento.models.Autor',
+            # 'gerenciamento.models.FuncaoAutor',
+            # 'gerenciamento.models.Secao',
+            # 'gerenciamento.models.Colecao',
+            # 'gerenciamento.models.SubColecao',
+            # 'gerenciamento.models.Categoria',
+            # 'gerenciamento.models.Funcionario',
+            # 'gerenciamento.models.FuncaoFuncionario',
+            # 'gerenciamento.models.Cargo',
+            # 'gerenciamento.models.Equipe',
+            # 'gerenciamento.models.Proprietario',
+            # 'gerenciamento.models.ExProprietario',
+            # 'gerenciamento.models.Objeto',
+            # 'gerenciamento.models.EstadoConservacao',
+            # 'gerenciamento.models.Origem',
+            # 'gerenciamento.models.Procedencia',
+            # 'gerenciamento.models.Local',
+            # 'gerenciamento.models.Objeto',
+            # 'gerenciamento.models.TipoMoeda',
+            # 'gerenciamento.models.FormaAquisicao',
+            # 'gerenciamento.models.Provisor',
+            # 'gerenciamento.models.FonteOriginal',
+            # 'gerenciamento.models.Material',
+            # 'gerenciamento.models.Tecnica',
+            # 'gerenciamento.models.TipoInscricao',
+            # 'gerenciamento.models.Data',
 
 
 
@@ -428,3 +433,9 @@ KRONOS_POSTFIX=''
 
 REDACTOR_OPTIONS = {'lang': 'en'}
 REDACTOR_UPLOAD = os.path.join(MEDIA_ROOT, 'uploads')
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
+

@@ -10,8 +10,9 @@ logger = logging.getLogger(__name__)
 from .generic import *
 
 from criacao.forms import *
-from criacao.models import * 
+from criacao.models import *
 from gerenciamento.models import *
+from .views import UTIL_informacoes_museu
 
 class PecaView(GenericView):
 
@@ -27,9 +28,9 @@ class PecaView(GenericView):
 		}
 
 		return data
-		
+
 	def listar(self, request):
-		museu, museu_nome = UTIL_informacoes_museu()	
+		museu, museu_nome = UTIL_informacoes_museu()
 		pecas = Peca.objects.all()
 
 		try:
@@ -46,6 +47,5 @@ class PecaView(GenericView):
 				'museu_nome' : museu_nome,
 				'pecas' : pecas,
 			},
-		} 
-
+		}
 		return data

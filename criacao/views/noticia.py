@@ -10,13 +10,14 @@ logger = logging.getLogger(__name__)
 from .generic import *
 
 from criacao.forms import *
-from criacao.models import * 
+from criacao.models import *
 from gerenciamento.models import *
+from .views import UTIL_informacoes_museu
 
 
 class NoticiaView(GenericView):
 
-	def criar(self, request): 
+	def criar(self, request):
 
 		if request.method == 'POST':
 			try:
@@ -34,7 +35,7 @@ class NoticiaView(GenericView):
 			else:
 				noticia = Noticia(titulo=titulo, descricao_breve=descricao_breve, descricao=descricao)
 				try:
-					noticia.save() 
+					noticia.save()
 				except Exception, e:
 					logger.error(str(e))
 
@@ -43,13 +44,13 @@ class NoticiaView(GenericView):
 						'alert-success' : 'Notícia criada com sucesso!',
 						'redirect' : '/criacao/noticia/listar/'
 					},
-				}	 
+				}
 			finally:
 				return data
 		else:
 			museu, museu_nome = UTIL_informacoes_museu()
 			form = NoticiaForm()
-			pecas = Peca.objects.all()					
+			pecas = Peca.objects.all()
 
 			data = {
 				'template' : {
@@ -58,14 +59,14 @@ class NoticiaView(GenericView):
 					'form' : form,
 					'pecas' : pecas,
 				},
-			}	
+			}
 
 			return data
 
 	def visualizar(self, request):
 
 		try:
-			pk = self.kwargs['key']					
+			pk = self.kwargs['key']
 		except Exception, e:
 			logger.error(str(e))
 
@@ -116,8 +117,8 @@ class NoticiaView(GenericView):
 
 				noticia.titulo=titulo
 				noticia.descricao_breve=descricao_breve
-				noticia.descricao=descricao 
-				noticia.save() 
+				noticia.descricao=descricao
+				noticia.save()
 
 				data = {
 					'leftover' : {
@@ -150,8 +151,8 @@ class NoticiaView(GenericView):
 				noticia.lista_pecas = pecas
 
 				form = NoticiaForm(initial={
-					'titulo': noticia.titulo, 
-					'descricao_breve': noticia.descricao_breve, 
+					'titulo': noticia.titulo,
+					'descricao_breve': noticia.descricao_breve,
 					'descricao': noticia.descricao
 				})
 
@@ -162,13 +163,13 @@ class NoticiaView(GenericView):
 						'noticia' : noticia,
 						'form' : form,
 					},
-				} 
+				}
 			finally:
 				return data
 
 	def deleta(self, request):
 		try:
-			pk = self.kwargs['key']	
+			pk = self.kwargs['key']
 		except Exception, e:
 			logger.error(str(e))
 
@@ -187,9 +188,9 @@ class NoticiaView(GenericView):
 			}
 		finally:
 			return data
- 
+
 	def listar(self, request):
-		museu, museu_nome = UTIL_informacoes_museu()	
+		museu, museu_nome = UTIL_informacoes_museu()
 		noticias = Noticia.objects.all()
 
 		try:
@@ -206,6 +207,6 @@ class NoticiaView(GenericView):
 				'museu_nome' : museu_nome,
 				'noticias' : noticias,
 			},
-		} 
+		}
 
 		return data
