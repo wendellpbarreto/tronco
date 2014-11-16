@@ -417,59 +417,59 @@ def validar_formato_imagem(value):
 	if not (value.name.lower().endswith('.jpg') or value.name.lower().endswith('.jpeg') or value.name.lower().endswith('.png') or value.name.lower().endswith('.bmp') or  value.name.lower().endswith('.gif')):
 		raise ValidationError(u'Formato não suportado. Por favor, envie um arquivo no formato .jpg, .jpeg, .png., .bmp ou .gif.')
 
-class Imagem(models.Model):
-	autor = models.ForeignKey(Autor, help_text="Autor da imagem.", blank=True, null=True)
-	data = models.DateField(help_text="Data que a imagem foi criada, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
+# class Imagem(models.Model):
+# 	autor = models.ForeignKey(Autor, help_text="Autor da imagem.", blank=True, null=True)
+# 	data = models.DateField(help_text="Data que a imagem foi criada, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
 
-	def imagem_dinamica(self, filename):
-		try:
-			caminho = os.path.join(MEDIA_ROOT, 'imagens', unicode(self.pk))
-			lista_imagens = os.listdir(caminho)
-			quantidade = len(lista_imagens)/4
-			for i in range(1,quantidade+2):
-				if not ("imagem%d.png" %i) in lista_imagens:
-					return os.path.join('imagens', unicode(self.pk), ("imagem%d.png" %i))
-					break
-		except Exception:
-			return os.path.join('imagens', unicode(self.pk), "imagem1.png")
+# 	def imagem_dinamica(self, filename):
+# 		try:
+# 			caminho = os.path.join(MEDIA_ROOT, 'imagens', unicode(self.pk))
+# 			lista_imagens = os.listdir(caminho)
+# 			quantidade = len(lista_imagens)/4
+# 			for i in range(1,quantidade+2):
+# 				if not ("imagem%d.png" %i) in lista_imagens:
+# 					return os.path.join('imagens', unicode(self.pk), ("imagem%d.png" %i))
+# 					break
+# 		except Exception:
+# 			return os.path.join('imagens', unicode(self.pk), "imagem1.png")
 
 
-	def pequena(self):
-		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
-		return self.imagem.__unicode__().replace("." + extensao, '-pequena.png')
+# 	def pequena(self):
+# 		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
+# 		return self.imagem.__unicode__().replace("." + extensao, '-pequena.png')
 
-	def media(self):
-		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
-		return self.imagem.__unicode__().replace("." + extensao, '-media.png')
+# 	def media(self):
+# 		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
+# 		return self.imagem.__unicode__().replace("." + extensao, '-media.png')
 
-	def grande(self):
-		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
-		return self.imagem.__unicode__().replace("." + extensao, '-grande.png')
+# 	def grande(self):
+# 		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
+# 		return self.imagem.__unicode__().replace("." + extensao, '-grande.png')
 
-	imagem = ImageField(upload_to=imagem_dinamica, max_length=200, help_text="Imagem.", validators=[validar_formato_imagem])
+# 	imagem = ImageField(upload_to=imagem_dinamica, max_length=200, help_text="Imagem.", validators=[validar_formato_imagem])
 
-	class Meta:
-		abstract = True
+# 	class Meta:
+# 		abstract = True
 
-class ImagemPeca(Imagem):
-	peca = models.ForeignKey(Peca)
+# class ImagemPeca(Imagem):
+# 	peca = models.ForeignKey(Peca)
 
-	def __unicode__(self):
-		return "Imagem %s" % (unicode(self.pk))
+# 	def __unicode__(self):
+# 		return "Imagem %s" % (unicode(self.pk))
 
-	class Meta:
-		verbose_name = "Imagem"
-		verbose_name_plural = "Imagens"
+# 	class Meta:
+# 		verbose_name = "Imagem"
+# 		verbose_name_plural = "Imagens"
 
-class ImagemFotogaleria(Imagem):
-	peca = models.ForeignKey(Fotogaleria)
+# class ImagemFotogaleria(Imagem):
+# 	peca = models.ForeignKey(Fotogaleria)
 
-	def __unicode__(self):
-		return "Imagem %s" % (unicode(self.pk))
+# 	def __unicode__(self):
+# 		return "Imagem %s" % (unicode(self.pk))
 
-	class Meta:
-		verbose_name = "Imagem"
-		verbose_name_plural = "Imagens"
+# 	class Meta:
+# 		verbose_name = "Imagem"
+# 		verbose_name_plural = "Imagens"
 
 def validar_formato_audio(value):
 	if not (value.name.lower().endswith('.mp3') or value.name.lower().endswith('.wav') or value.name.lower().endswith('.ogg')):
