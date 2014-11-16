@@ -278,7 +278,7 @@ class TipoMoeda(models.Model):
 		verbose_name_plural = "Tipos de Moeda"
 
 class Peca(models.Model):
-	data = hstore.DictionaryField(verbose_name="Campos dinâmicos")  # can pass attributes like null, blank, ecc.
+	# data = hstore.DictionaryField(verbose_name="Campos dinâmicos")  # can pass attributes like null, blank, ecc.
 	objects = hstore.HStoreManager()
 
 	# Informações essenciais

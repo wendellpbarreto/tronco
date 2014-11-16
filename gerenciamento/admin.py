@@ -264,7 +264,7 @@ class PecaAdmin(AutocompleteModelAdmin):
 	inlines = [
 			# InscricaoInline,
 			# OutroNumeroInline,
-			ImagemInline,
+			ImagemPecaInline,
 			AudioInline,
 			VideoInline,
 			DocumentoInline,
