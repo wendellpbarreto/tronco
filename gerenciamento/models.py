@@ -417,59 +417,59 @@ def validar_formato_imagem(value):
 	if not (value.name.lower().endswith('.jpg') or value.name.lower().endswith('.jpeg') or value.name.lower().endswith('.png') or value.name.lower().endswith('.bmp') or  value.name.lower().endswith('.gif')):
 		raise ValidationError(u'Formato não suportado. Por favor, envie um arquivo no formato .jpg, .jpeg, .png., .bmp ou .gif.')
 
-# class Imagem(models.Model):
-# 	autor = models.ForeignKey(Autor, help_text="Autor da imagem.", blank=True, null=True)
-# 	data = models.DateField(help_text="Data que a imagem foi criada, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
+class Imagem(models.Model):
+	autor = models.ForeignKey(Autor, help_text="Autor da imagem.", blank=True, null=True)
+	data = models.DateField(help_text="Data que a imagem foi criada, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
 
-# 	def imagem_dinamica(self, filename):
-# 		try:
-# 			caminho = os.path.join(MEDIA_ROOT, 'imagens', unicode(self.pk))
-# 			lista_imagens = os.listdir(caminho)
-# 			quantidade = len(lista_imagens)/4
-# 			for i in range(1,quantidade+2):
-# 				if not ("imagem%d.png" %i) in lista_imagens:
-# 					return os.path.join('imagens', unicode(self.pk), ("imagem%d.png" %i))
-# 					break
-# 		except Exception:
-# 			return os.path.join('imagens', unicode(self.pk), "imagem1.png")
+	def imagem_dinamica(self, filename):
+		try:
+			caminho = os.path.join(MEDIA_ROOT, 'imagens', unicode(self.pk))
+			lista_imagens = os.listdir(caminho)
+			quantidade = len(lista_imagens)/4
+			for i in range(1,quantidade+2):
+				if not ("imagem%d.png" %i) in lista_imagens:
+					return os.path.join('imagens', unicode(self.pk), ("imagem%d.png" %i))
+					break
+		except Exception:
+			return os.path.join('imagens', unicode(self.pk), "imagem1.png")
 
 
-# 	def pequena(self):
-# 		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
-# 		return self.imagem.__unicode__().replace("." + extensao, '-pequena.png')
+	def pequena(self):
+		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
+		return self.imagem.__unicode__().replace("." + extensao, '-pequena.png')
 
-# 	def media(self):
-# 		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
-# 		return self.imagem.__unicode__().replace("." + extensao, '-media.png')
+	def media(self):
+		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
+		return self.imagem.__unicode__().replace("." + extensao, '-media.png')
 
-# 	def grande(self):
-# 		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
-# 		return self.imagem.__unicode__().replace("." + extensao, '-grande.png')
+	def grande(self):
+		extensao = self.imagem.__unicode__().rsplit('.', 1)[1]
+		return self.imagem.__unicode__().replace("." + extensao, '-grande.png')
 
-# 	imagem = ImageField(upload_to=imagem_dinamica, max_length=200, help_text="Imagem.", validators=[validar_formato_imagem])
+	imagem = ImageField(upload_to=imagem_dinamica, max_length=200, help_text="Imagem.", validators=[validar_formato_imagem])
 
-# 	class Meta:
-# 		abstract = True
+	class Meta:
+		abstract = True
 
-# class ImagemPeca(Imagem):
-# 	peca = models.ForeignKey(Peca)
+class ImagemPeca(Imagem):
+	peca = models.ForeignKey(Peca)
 
-# 	def __unicode__(self):
-# 		return "Imagem %s" % (unicode(self.pk))
+	def __unicode__(self):
+		return "Imagem %s" % (unicode(self.pk))
 
-# 	class Meta:
-# 		verbose_name = "Imagem"
-# 		verbose_name_plural = "Imagens"
+	class Meta:
+		verbose_name = "Imagem"
+		verbose_name_plural = "Imagens"
 
-# class ImagemFotogaleria(Imagem):
-# 	peca = models.ForeignKey(Fotogaleria)
+class ImagemFotogaleria(Imagem):
+	peca = models.ForeignKey(Fotogaleria)
 
-# 	def __unicode__(self):
-# 		return "Imagem %s" % (unicode(self.pk))
+	def __unicode__(self):
+		return "Imagem %s" % (unicode(self.pk))
 
-# 	class Meta:
-# 		verbose_name = "Imagem"
-# 		verbose_name_plural = "Imagens"
+	class Meta:
+		verbose_name = "Imagem"
+		verbose_name_plural = "Imagens"
 
 def validar_formato_audio(value):
 	if not (value.name.lower().endswith('.mp3') or value.name.lower().endswith('.wav') or value.name.lower().endswith('.ogg')):
@@ -738,67 +738,67 @@ def apagar_arquivos_imagem(imagem):
 	except OSError:
 		print u"Não foi possível apagar %s." %(caminho_imagem)
 
-# @receiver(signals.pre_save, sender=ImagemPeca)
-# def editar_imagens(sender, instance, **kwargs):
-# 	try:
-# 		imagem_antiga = ImagemPeca.objects.get(id=instance.id).imagem
-# 		apagar_arquivos_imagem(imagem_antiga)
-# 	except ObjectDoesNotExist:
-# 		pass
+@receiver(signals.pre_save, sender=ImagemPeca)
+def editar_imagens(sender, instance, **kwargs):
+	try:
+		imagem_antiga = ImagemPeca.objects.get(id=instance.id).imagem
+		apagar_arquivos_imagem(imagem_antiga)
+	except ObjectDoesNotExist:
+		pass
 
-# @receiver(signals.pre_delete, sender=ImagemPeca)
-# def apagar_imagens_peca(sender, instance, **kwargs):
-# 	imagem = instance.imagem
-# 	apagar_arquivos_imagem(imagem)
+@receiver(signals.pre_delete, sender=ImagemPeca)
+def apagar_imagens_peca(sender, instance, **kwargs):
+	imagem = instance.imagem
+	apagar_arquivos_imagem(imagem)
 
-# @receiver(signals.post_save, sender=ImagemPeca)
-# def criar_outras_imagens(sender, instance, **kwargs):
+@receiver(signals.post_save, sender=ImagemPeca)
+def criar_outras_imagens(sender, instance, **kwargs):
 
-# 	objeto = instance
-# 	tamanhos = {'pequeno': {'altura': 24, 'largura': 24}, 'medio': {'altura': 300, 'largura': 300}, 'grande': {'altura': 600, 'largura': 600},}
+	objeto = instance
+	tamanhos = {'pequeno': {'altura': 24, 'largura': 24}, 'medio': {'altura': 300, 'largura': 300}, 'grande': {'altura': 600, 'largura': 600},}
 
-# 	caminho_imagem = unicode(objeto.imagem.path)
-
-
-# 	im = Image.open(caminho_imagem)
-
-# 	extensao = caminho_imagem.rsplit('.', 1)[1]
-# 	nome_arquivo = caminho_imagem.rsplit("/",1)[1].rsplit(".")[0]
-# 	diretorio = caminho_imagem.rsplit('/', 1)[0]
-
-# 	if im.mode not in ("L", "RGB"):
-# 		im = im.convert("RGB")
-
-# 	# Lança uma exceção em caso de imagem em formato desconhecido.
-# 	if extensao not in ['jpg', 'jpeg', 'gif', 'png']:
-# 		sys.exit()
-
-# 	DEFAULT_COLOR = (255, 255, 255, 0)
-
-# 	# Criar o tamanho grande.
-
-# 	im.thumbnail((tamanhos['grande']['largura'], tamanhos['grande']['altura']), Image.ANTIALIAS)
-
-# 	grande = Image.new("RGBA", (tamanhos['grande']['largura'], tamanhos['grande']['altura']), DEFAULT_COLOR)
-# 	grande.paste(im, ((tamanhos['grande']['largura'] - im.size[0]) / 2, (tamanhos['grande']['altura'] - im.size[1]) / 2))
-# 	grande.save(os.path.join(diretorio, nome_arquivo + "-grande.png"), 'PNG', quality=100)
-
-# 	# Criar o tamanho medio.
+	caminho_imagem = unicode(objeto.imagem.path)
 
 
-# 	im.thumbnail((tamanhos['medio']['largura'], tamanhos['medio']['altura']), Image.ANTIALIAS)
+	im = Image.open(caminho_imagem)
 
-# 	medio = Image.new("RGBA", (tamanhos['medio']['largura'], tamanhos['medio']['altura']), DEFAULT_COLOR)
-# 	medio.paste(im, ((tamanhos['medio']['largura'] - im.size[0]) / 2, (tamanhos['medio']['altura'] - im.size[1]) / 2))
-# 	medio.save(os.path.join(diretorio, nome_arquivo + "-media.png"), 'PNG', quality=100)
+	extensao = caminho_imagem.rsplit('.', 1)[1]
+	nome_arquivo = caminho_imagem.rsplit("/",1)[1].rsplit(".")[0]
+	diretorio = caminho_imagem.rsplit('/', 1)[0]
 
-# 	# Criar o icone.
+	if im.mode not in ("L", "RGB"):
+		im = im.convert("RGB")
 
-# 	im.thumbnail((tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), Image.ANTIALIAS)
+	# Lança uma exceção em caso de imagem em formato desconhecido.
+	if extensao not in ['jpg', 'jpeg', 'gif', 'png']:
+		sys.exit()
 
-# 	pequeno = Image.new("RGBA", (tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), DEFAULT_COLOR)
-# 	pequeno.paste(im, ((tamanhos['pequeno']['largura'] - im.size[0]) / 2, (tamanhos['pequeno']['altura'] - im.size[1]) / 2))
-# 	pequeno.save(os.path.join(diretorio, nome_arquivo + "-pequena.png"), 'PNG', quality=100)
+	DEFAULT_COLOR = (255, 255, 255, 0)
+
+	# Criar o tamanho grande.
+
+	im.thumbnail((tamanhos['grande']['largura'], tamanhos['grande']['altura']), Image.ANTIALIAS)
+
+	grande = Image.new("RGBA", (tamanhos['grande']['largura'], tamanhos['grande']['altura']), DEFAULT_COLOR)
+	grande.paste(im, ((tamanhos['grande']['largura'] - im.size[0]) / 2, (tamanhos['grande']['altura'] - im.size[1]) / 2))
+	grande.save(os.path.join(diretorio, nome_arquivo + "-grande.png"), 'PNG', quality=100)
+
+	# Criar o tamanho medio.
+
+
+	im.thumbnail((tamanhos['medio']['largura'], tamanhos['medio']['altura']), Image.ANTIALIAS)
+
+	medio = Image.new("RGBA", (tamanhos['medio']['largura'], tamanhos['medio']['altura']), DEFAULT_COLOR)
+	medio.paste(im, ((tamanhos['medio']['largura'] - im.size[0]) / 2, (tamanhos['medio']['altura'] - im.size[1]) / 2))
+	medio.save(os.path.join(diretorio, nome_arquivo + "-media.png"), 'PNG', quality=100)
+
+	# Criar o icone.
+
+	im.thumbnail((tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), Image.ANTIALIAS)
+
+	pequeno = Image.new("RGBA", (tamanhos['pequeno']['largura'], tamanhos['pequeno']['altura']), DEFAULT_COLOR)
+	pequeno.paste(im, ((tamanhos['pequeno']['largura'] - im.size[0]) / 2, (tamanhos['pequeno']['altura'] - im.size[1]) / 2))
+	pequeno.save(os.path.join(diretorio, nome_arquivo + "-pequena.png"), 'PNG', quality=100)
 
 @receiver(signals.post_save, sender=Inscricao)
 def renomear_imagem_inscricao(sender, instance, **kwargs):
