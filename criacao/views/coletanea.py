@@ -73,10 +73,10 @@ class ColetaneaView(GenericView):
 						for peca in lista_de_pecas:
 						 	peca = Peca.objects.get(numero_registro=peca)
 						 	coletanea.pecas.add(peca)
-					except:
+					except Exception, e:
 						data = {
 							'leftover' : {
-								'alert-error' : 'Erro desconhecido!',
+								'alert-error' : 'Erro desconhecido! [' + str(e) + ']',
 								'redirect' : '/criacao/coletanea/listar/'
 							},
 						}
