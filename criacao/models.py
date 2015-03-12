@@ -76,12 +76,9 @@ class Coletanea(models.Model):
 	inicio_exposicao = models.DateField(verbose_name='Início da Exposição', help_text='Data em que a exposição terá a exibição iniciada.', blank=True, null=True)
 	fim_exposicao = models.DateField(verbose_name='Fim da Exposição', help_text='Data em que a exposição terá a exibição encerrada.', blank=True, null=True)
 	funcionario = models.ForeignKey(User, verbose_name='Funcionário', blank=True, null=True)
-	informacoes_iphan = models.BooleanField(default=False, verbose_name='Informações do IPHAN')
-	informacoes_tecnicas = models.BooleanField(default=False, verbose_name='Informações Técnicas', help_text='Data em que a exposição começará a ser exibida.')
 	nivel = models.PositiveIntegerField(default=1, verbose_name='Nível')
 	nome = models.CharField(max_length=100, verbose_name='Nome')
 	pecas = models.ManyToManyField(Peca, verbose_name='Peças')
-	status = models.BooleanField(default=True, verbose_name='Status')
 
 	class Meta:
 		verbose_name = 'Coletânea'
