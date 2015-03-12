@@ -134,7 +134,7 @@ class View(GenericView):
 
     def part(self, request):
         data = None
-        sections = ['photos', 'videos', 'audios', 'documents', 'iphan-informations']
+        sections = ['photos', 'videos', 'audios', 'documents']
         links = Link.objects.all()
 
         try:
@@ -160,8 +160,6 @@ class View(GenericView):
             # logger.info(str(e))
 
             part = None
-        else:
-            part.iphan_informations = InformacoesIPHAN.objects.filter(peca=part)
 
         try:
             pk2 = self.kwargs['pk2']

@@ -144,7 +144,6 @@ def preencher(request):
 		coletanea.nome = "Coletanea %d" %i
 		coletanea.descricao = "Esta é uma coletânea de demonstração."
 		coletanea.nivel = 1
-		coletanea.status = True
 		coletanea.save()
 		for j in range(i, quantidade+1, 1):
 			coletanea.pecas.add(Peca.objects.get(id=i))

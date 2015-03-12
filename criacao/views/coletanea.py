@@ -22,8 +22,6 @@ class ColetaneaView(GenericView):
 			try:
 				nome = request.POST['nome']
 				descricao = request.POST['descricao']
-				informacoes_iphan = request.POST['informacoes_iphan']
-				informacoes_tecnicas = request.POST['informacoes_tecnicas']
 				fim_exposicao = request.POST['fim_exposicao']
 				inicio_exposicao = request.POST['inicio_exposicao']
 			except Exception, e:
@@ -65,7 +63,6 @@ class ColetaneaView(GenericView):
 							funcionario=request.user,
 							inicio_exposicao=inicio_exposicao,
 							fim_exposicao=fim_exposicao,
-							informacoes_tecnicas=informacoes_tecnicas,
 						)
 						coletanea.save()
 
@@ -146,8 +143,6 @@ class ColetaneaView(GenericView):
 				descricao = request.POST['descricao']
 				inicio_exposicao = request.POST['inicio_exposicao']
 				fim_exposicao = request.POST['fim_exposicao']
-				informacoes_iphan = request.POST['informacoes_iphan']
-				informacoes_tecnicas = request.POST['informacoes_tecnicas']
 			except Exception, e:
 				logger.error(str(e))
 
@@ -185,8 +180,6 @@ class ColetaneaView(GenericView):
 				coletanea.descricao = descricao
 				coletanea.inicio_exposicao = inicio_exposicao
 				coletanea.fim_exposicao = fim_exposicao
-				coletanea.informacoes_iphan = informacoes_iphan
-				coletanea.informacoes_tecnicas = informacoes_tecnicas
 				coletanea.save()
 
 				coletanea.pecas.clear()
@@ -230,8 +223,6 @@ class ColetaneaView(GenericView):
 					'descricao' : coletanea.descricao,
 					'inicio_exposicao' : coletanea.inicio_exposicao,
 					'fim_exposicao' : coletanea.fim_exposicao,
-					'informacoes_iphan' : coletanea.informacoes_iphan,
-					'informacoes_tecnicas' : coletanea.informacoes_tecnicas,
 				})
 
 				data = {

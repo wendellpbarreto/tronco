@@ -1,7 +1,7 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block title %} 
-	museuvirtual | criar coletânea 
+{% block title %}
+	museuvirtual | criar coletânea
 {% endblock %}
 
 {% block header %}
@@ -12,14 +12,14 @@
 				<a href="/criacao/sair/" title="Sair.">
 					<span class="orange p15" data-icon='%'></span>
 				</a>
-			{% endif %} 	
+			{% endif %}
 				<h3>
 					museu
 					<span>
 						{{ museu_nome | lower }}
-					</span>	
-				</h3>		
-			</div>						
+					</span>
+				</h3>
+			</div>
 		</header>
 	</div>
 {% endblock %}
@@ -37,19 +37,19 @@
 					<li><a href="/apresentacao/" target="_blank" title="Visualizar publicação do museu">Museu publicado</a></li>
 					<li><a href="/criacao/link/listar/" title="Área de links">Links</a></li>
 					<li><a href="/criacao/noticia/listar/" title="Área de notícias">Notícias</a></li>
-					<li><a href="/criacao/coletanea/listar/" class="active">Coletâneas</a></li>				
+					<li><a href="/criacao/coletanea/listar/" class="active">Coletâneas</a></li>
 					<li><a href="/criacao/informacoes/listar/" title="Área de informações do museu">Informações do museu</a></li>
 					<li><a href="/criacao/inicio/" title="Ir para tela inicial">Inicial</a></li>
 				</ul>
 			</nav>
-		</section> 
-	</div>	
+		</section>
+	</div>
 {% endblock %}
 
 {% block container %}
 	<div id="container" class="background_black full clearfix">
-		<article id="content_main">		
-			<section id="header" class="row">		
+		<article id="content_main">
+			<section id="header" class="row">
 				<h1 class="white large-16 columns">
 					<div class="left">
 						<span class="orange-bar">\</span>
@@ -62,7 +62,7 @@
 				<h4 class="white large-4 columns">
 					<a class="white" href="/criacao/coletanea/listar/" title="Voltar à página anterior.">
 						<span class="orange p15" data-icon='-'></span>
-						Voltar 
+						Voltar
 					</a>
 					<div>|</div>
 					<a class="white" href="javascript: return false;" data-post="#new_collectanea_form" title="Salvar coletânea.">
@@ -86,26 +86,18 @@
 			  				<div class="large-10 columns">
 				  				{{ form.inicio_exposicao }}
 			  				</div>
-			  				<div class="large-10 columns">	
+			  				<div class="large-10 columns">
 				  				{{ form.fim_exposicao }}
 			  				</div>
 				  		</div>
-					  	<label for="informacoes_iphan" class="white" style="margin-top:10px;">
-					  		Deseja exibir informações sobre patrimônio imaterial das obras (definidas pelo Iphan)?
-					  	</label>
-					  	{{ form.informacoes_iphan }}
 
-					  	<label for="informacoes_tecnicas" class="white">
-					  		Deseja exibir informações técnicas sobre as obras (peso, altura, largura, profundidade, material e técnica)?
-					  	</label>
-					  	{{ form.informacoes_tecnicas }}
 				  	</div>
 				</form>
 				<div class="columns">
 					<h3 class="white">Como criar a coletânea</h3>
 					<p>
-						Preencha primeiramente o formulário acima, adicionando um nome para a coletânea, uma descrição, a data e ínicio (quando a coletânea 
-						irá surgir na apresentação) e a data de término da exposição (nesta data a coletânea irá deixar de estar visível na apresentação). 
+						Preencha primeiramente o formulário acima, adicionando um nome para a coletânea, uma descrição, a data e ínicio (quando a coletânea
+						irá surgir na apresentação) e a data de término da exposição (nesta data a coletânea irá deixar de estar visível na apresentação).
 						Use também das outras opções para customizar a coletânea).
 					</p>
 					<br>
@@ -113,11 +105,11 @@
 						Após concluir o preenchimento, escolha as obras que estão disponíveis  no acervo abaixo e que irão fazer parte da coletânea.
 					</p>
 					<br/>
-					<p> 				
+					<p>
 						Por fim clique em SALVAR localizado na parte superior da página ou na parte inferior.
 					</p>
 					<br>
-				</div>				
+				</div>
 				<div class="down-div columns">
 			        <h3 class="white">Agora escolha o arcevo da coletânea</h3>
 			        <p>
@@ -131,10 +123,10 @@
 					</div>
 				</div>
 			</section>
-			<section id="header" class="row">		
+			<section id="header" class="row">
 				<h4 class="white columns">
 					<a class="white" href="/criacao/coletanea/listar/" title="Voltar à página anterior.">
-						<span class="orange p15" data-icon='-'></span> 
+						<span class="orange p15" data-icon='-'></span>
 					</a>
 					<div>|</div>
 					<a class="white" href="javascript: return false;" data-post="#new_collectanea_form" title="Salvar coletânea.">
@@ -142,7 +134,7 @@
 					</a>
 				</h4>
 			</section>
-		</article>		
+		</article>
 	</div>
 {% endblock %}
 
@@ -155,21 +147,21 @@
 						<span class="p15" data-icon="6"></span>
 						&nbsp;gerenciamento
 					</a>
-					
+
 					{% if request.user.is_authenticated %}
 					<a class="row" href="/criacao/sair/" title="Sair.">
 						<span class="p15" data-icon="%"></span>
 						&nbsp;sair
 					</a>
 					{% endif %}
-					
+
 				</div>
 				<p class="white large-16 columns">
-					© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores. 
+					© 2013 Museu Virtual. Todos os direitos reservados aos respectivos autores.
 				</p>
 			</div>
 		</footer>
-	</div>	
+	</div>
 
 	<div id="page-loading">
 		<div class="loader">Carregando...</div>
@@ -191,9 +183,9 @@
 	</ol>
 {% endblock %}
 
-{% block js %} 
+{% block js %}
 	<script>
-		$(document).ready(function(){  
+		$(document).ready(function(){
 		    $('.init').trigger("click");
 		});
 
