@@ -59,18 +59,12 @@ class ColetaneaView(GenericView):
 					}
 				else:
 					try:
-						if informacoes_iphan:
-							informacoes_iphan = 1
-						else:
-							informacoes_iphan = 0
-
 						coletanea = Coletanea(
 							nome=nome,
 							descricao=descricao,
 							funcionario=request.user,
 							inicio_exposicao=inicio_exposicao,
 							fim_exposicao=fim_exposicao,
-							informacoes_iphan=informacoes_iphan,
 							informacoes_tecnicas=informacoes_tecnicas,
 						)
 						coletanea.save()
@@ -81,7 +75,7 @@ class ColetaneaView(GenericView):
 					except Exception, e:
 						data = {
 							'leftover' : {
-								'alert-error' : str(e),
+								'alert-error' : 'Erro desconhecido! [' + str(e) + ']',
 								'redirect' : '/criacao/coletanea/listar/'
 							},
 						}
