@@ -59,6 +59,11 @@ class ColetaneaView(GenericView):
 					}
 				else:
 					try:
+						if informacoes_iphan:
+							informacoes_iphan = True
+						else:
+							informacoes_iphan = False
+
 						coletanea = Coletanea(
 							nome=nome,
 							descricao=descricao,
