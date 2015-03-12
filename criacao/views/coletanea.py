@@ -81,7 +81,7 @@ class ColetaneaView(GenericView):
 					except Exception, e:
 						data = {
 							'leftover' : {
-								'alert-error' : 'Erro desconhecido! [' + str(e) + ']',
+								'alert-error' : str(e),
 								'redirect' : '/criacao/coletanea/listar/'
 							},
 						}
