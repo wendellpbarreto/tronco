@@ -18,7 +18,6 @@ from gerenciamento.models import *
 class ColetaneaView(GenericView):
 
 	def criar(self, request):
-
 		if request.method == 'POST':
 			try:
 				nome = request.POST['nome']
