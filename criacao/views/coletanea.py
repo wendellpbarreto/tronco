@@ -58,27 +58,35 @@ class ColetaneaView(GenericView):
 						},
 					}
 				else:
-					coletanea = Coletanea(
-						nome=nome,
-						descricao=descricao,
-						funcionario=request.user,
-						inicio_exposicao=inicio_exposicao,
-						fim_exposicao=fim_exposicao,
-						informacoes_iphan=informacoes_iphan,
-						informacoes_tecnicas=informacoes_tecnicas,
-					)
-					coletanea.save()
+					try:
+						coletanea = Coletanea(
+							nome=nome,
+							descricao=descricao,
+							funcionario=request.user,
+							inicio_exposicao=inicio_exposicao,
+							fim_exposicao=fim_exposicao,
+							informacoes_iphan=informacoes_iphan,
+							informacoes_tecnicas=informacoes_tecnicas,
+						)
+						coletanea.save()
 
-					for peca in lista_de_pecas:
-					 	peca = Peca.objects.get(numero_registro=peca)
-					 	coletanea.pecas.add(peca)
-
-					data = {
-						'leftover' : {
-							'alert-success' : 'Coletânea criada com sucesso!',
-							'redirect' : '/criacao/coletanea/listar/'
-						},
-					}
+						for peca in lista_de_pecas:
+						 	peca = Peca.objects.get(numero_registro=peca)
+						 	coletanea.pecas.add(peca)
+					except:
+						data = {
+							'leftover' : {
+								'alert-error' : 'Erro desconhecido!',
+								'redirect' : '/criacao/coletanea/listar/'
+							},
+						}
+					else:
+						data = {
+							'leftover' : {
+								'alert-success' : 'Coletânea criada com sucesso!',
+								'redirect' : '/criacao/coletanea/listar/'
+							},
+						}
 			finally:
 				return data
 		else:
