@@ -116,13 +116,12 @@ $(document).on('click', 'a[data-post]', function(e){
 				
 			}
 			if(data['validation-error']){
-				console.log(data['validation-error']);
 				var erros = data['validation-error'];
+				$(".form-control-error").text("");
+				$(".form-control-input").css({border: 0});
 				for(var erro in erros){
 					$("#id_"+erro).css({border:"2px solid #F84C4C"});
 					$("#id_error_"+erro).text(erros[erro]).css({color:"#F84C4C"});
-					console.log($("#id_error"+erro));
-
 				}
 				unlock_screen();
 			}
