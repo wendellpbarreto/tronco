@@ -19,72 +19,69 @@ class ColetaneaView(GenericView):
 
 	def criar(self, request):
 		if request.method == 'POST':
-			try:
-				nome = request.POST['nome']
-				descricao = request.POST['descricao']
-				fim_exposicao = request.POST['fim_exposicao']
-				inicio_exposicao = request.POST['inicio_exposicao']
-			except Exception, e:
-				logger.error(str(e))
-
+			form = ColetaneaForm(request.POST)
+			if not form.is_valid():
 				data = {
 					'leftover' : {
-						'alert-error' : 'Está faltando alguma informação, por favor, verifique os campos!',
+						'validation-error' : form.errors,
+					},
+				}
+				return data
+			
+			nome = request.POST['nome']
+			descricao = request.POST['descricao']
+			fim_exposicao = request.POST['fim_exposicao']
+			inicio_exposicao = request.POST['inicio_exposicao']
+		
+			try:
+				inicio_exposicao = datetime.strptime(inicio_exposicao, "%d/%m/%Y")
+			except:
+				inicio_exposicao = datetime.strptime("01/01/2013", "%d/%m/%Y")
+
+			try:
+				fim_exposicao = datetime.strptime(fim_exposicao, "%d/%m/%Y")
+			except:
+				fim_exposicao = datetime.strptime("01/01/2113", "%d/%m/%Y")
+
+			try:
+				lista_de_pecas = request.POST.getlist('lista_de_pecas[]')
+			except:
+				pass
+
+			if not lista_de_pecas:
+				data = {
+					'leftover' : {
+						'alert-error' : 'Coletânea precisa ter pelo menos uma peça!',
 					},
 				}
 			else:
 				try:
-					inicio_exposicao = datetime.strptime(inicio_exposicao, "%d/%m/%Y")
-				except:
-					inicio_exposicao = datetime.strptime("01/01/2013", "%d/%m/%Y")
+					coletanea = Coletanea(
+						nome=nome,
+						descricao=descricao,
+						funcionario=request.user,
+						inicio_exposicao=inicio_exposicao,
+						fim_exposicao=fim_exposicao,
+					)
+					coletanea.save()
 
-				try:
-					fim_exposicao = datetime.strptime(fim_exposicao, "%d/%m/%Y")
-				except:
-					fim_exposicao = datetime.strptime("01/01/2113", "%d/%m/%Y")
-
-				try:
-					lista_de_pecas = request.POST.getlist('lista_de_pecas[]')
-				except:
-					pass
-
-				if not lista_de_pecas:
+					for peca in lista_de_pecas:
+					 	peca = Peca.objects.get(numero_registro=peca)
+					 	coletanea.pecas.add(peca)
+				except Exception, e:
 					data = {
 						'leftover' : {
-							'alert-error' : 'Coletânea precisa ter pelo menos uma peça!',
-							'redirect' : '/criacao/coletanea/listar/'
+							'alert-error' : 'Não foi possível cadastrar a peça, tente novamente',
 						},
 					}
 				else:
-					try:
-						coletanea = Coletanea(
-							nome=nome,
-							descricao=descricao,
-							funcionario=request.user,
-							inicio_exposicao=inicio_exposicao,
-							fim_exposicao=fim_exposicao,
-						)
-						coletanea.save()
-
-						for peca in lista_de_pecas:
-						 	peca = Peca.objects.get(numero_registro=peca)
-						 	coletanea.pecas.add(peca)
-					except Exception, e:
-						data = {
-							'leftover' : {
-								'alert-error' : 'Erro desconhecido! [' + str(e) + ']',
-								'redirect' : '/criacao/coletanea/listar/'
-							},
-						}
-					else:
-						data = {
-							'leftover' : {
-								'alert-success' : 'Coletânea criada com sucesso!',
-								'redirect' : '/criacao/coletanea/listar/'
-							},
-						}
-			finally:
-				return data
+					data = {
+						'leftover' : {
+							'alert-success' : 'Coletânea criada com sucesso!',
+							'redirect' : '/criacao/coletanea/listar/'
+						},
+					}
+			return data
 		else:
 			museu, museu_nome = UTIL_informacoes_museu()
 			form = ColetaneaForm()

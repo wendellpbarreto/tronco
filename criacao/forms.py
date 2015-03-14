@@ -36,7 +36,7 @@ class ColetaneaForm(forms.Form):
     ]
 
 	nome = forms.CharField(widget = forms.TextInput(attrs={'placeholder': 'Nome da coletânea'}), max_length = 100, label = u'')
-	descricao = forms.CharField(widget = forms.Textarea(attrs={'placeholder': 'Descrição'}), max_length = 500, label = u'')
+	descricao = forms.CharField(widget = forms.Textarea(attrs={'placeholder': 'Descrição', 'style':'margin-top:10px'}), max_length = 500, label = u'')
 	inicio_exposicao = forms.DateField(widget = forms.DateInput(attrs={'placeholder': 'Data de início da exposição'}))
 	fim_exposicao = forms.DateField(widget = forms.DateInput(attrs={'placeholder': 'Data de término da exposição'}))
 
