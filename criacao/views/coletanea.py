@@ -134,65 +134,64 @@ class ColetaneaView(GenericView):
 	def editar(self, request):
 
 		if request.method == 'POST':
-			try:
-				pk = self.kwargs['key']
-				nome = request.POST['nome']
-				descricao = request.POST['descricao']
-				inicio_exposicao = request.POST['inicio_exposicao']
-				fim_exposicao = request.POST['fim_exposicao']
-			except Exception, e:
-				logger.error(str(e))
-
+			form = ColetaneaForm(request.POST)
+			if not form.is_valid():
 				data = {
 					'leftover' : {
-						'alert-error' : 'Não foi possível processar essa edição!',
-					}
-				}
-			else:
-				try:
-					inicio_exposicao = datetime.strptime(inicio_exposicao, "%d/%m/%Y")
-				except:
-					inicio_exposicao = datetime.strptime("01/01/2013", "%d/%m/%Y")
-
-				try:
-					fim_exposicao = datetime.strptime(fim_exposicao, "%d/%m/%Y")
-				except:
-					fim_exposicao = datetime.strptime("01/01/2113", "%d/%m/%Y")
-
-				try:
-					lista_de_pecas = request.POST.getlist('lista_de_pecas[]')
-				except:
-					pass
-
-				if not lista_de_pecas:
-
-					return {
-						'leftover' : {
-							'alert-error' : 'Coletânea precisa ter pelo menos uma peça!',
-						},
-					}
-
-				coletanea = Coletanea.objects.get(pk=pk);
-				coletanea.nome = nome
-				coletanea.descricao = descricao
-				coletanea.inicio_exposicao = inicio_exposicao
-				coletanea.fim_exposicao = fim_exposicao
-				coletanea.save()
-
-				coletanea.pecas.clear()
-
-				for peca in lista_de_pecas:
-					peca = Peca.objects.get(numero_registro = peca)
-					coletanea.pecas.add(peca)
-
-				data = {
-					'leftover' : {
-						'alert-success' : 'Coletânea editada com sucesso!',
-						'redirect' : '/criacao/coletanea/listar/'
+						'validation-error' : form.errors,
 					},
 				}
-			finally:
 				return data
+			
+			pk = self.kwargs['key']
+			nome = request.POST['nome']
+			descricao = request.POST['descricao']
+			inicio_exposicao = request.POST['inicio_exposicao']
+			fim_exposicao = request.POST['fim_exposicao']
+		
+			try:
+				inicio_exposicao = datetime.strptime(inicio_exposicao, "%d/%m/%Y")
+			except:
+				inicio_exposicao = datetime.strptime("01/01/2013", "%d/%m/%Y")
+
+			try:
+				fim_exposicao = datetime.strptime(fim_exposicao, "%d/%m/%Y")
+			except:
+				fim_exposicao = datetime.strptime("01/01/2113", "%d/%m/%Y")
+
+			try:
+				lista_de_pecas = request.POST.getlist('lista_de_pecas[]')
+			except:
+				pass
+
+			if not lista_de_pecas:
+
+				return {
+					'leftover' : {
+						'alert-error' : 'Coletânea precisa ter pelo menos uma peça!',
+					},
+				}
+
+			coletanea = Coletanea.objects.get(pk=pk);
+			coletanea.nome = nome
+			coletanea.descricao = descricao
+			coletanea.inicio_exposicao = inicio_exposicao
+			coletanea.fim_exposicao = fim_exposicao
+			coletanea.save()
+
+			coletanea.pecas.clear()
+
+			for peca in lista_de_pecas:
+				peca = Peca.objects.get(numero_registro = peca)
+				coletanea.pecas.add(peca)
+
+			data = {
+				'leftover' : {
+					'alert-success' : 'Coletânea editada com sucesso!',
+					'redirect' : '/criacao/coletanea/listar/'
+				},
+			}
+			return data
 		else:
 			try:
 				pk = self.kwargs['key']
