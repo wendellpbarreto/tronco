@@ -43,18 +43,18 @@ class View(GenericView):
             informations = None
 
         try:
-            news = Noticia.objects.order_by('data_de_criacao')[:4]
+            news = Noticia.objects.order_by('-data_de_criacao')[:4]
         except:
             news = None
 
         try:
-            main_collectanea = Coletanea.objects.filter(nivel=0)[0]
+            main_collectanea = Coletanea.objects.all().order_by('-id')[0]
             main_parts = main_collectanea.pecas.all().order_by('?')[:5]
         except Exception, e:
             main_collectanea = None
 
         try:
-            collectaneas = Coletanea.objects.filter(nivel=1)[:5]
+            collectaneas = Coletanea.objects.all().order_by('-id')[1:6]
         except:
             collectaneas = None
 
