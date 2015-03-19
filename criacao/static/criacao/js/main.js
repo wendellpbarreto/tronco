@@ -52,6 +52,15 @@ $(document).on('click', 'a[data-get]', function(e){
 		    		if(el.attr('data-target')){
 		    			$(el.attr('data-target')).html(data['template']);
 		    		}
+		    		if(data['alert-success']){
+		    			alertify.success(data['alert-success']);
+		    		}
+		    		if(data['alert-error']){
+		    			alertify.error(data['alert-error']);
+		    		}
+		    		if(data['reload']){
+		    			setTimeout(function(){window.location.reload()},1000);
+		    		}
 		    	});
 
 				if(el.attr('data-remove')){

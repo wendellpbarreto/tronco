@@ -166,7 +166,7 @@ class NoticiaView(GenericView):
 			finally:
 				return data
 
-	def deleta(self, request):
+	def excluir(self, request):
 		try:
 			pk = self.kwargs['key']	
 		except Exception, e:
@@ -183,6 +183,7 @@ class NoticiaView(GenericView):
 			data = {
 				'leftover' : {
 					'alert-success' : 'Notícia deletada com sucesso!',
+					'reload': True,
 				},
 			}
 		finally:
@@ -190,7 +191,7 @@ class NoticiaView(GenericView):
  
 	def listar(self, request):
 		museu, museu_nome = UTIL_informacoes_museu()	
-		noticias = Noticia.objects.all()
+		noticias = Noticia.objects.order_by('-data_de_criacao')
 
 		try:
 			page = int(self.kwargs['key'])
