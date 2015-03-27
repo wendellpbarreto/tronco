@@ -300,7 +300,7 @@ class Peca(models.Model):
 	titulo = models.CharField(max_length=200, verbose_name="Título",  help_text="Título da peça (200 caracteres, no máximo).", blank=False, null=False)
 	autores = models.ManyToManyField(Autor, help_text="Autor da peça.", blank=False, null=False, related_name='autores')
 	data_criacao = models.ForeignKey(DataFormatada, verbose_name="Data de Criação", help_text="Data de criação da peça.", blank=False, null=False, related_name="data_criacao")
-	descricao = models.TextField(verbose_name="Descrição", max_length=500, help_text="Descrição detalhada da peça (500 caracteres, no máximo). .", blank=False, null=False)
+	descricao = models.TextField(verbose_name="Descrição", max_length=100, help_text="Breve descrição da peça (100 caracteres, no máximo). .", blank=False, null=False)
 	categoria = models.ForeignKey(Categoria, verbose_name="Categoria", help_text="Categoria da peça.", blank=True, null=True)
 
 

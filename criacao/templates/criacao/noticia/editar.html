@@ -69,7 +69,8 @@
 				{% csrf_token %}
 			    <div class="grid_20">
 			    	<div class="grid_5 omega"> <h3 class="white">Título</h3> </div>	
-			    	<div class="grid_15 alpha"> {{ form.titulo }} </div>	
+			    	<div class="grid_15 alpha"> {{ form.titulo }}
+			    	<span class ="form-control-error" id="id_error_titulo"></span></div>	
 			    </div>	
 			    <div class="grid_20">
 			    	<div class="grid_5 omega"> <h3 class="white">Descrição breve</h3> </div>	
@@ -77,7 +78,8 @@
 			    </div>	
 			    <div class="grid_20">
 			    	<div class="grid_5 omega"> <h3 class="white">Descrição completa</h3> </div>	
-			    	<div class="grid_15 alpha"> {{ form.descricao }} </div>	
+			    	<div class="grid_15 alpha"> {{ form.descricao }}	
+			    	<span class ="form-control-error" id="id_error_descricao"></span></div>
 			    </div>			
 			</form>	
 <!-- 			<div class="grid_20 alpha omega down-div">

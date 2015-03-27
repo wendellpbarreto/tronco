@@ -43,7 +43,7 @@ class View(GenericView):
             informations = None
 
         try:
-            news = Noticia.objects.order_by('-data_de_criacao')[:4]
+            news = Noticia.objects.order_by('-id')[:4]
         except:
             news = None
 
@@ -221,7 +221,7 @@ class View(GenericView):
             informations = None
 
         try:
-            news = Noticia.objects.order_by('-data_de_criacao')
+            news = Noticia.objects.order_by('-id')
         except:
             news = None
 

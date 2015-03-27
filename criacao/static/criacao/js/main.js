@@ -119,11 +119,10 @@ $(document).on('click', 'a[data-post]', function(e){
 			if (data['alert-success']){
 				alertify.success(data['alert-success']);
 			}
-
 			if(data['alert-error']){
 				alertify.error(data['alert-error']);
-				
 			}
+				unlock_screen();
 			if(data['validation-error']){
 				var erros = data['validation-error'];
 				$(".form-control-error").text("");
@@ -131,6 +130,8 @@ $(document).on('click', 'a[data-post]', function(e){
 				for(var erro in erros){
 					$("#id_"+erro).css({border:"2px solid #F84C4C"});
 					$("#id_error_"+erro).text(erros[erro]).css({color:"#F84C4C"});
+					$("#id_descricao_breve").css({border: 0});
+					$("#id_descricao").css({marginTop: 15});
 				}
 				unlock_screen();
 			}
@@ -295,6 +296,7 @@ function delete_coletanea(id){
 }
 
 function salve_noticia(){
+	lock_screen();
 	if ($('#id_titulo').val() == ''){
 		$("#id_titulo").animate({"opacity" : 1}, 500, function(){  $("#id_titulo").addClass("invalid"); })
 					 .animate({"opacity" : 1}, 500, function(){  $("#id_titulo").removeClass("invalid"); })

@@ -19,48 +19,48 @@ class NoticiaView(GenericView):
 	def criar(self, request): 
 
 		if request.method == 'POST':
+			form = NoticiaForm(request.POST)
+			if not form.is_valid():
+				data = {
+					'leftover' : {
+						'validation-error' : form.errors,
+					},
+				}
+				return data
+		
+			titulo = request.POST['titulo']
+			descricao_breve = request.POST['descricao_breve']
+			descricao = request.POST['descricao']
+		
+			noticia = Noticia(titulo=titulo, descricao_breve=descricao_breve, descricao=descricao)
 			try:
-				titulo = request.POST['titulo']
-				descricao_breve = request.POST['descricao_breve']
-				descricao = request.POST['descricao']
+				noticia.save() 
 			except Exception, e:
 				logger.error(str(e))
 
-				data = {
-					'leftover' : {
-						'alert-error' : 'Está faltando alguma informação, por favor, verifique os campos!',
-					}
-				}
-			else:
-				noticia = Noticia(titulo=titulo, descricao_breve=descricao_breve, descricao=descricao)
-				try:
-					noticia.save() 
-				except Exception, e:
-					logger.error(str(e))
-
-				data = {
-					'leftover' : {
-						'alert-success' : 'Notícia criada com sucesso!',
-						'redirect' : '/criacao/noticia/listar/'
-					},
-				}	 
-			finally:
-				return data
-		else:
-			museu, museu_nome = UTIL_informacoes_museu()
-			form = NoticiaForm()
-			pecas = Peca.objects.all()					
-
 			data = {
-				'template' : {
-					'request' : request,
-					'museu_nome' : museu_nome,
-					'form' : form,
-					'pecas' : pecas,
+				'leftover' : {
+					'alert-success' : 'Notícia criada com sucesso!',
+					'redirect' : '/criacao/noticia/listar/'
 				},
-			}	
-
+			}	 
+		
 			return data
+	
+		museu, museu_nome = UTIL_informacoes_museu()
+		form = NoticiaForm()
+		pecas = Peca.objects.all()					
+
+		data = {
+			'template' : {
+				'request' : request,
+				'museu_nome' : museu_nome,
+				'form' : form,
+				'pecas' : pecas,
+			},
+		}	
+
+		return data
 
 	def visualizar(self, request):
 
@@ -96,37 +96,40 @@ class NoticiaView(GenericView):
 			return data
 
 	def editar(self, request):
-
 		if request.method == 'POST':
+			form = NoticiaForm(request.POST)
+			if not form.is_valid():
+				data = {
+					'leftover' : {
+						'validation-error' : form.errors,
+					},
+				}
+				return data
+
+			pk = self.kwargs['key']
+			titulo = request.POST['titulo']
+			descricao_breve = request.POST['descricao_breve']
+			descricao = request.POST['descricao']
+
+			noticia = Noticia.objects.get(pk=pk);
+
+			noticia.titulo=titulo
+			noticia.descricao_breve=descricao_breve
+			noticia.descricao=descricao
+
 			try:
-				pk = self.kwargs['key']
-				titulo = request.POST['titulo']
-				descricao_breve = request.POST['descricao_breve']
-				descricao = request.POST['descricao']
+				noticia.save() 
 			except Exception, e:
 				logger.error(str(e))
 
-				data = {
-					'leftover' : {
-						'alert-error' : 'Não foi possível processar esta edição!',
-					}
-				}
-			else:
-				noticia = Noticia.objects.get(pk=pk);
+			data = {
+				'leftover' : {
+					'alert-success' : 'Notícia editada com sucesso!',
+					'redirect' : '/criacao/noticia/listar/'
+				},
+			}
 
-				noticia.titulo=titulo
-				noticia.descricao_breve=descricao_breve
-				noticia.descricao=descricao 
-				noticia.save() 
-
-				data = {
-					'leftover' : {
-						'alert-success' : 'Notícia editada com sucesso!',
-						'redirect' : '/criacao/noticia/listar/'
-					},
-				}
-			finally:
-				return data
+			return data
 		else:
 			try:
 				pk = self.kwargs['key']
@@ -191,7 +194,7 @@ class NoticiaView(GenericView):
  
 	def listar(self, request):
 		museu, museu_nome = UTIL_informacoes_museu()	
-		noticias = Noticia.objects.order_by('-data_de_criacao')
+		noticias = Noticia.objects.order_by('-id')
 
 		try:
 			page = int(self.kwargs['key'])
