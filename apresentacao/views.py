@@ -86,7 +86,7 @@ class View(GenericView):
         except Exception, e:
             # logger.info(str(e))
 
-            collectaneas = Coletanea.objects.all().order_by('-data_criacao')
+            collectaneas = Coletanea.objects.all().order_by('-id')
 
         data = {
             'template': {
