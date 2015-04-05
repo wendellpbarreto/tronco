@@ -19,7 +19,8 @@ from sorl.thumbnail import ImageField
 
 from gerenciamento.models import (
 	Funcionario,
-	Peca
+	Peca,
+	Imagem,
 )
 
 class Link(models.Model):

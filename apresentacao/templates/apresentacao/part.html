@@ -13,35 +13,35 @@
 {% block container %}
     <div id='container' class='clearfix'>
         <div class='row collapse'>
-            <div class='large-8 columns'>
+            <div class='large-24 row'>
                 <section class='info-column'>
                     <ul class='row'>
                         {% if part.imagens %}
-                            <li>
+                            <li class="small-6 column">
                                 <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/photos' {% if section == 'photos' %} class='active' {% endif %}>Fotos</a>
                             </li>
                         {% endif %}
                         {% if part.videos %}
-                            <li>
+                            <li class="small-6 column">
                                 <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/videos' {% if section == 'videos' %} class='active' {% endif %}>Vídeos</a>
                             </li>
                         {% endif %}
                         {% if part.audios %}
-                            <li>
+                            <li class="small-6 column">
                                 <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/audios' {% if section == 'audios' %} class='active' {% endif %}>Áudios</a>
                             </li>
                         {% endif %}
                         {% if part.documentos %}
-                            <li>
+                            <li class="small-6 column">
                                 <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/documents' {% if section == 'documents' %} class='active' {% endif %}>Documentos</a>
                             </li>
                         {% endif %}
                     </ul>
                 </section>
             </div>
-            <div class='large-16 columns'>
+            <div class='large-24 rows'>
                 <section>
-                    <header class='row'>
+                   <!--  <header class='row'>
                         {% if section == 'photos' %}
                             <h4>Fotos</h4>
                         {% elif section == 'videos' %}
@@ -49,17 +49,30 @@
                         {% elif section == 'audios' %}
                             <h4>Áudios</h4>
                         {% elif section == 'documents' %}
-                            <h4>Documentos</h4>
+                            <h4>Documentos</h4> 
                         {% elif section == 'iphan-informations' %}
                             <h4>Informações do IPHAN</h4>
                         {% endif %}
-                    </header>
+                    </header> -->
                     <div class='row' style="text-align:center">
                         {% if section == 'photos' %}
                             {% for image in part.imagens.all %}
-                                {% thumbnail image.imagem "1200x675" as im %}
-                                    <img src="{{ im.url }}">
+                                <div class="small-6 column left" style="padding:10px">
+                                {% thumbnail image.imagem "800x600" as im_big %}
+                                    {% thumbnail image.imagem "200x200" crop="center"   as im %}
+                                        <a href="javascript:" data-role="light-box" >
+                                            <img 
+                                                src="{{ im.url }}" 
+                                                data-img="{{ im_big.url }}"
+                                                data-autor="{{ image.autor }}"
+                                                data-descricao="{{ image.descricao }}" />
+                                        </a>
+                                        <!-- <div style="text-align:left">Autor: {{image.autor }}</div>
+                                        <div style="text-align: justify">Descrição: {{ image.descricao }}
+                                        </div> -->
+                                    {% endthumbnail %}
                                 {% endthumbnail %}
+                                </div>
                             {% endfor %}
                         {% elif section == 'videos' %}
                             {% for video in part.videos.all %}
@@ -93,11 +106,31 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(function(){
+            $(".light-box").css({height:$(document).height()});
+            $(document).on("click", "a[data-role='light-box']", function(){
+                $("a[data-role='light-box']").removeClass("active");
+                $(this).addClass("active");
+                $(".light-box").find(".media img").attr({
+                    src:$(this).find("img").attr("data-img")
+                });
+                console.log($(".light-box").find(".media .autor strong"))
+                $(".light-box").find(".media .autor strong").text($(this).find("img").attr("data-autor"));
+                $(".light-box").find(".media .descricao p").text($(this).find("img").attr("data-descricao"));
+                $(".light-box").fadeIn();
+            })
+            $(document).on("click", ".light-box .shadow, .light-box .container", function(){
+                $(".light-box").fadeOut();
+            });
+        })
+    </script>
 {% endblock %}
 
 {% block footer %}
     {% include 'apresentacao/partials/footer.html' %}
 {% endblock %}
+
 
 {% block css %}
 {% endblock %}
