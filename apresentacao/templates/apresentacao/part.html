@@ -58,7 +58,14 @@
                         {% if section == 'photos' %}
                             {% for image in part.imagens.all %}
                                 {% thumbnail image.imagem "1200x675" as im %}
-                                    <img src="{{ im.url }}">
+                                    <img src="{{ im.url }}"></div>
+                                    <div class="row" style="border:2.5px solid #aaa; padding: 10px;">
+                                    <div style="margin-top:10px">
+                                        <font size="3"> Autor: {{image.autor }}</font></div>
+                                        <div style="text-align: justify;font-size:19px">
+                                            <small>Descrição: {{ image.descricao }}</small>
+                                        </zdiv>
+                                   </div>
                                 {% endthumbnail %}
                             {% endfor %}
                         {% elif section == 'videos' %}
