@@ -417,7 +417,7 @@ class Imagem(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor da imagem.", blank=True, null=True)
 	data = models.DateField(help_text="Data que a imagem foi criada, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
-
+	descricao = models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição da peça (100 caracteres, no máximo). .", blank=False, null=False)
 	def imagem_dinamica(self, filename):
 		try:
 			caminho = os.path.join(MEDIA_ROOT, 'imagens', 'pecas', unicode(self.peca.numero_registro))
@@ -727,10 +727,13 @@ def apagar_arquivos_imagem(imagem):
 @receiver(signals.pre_save, sender=Imagem)
 def editar_imagens(sender, instance, **kwargs):
 	try:
-		imagem_antiga = Imagem.objects.get(id=instance.id).imagem
-		apagar_arquivos_imagem(imagem_antiga)
-	except ObjectDoesNotExist:
-		pass
+		obj = sender.objects.get(id=instance.id)
+	except sender.DoesNotExist:
+ 		pass
+	else:
+		if not obj.imagem == instance.imagem: # Field has changed
+			imagem_antiga = Imagem.objects.get(id=instance.id).imagem
+			apagar_arquivos_imagem(imagem_antiga)
 
 @receiver(signals.pre_delete, sender=Imagem)
 def apagar_imagens_peca(sender, instance, **kwargs):
