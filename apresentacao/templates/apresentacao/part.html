@@ -60,7 +60,7 @@
                                 {% thumbnail image.imagem "1200x675" as im %}
                                     <img src="{{ im.url }}">
                                     <div style="margin-bottom:20px;border:2.5px solid #aaa; padding: 10px;"> 
-                                    <div style="margin-top:10px; text-align:left">
+                                    <div style="text-align:left">
                                         <font size="3"> Autor: {{image.autor }}</font></div>
                                     <div style="text-align: justify;font-size:19px">
                                         <small>Descrição: {{ image.descricao }}</small>
@@ -68,19 +68,26 @@
                                 </div>
                                 {% endthumbnail %}
                             {% endfor %}
-                        {% elif section == 'videos' %}
+                        {% elif section == 'videos'%}
                             {% for video in part.videos.all %}
                                 {% if video.video %}
-                                    <video class='column' controls>
+                                    <video class='column' style="margin-bottom:5px" controls>
                                         <source src='/media/{{ video.video }}' type='video/mp4'>
                                         <source src='/media/{{ video.video }}' type='video/ogg'>
                                         <p>Seu navegador não suporta vídeos H.264/MP4.</p>
                                     </video>
+                                  
+                                   
                                 {% elif video.youtube %}
                                     <iframe src='{{ video.youtube }}' width='560' height='315' frameborder='0' allowfullscreen></iframe>
                                 {% elif video.vimeo %}
                                     <iframe src='{{ video.vimeo }}' width='560' height='315' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                                {% endif %}
+                                {% endif %}</div>
+                                    <div class="row">
+                                    <div style=" margin-bottom:20px; border:2.5px solid #aaa; padding: 10px; ">
+                                        <font size="3"> Autor: {{video.autor}}</font>
+                                    <div style="text-align: justify;font-size:19px">
+                                        <small>Descriçaõ: {{video.descricao}}</small></div></div>
                             {% endfor %}
                         {% elif section == 'audios' %}
                             {% for audio in part.audios.all %}
