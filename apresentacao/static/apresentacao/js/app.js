@@ -24,6 +24,7 @@
 
 // Foundation JavaScript
 // Documentation can be found at: http://foundation.zurb.com/docs
+
 $(document).foundation({
     orbit: {
         animation: 'fade', // Sets the type of animation used for transitioning between slides, can also be 'fade'

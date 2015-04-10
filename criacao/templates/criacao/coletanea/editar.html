@@ -82,9 +82,11 @@
 							<div>
 						{% endif %}
 							{{ form.nome }}
+							<span class ="form-control-error" id="id_error_nome"></span> 
 						</div>
-
+							
 				    	{{ form.descricao }}
+				    	<span class ="form-control-error" id="id_error_descricao"></span>
 					</div>
 
 					<div class="large-10 columns">
@@ -94,8 +96,9 @@
 							<div>
 						{% endif %}
 						  	{{ form.inicio_exposicao }}
-
+						  	<span class ="form-control-error" id="id_error_inicio_exposicao"></span>
 						  	{{ form.fim_exposicao }}
+						  	<span class ="form-control-error" id="id_error_fim_exposicao"></span>
 				  		</div>
 
 
