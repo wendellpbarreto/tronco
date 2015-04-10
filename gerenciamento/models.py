@@ -417,7 +417,7 @@ class Imagem(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor da imagem.", blank=True, null=True)
 	data = models.DateField(help_text="Data que a imagem foi criada, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
-	descricao = models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição da peça (100 caracteres, no máximo). .", blank=False, null=False)
+	descricao = models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição da peça (200 caracteres, no máximo). .", blank=False, null=False)
 	def imagem_dinamica(self, filename):
 		try:
 			caminho = os.path.join(MEDIA_ROOT, 'imagens', 'pecas', unicode(self.peca.numero_registro))
@@ -497,7 +497,7 @@ class Video(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor do vídeo.", blank=True, null=True)
 	data = models.DateField(help_text="Data que o vídeo foi criado, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
-
+	descricao =  models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição da peça (200 caracteres, no máximo). .", blank=False, null=False)
 
 	def video_dinamico(self, filename):
 		try:
