@@ -61,9 +61,9 @@
                                     <img src="{{ im.url }}">
                                     <div style="margin-bottom:20px;border:2.5px solid #aaa; padding: 10px;"> 
                                     <div style="text-align:left">
-                                        <font size="3"> Autor: {{image.autor }}</font></div>
+                                        <font size="3"> Autor: {% firstof image.autor "Não informado" %}</font></div>
                                     <div style="text-align: justify;font-size:19px">
-                                        <small>Descrição: {{ image.descricao }}</small>
+                                        <small>Descrição: {% firstof image.descricao "Não informado" %}</small>
                                     </div>
                                 </div>
                                 {% endthumbnail %}
@@ -85,9 +85,9 @@
                                 {% endif %}</div>
                                     <div class="row">
                                     <div style=" margin-bottom:20px; border:2.5px solid #aaa; padding: 10px; ">
-                                        <font size="3"> Autor: {{video.autor}}</font>
+                                        <font size="3"> Autor: {% firstof video.autor "Não informado" %}</font>
                                     <div style="text-align: justify;font-size:19px">
-                                        <small>Descriçaõ: {{video.descricao}}</small></div></div>
+                                        <small>Descrição: {% firstof video.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
                         {% elif section == 'audios' %}
                             {% for audio in part.audios.all %}

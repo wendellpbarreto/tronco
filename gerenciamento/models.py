@@ -498,7 +498,7 @@ class Video(models.Model):
 	autor = models.ForeignKey(Autor, help_text="Autor do vídeo.", blank=True, null=True)
 	data = models.DateField(help_text="Data que o vídeo foi criado, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
 	descricao =  models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição da peça (200 caracteres, no máximo). .", blank=False, null=False)
-
+	
 	def video_dinamico(self, filename):
 		try:
 			extensao = filename.split(".")[1]
