@@ -105,7 +105,13 @@
 
                         {% elif section == 'documents' %}
                             {% for document in part.documentos.all %}
-                                <embed class='large-24 large-centered column' height='700' src='/media/{{ document.documento }}' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>
+                                <embed class='large-24 large-centered column' style="margin-top:13px" height='700' src='/media/{{ document.documento }}' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>
+                           
+                                    <div class="row" style="text-align:left">
+                                    <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #708090; padding: 10px; ">
+                                    <font size="3"> Autor: {% firstof document.autor "Não informado" %}</font>
+                                    <div style="text-align: justify;font-size:19px">
+                                    <small>Descrição: {% firstof document.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
                         {% endif %}
                     </div>

@@ -551,7 +551,7 @@ class Documento(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor do documento.", blank=True, null=True)
 	data = models.DateField(help_text="Data que o documento foi criado, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
-
+	descricao = models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição (200 caracteres, no máximo). .", blank=False, null=False)
 	def documento_dinamico(self, filename):
 		try:
 			extensao = filename.split(".")[1]
@@ -569,9 +569,9 @@ class Documento(models.Model):
 			return os.path.join("documentos", "pecas", unicode(self.peca.numero_registro), "documento1.%s" %extensao)
 
 	documento = models.FileField(upload_to=documento_dinamico, max_length=200, help_text="Vídeo da peça.", validators=[validar_formato_documento])
-
+	
 	def __unicode__(self):
-		return "Documento de %s" %(str(self.peca))
+		return"Documento de %s" %(str(self.peca))
 
 	class Meta:
 		verbose_name = "Documento"
@@ -911,10 +911,10 @@ def apagar_documento(sender, instance, **kwargs):
 @receiver(signals.pre_save, sender=Documento)
 def editar_documento(sender, instance, **kwargs):
 	try:
-		documento_antigo = Documento.objects.get(id=instance.id).documento
-		try:
-			os.remove(documento_antigo.path)
-		except OSError:
-			print u"Não foi possível apagar %s." %(documento_antigo.path)
-	except ObjectDoesNotExist:
-		pass
+		obj = sender.objects.get(id=instance.id)
+	except sender.DoesNotExist:
+ 		pass
+	else:
+		if not obj.documento == instance.documento: # Field has changed
+			documento_antiga = Documento.objects.get(id=instance.id).documento
+			os.remove(documento_antiga.path)
