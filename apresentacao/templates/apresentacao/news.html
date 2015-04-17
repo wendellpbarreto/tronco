@@ -11,25 +11,37 @@
 {% block container %}
     <div id='container' class='clearfix'>
         {% if news %}
-            <section class='latest-news'>
-                <header class='row'>
-                    <h5>Últimas notícias</h5>
-                    <span class='arrow-down'></span>
-                    <span class='arrow-down-inner'></span>
-                </header>
+         
                 <ul class='row collapse'>
+                <div class='large-8 columns'>
+                 <section class='search-column'>
+                    <header class='row'>
+                        <h5>Últimas notícias</h5>
+                    </header>
+               
+                </section></div>
+                 <li class='large-16 columns'>
+                        <ul class='row collapse'>
                     {% for new in news %}
-                        <li class='column'>
+
                             <figure>
-                                <figcaption>
-                                    <h6>{{ new.titulo }}</h6>
-                                    <p class='text-justify'>{{ new.descricao_breve }}</p>
-                                    <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+                            <div style=" border-top: 3.5px solid #aaa;">
+                                <figcaption> 
+                                    
+                                    <div style="float:auto; width:500px">
+                                    <h4>{{ new.titulo }}</h4>
+                                    {{ new.descricao_breve }}</div>
+                                    <div style="height:20%; width:30%; margin-left:auto; float:auto">
+                                    <img src="/media/{{new.imagem}}"></div>
                                     <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
+                                    <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+
                                 </figcaption>
+                            </div>
                             </figure>
-                        </li>
-                    {% endfor %}
+                            
+                </li>
+                    {% endfor %}    
                 </ul>
             </section>
         {% endif %}

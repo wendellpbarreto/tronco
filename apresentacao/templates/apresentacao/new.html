@@ -23,9 +23,10 @@
                             <figcaption>
                                 <h6 class='text-justify'>{{ new.descricao }}</h6>
                                 <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+                                <img src="/media/{{new.pecas}}">
                             </figcaption>
                         </figure>
-                    </li>
+                   </li>
                 </ul>
             </section>
         {% endif %}
