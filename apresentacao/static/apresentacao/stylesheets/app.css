@@ -10765,15 +10765,12 @@ body .arrow-left {
   height: 0; 
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; 
-  border-left:10px solid #FFFFFF; 
+  border-left:10px solid #E4E4E4;
+  z-index: 1;
+  background-attachment:fixed;
+
 }
 
-body .arrow-left-inner {
-  border-top: 9px solid #e4e4e4 !important;
-  z-index: 1;
-  left: 20px;
-  bottom: -9px;
-}
 body .arrow-left{
   position:absolute;
   bottom: 17px;
