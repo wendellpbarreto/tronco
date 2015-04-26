@@ -10759,6 +10759,26 @@ body .arrow-down {
   bottom: -8px;
 }
 
+body .arrow-left {
+  left: 100%;
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  border-left:10px solid #FFFFFF; 
+}
+
+body .arrow-left-inner {
+  border-top: 9px solid #e4e4e4 !important;
+  z-index: 1;
+  left: 20px;
+  bottom: -9px;
+}
+body .arrow-left{
+  position:absolute;
+  bottom: 17px;
+}
+
 /* line 1, ../scss/partials/_header.scss */
 #header {
   margin-top: 40px;

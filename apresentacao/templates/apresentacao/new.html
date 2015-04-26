@@ -1,5 +1,7 @@
 {% extends 'base-presentation.html' %}
 
+{% load thumbnail %}
+
 {% block title %}
     Bem-vindo ao museu {{ informations.nome|lower }}
 {% endblock %}
@@ -21,9 +23,39 @@
                     <li class='column'>
                         <figure>
                             <figcaption>
-                                <h6 class='text-justify'>{{ new.descricao }}</h6>
-                                <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
-                                <img src="/media/{{new.pecas}}">
+                                <div class="large-16 column">
+                                    <h6 class='text-justify'>{{ new.descricao }}</h6>
+                                </div>
+                                <div class="large-8 column">
+                                    <img src="/media/{{new.imagem}}" onerror="src='/media/imagens/noticias/sem_imagem.jpg'">
+                                </div>
+                                <div class="row">
+                                {% if new.pecas.all %}
+                                <header class='row'>
+                                    <h5>Peças</h5>
+                                    <span class='arrow-down'></span>
+                                    <span class='arrow-down-inner'></span>
+                                </header>
+                                {% endif %}
+                                    {% for part in new.pecas.all %}
+                                            <li class='large-12 medium-12 small-24 columns'>
+                                                <a href='/apresentacao/part/{{ part.id }}/'>
+                                                    <figure>
+                                                        <figcaption>
+                                                            <h5>{{ part.titulo|truncatechars:45 }}</h5>
+                                                            <p>{{ part.descricao|truncatechars:100 }}</p>
+                                                            <span class='arrow-down'></span>
+                                                        </figcaption>
+                                                        {% thumbnail part.imagens.0.media "570x320" crop="center" as im %}
+                                                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                                        {% endthumbnail %}
+                                                    </figure>
+                                                </a>
+                                            </li>   
+                                    {% endfor %}
+                                </div>
+                                
+                                <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p> 
                             </figcaption>
                         </figure>
                    </li>
@@ -42,3 +74,4 @@
 
 {% block js %}
 {% endblock %}
+
