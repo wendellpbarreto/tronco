@@ -11,41 +11,25 @@
 {% block container %}
     <div id='container' class='clearfix'>
         {% if news %}
-         
+            <section class='latest-news'>
+                <header class='row'>
+                    <h5>Últimas notícias</h5>
+                    <span class='arrow-down'></span>
+                    <span class='arrow-down-inner'></span>
+                </header>
                 <ul class='row collapse'>
-                <div class='large-8   columns' style="widht:60px">
-                <section class='search-column'>
-                <span class="arrow-left"></span>
-                    <header class='row'>
-                    
-                   <!--  <span class="arrow-left-inner"></span> -->
-                        <h5>Últimas notícias</h5>
-
-                    </header>
-
-               
-                </section></div>
-                 <li class='large-16 columns'>
-                        <ul class='row collapse'>
                     {% for new in news %}
-
+                        <li class='column'>
                             <figure>
-                            <div style=" border-top: 1.5px solid #aaa;">
-                                <figcaption> 
-                                    
-                                    <h4>{{ new.titulo }}</h4>
-                                    {{ new.descricao_breve }}
-                                    <div style="height:10%; width:20%; margin-left:auto; float:auto;">
-                                    <img src="/media/{{new.imagem}}" onerror="src='/media/imagens/noticias/sem_imagem.jpg'"></div>
-                                    <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
+                                <figcaption>
+                                    <h6>{{ new.titulo }}</h6>
+                                    <p class='text-justify'>{{ new.descricao_breve }}</p>
                                     <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
-
+                                    <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
                                 </figcaption>
-                            </div>
                             </figure>
-                            
-                </li>
-                    {% endfor %}    
+                        </li>
+                    {% endfor %}
                 </ul>
             </section>
         {% endif %}
