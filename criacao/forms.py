@@ -41,14 +41,15 @@ class ColetaneaForm(forms.Form):
 	fim_exposicao = forms.DateField(widget = forms.DateInput(attrs={'placeholder': 'Data de término da exposição', "class":"form-control-input"}))
 
 class NoticiaForm(forms.Form):
-	titulo = forms.CharField(widget = forms.TextInput(), max_length = 70, label = u'')
-	descricao_breve = forms.CharField(widget = forms.Textarea(attrs = {'maxlength':'140'}), max_length = 140, label = u'')
-	descricao = forms.CharField(widget = forms.Textarea(attrs = {'maxlength':'650'}), max_length = 650, label = u'')
+	titulo = forms.CharField(widget = forms.TextInput(attrs={"class":"form-control-input"}), max_length = 70, label = u'')
+	descricao_breve = forms.CharField(widget = forms.Textarea(attrs = {'maxlength':'140'}), max_length = 140, label = u'', required=False)
+	descricao = forms.CharField(widget = forms.Textarea(attrs = {'maxlength':'650', "class":"form-control-input"}), max_length = 650, label = u'')
 
 class PecaForm(forms.ModelForm):
 	class Meta:
 		model = Peca
 
-class LinkForm(forms.ModelForm):
-	class Meta:
-		model = Link
+class LinkForm(forms.Form):
+	name = forms.CharField(widget = forms.TextInput(attrs={"class":"form-control-input"}), max_length = 70, label = u'')
+	url = forms.CharField(widget = forms.TextInput(attrs={"class":"form-control-input"}), max_length = 70, label = u'')
+		

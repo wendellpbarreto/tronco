@@ -16,32 +16,33 @@ class LinkView(GenericView):
 	def criar(self, request): 
 
 		if request.method == 'POST':
+			form = LinkForm(request.POST)
+			if not form.is_valid():
+				data = {
+					'leftover' : {
+						'validation-error' : form.errors,
+					},
+				}
+				return data
+		
+			name = request.POST['name']
+			url = request.POST['url']
+		
+		
+			link = Link(name=name, url=url)
 			try:
-				name = request.POST['name']
-				url = request.POST['url']
+				link.save() 
 			except Exception, e:
 				logger.error(str(e))
 
-				data = {
-					'leftover' : {
-						'alert-error' : 'Está faltando alguma informação, por favor, verifique os campos!',
-					}
-				}
-			else:
-				link = Link(name=name, url=url)
-				try:
-					link.save() 
-				except Exception, e:
-					logger.error(str(e))
-
-				data = {
-					'leftover' : {
-						'alert-success' : 'Link criado com sucesso!',
-						'redirect' : '/criacao/link/listar/'
-					},
-				}	 
-			finally:
-				return data
+			data = {
+				'leftover' : {
+					'alert-success' : 'Link criado com sucesso!',
+					'redirect' : '/criacao/link/listar/'
+				},
+			}	 
+			
+			return data
 		else:
 			museu, museu_nome = UTIL_informacoes_museu()
 			form = LinkForm()
@@ -86,33 +87,33 @@ class LinkView(GenericView):
 	def editar(self, request):
 
 		if request.method == 'POST':
-			try:
-				pk = self.kwargs['key']
-				name = request.POST['name']
-				url = request.POST['url']
-			except Exception, e:
-				logger.error(str(e))
-
+			form = LinkForm(request.POST)
+			if not form.is_valid():
 				data = {
 					'leftover' : {
-						'alert-error' : 'Não foi possível processar esta edição!',
-					}
-				}
-			else:
-				link = Link.objects.get(pk=pk);
-
-				link.name=name
-				link.url=url
-				link.save() 
-
-				data = {
-					'leftover' : {
-						'alert-success' : 'Link editada com sucesso!',
-						'redirect' : '/criacao/link/listar/'
+						'validation-error' : form.errors,
 					},
 				}
-			finally:
 				return data
+			
+			pk = self.kwargs['key']
+			name = request.POST['name']
+			url = request.POST['url']
+		
+			link = Link.objects.get(pk=pk);
+
+			link.name=name
+			link.url=url
+			link.save() 
+
+			data = {
+				'leftover' : {
+					'alert-success' : 'Link editada com sucesso!',
+					'redirect' : '/criacao/link/listar/'
+				},
+			}
+		
+			return data
 		else:
 			try:
 				pk = self.kwargs['key']
@@ -169,7 +170,7 @@ class LinkView(GenericView):
  
 	def listar(self, request):
 		museu, museu_nome = UTIL_informacoes_museu()	
-		links = Link.objects.all()
+		links = Link.objects.order_by('-id')
 
 		try:
 			page = int(self.kwargs['key'])

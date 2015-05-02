@@ -43,7 +43,7 @@ class View(GenericView):
             informations = None
 
         try:
-            news = Noticia.objects.order_by('-data_de_criacao')[:4]
+            news = Noticia.objects.order_by('-id')[:4]
         except:
             news = None
 
@@ -86,7 +86,7 @@ class View(GenericView):
         except Exception, e:
             # logger.info(str(e))
 
-            collectaneas = Coletanea.objects.all().order_by('-data_criacao')
+            collectaneas = Coletanea.objects.all().order_by('-id')
 
         data = {
             'template': {
@@ -221,7 +221,7 @@ class View(GenericView):
             informations = None
 
         try:
-            news = Noticia.objects.order_by('-data_de_criacao')
+            news = Noticia.objects.order_by('-id')
         except:
             news = None
 
@@ -247,9 +247,9 @@ class View(GenericView):
         try:
             pk = self.kwargs['pk']
             new = Noticia.objects.get(pk=pk)
+
         except Exception, e:
             # logger.info(str(e))
-
             new = Noticia.objects.all()[0]
 
         data = {

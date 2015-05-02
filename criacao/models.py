@@ -41,7 +41,7 @@ class Noticia(models.Model):
 	titulo = models.CharField(max_length=70, verbose_name='Título', help_text='Título da notícia.')
 	descricao_breve = models.CharField(max_length=140, verbose_name='Descrição breve', help_text='Descrição breve da notícia.')
 	descricao = models.CharField(max_length=650, verbose_name='Descrição completa', help_text='Descrição da notícia.')
-	pecas = models.ManyToManyField(Peca, verbose_name='Peça',)
+	pecas = models.ManyToManyField(Peca, verbose_name='Peça')
 	data_de_criacao = models.DateField(auto_now_add=True, verbose_name='Data de criação da notícia.', help_text='Data de criação da notícia, seguindo o formato dd/mm/aaaa.')
 
 	objects = NoticiaManager()

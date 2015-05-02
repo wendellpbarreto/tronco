@@ -300,7 +300,7 @@ class Peca(models.Model):
 	titulo = models.CharField(max_length=200, verbose_name="Título",  help_text="Título da peça (200 caracteres, no máximo).", blank=False, null=False)
 	autores = models.ManyToManyField(Autor, help_text="Autor da peça.", blank=False, null=False, related_name='autores')
 	data_criacao = models.ForeignKey(DataFormatada, verbose_name="Data de Criação", help_text="Data de criação da peça.", blank=False, null=False, related_name="data_criacao")
-	descricao = models.TextField(verbose_name="Descrição", max_length=500, help_text="Descrição detalhada da peça (500 caracteres, no máximo). .", blank=False, null=False)
+	descricao = models.TextField(verbose_name="Descrição", max_length=100, help_text="Breve descrição da peça (100 caracteres, no máximo). .", blank=False, null=False)
 	categoria = models.ForeignKey(Categoria, verbose_name="Categoria", help_text="Categoria da peça.", blank=True, null=True)
 
 
@@ -417,7 +417,7 @@ class Imagem(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor da imagem.", blank=True, null=True)
 	data = models.DateField(help_text="Data que a imagem foi criada, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
-
+	descricao = models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição (200 caracteres, no máximo). .", blank=False, null=False)
 	def imagem_dinamica(self, filename):
 		try:
 			caminho = os.path.join(MEDIA_ROOT, 'imagens', 'pecas', unicode(self.peca.numero_registro))
@@ -461,7 +461,7 @@ class Audio(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor do audio.", blank=True, null=True)
 	data = models.DateField(help_text="Data que o audio foi feito, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
-
+	descricao = models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição (200 caracteres, no máximo). .", blank=False, null=False)
 
 	def audio_dinamico(self, filename):
 		try:
@@ -497,8 +497,8 @@ class Video(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor do vídeo.", blank=True, null=True)
 	data = models.DateField(help_text="Data que o vídeo foi criado, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
-
-
+	descricao =  models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição (200 caracteres, no máximo). .", blank=False, null=False)
+	
 	def video_dinamico(self, filename):
 		try:
 			extensao = filename.split(".")[1]
@@ -551,7 +551,7 @@ class Documento(models.Model):
 	peca = models.ForeignKey(Peca)
 	autor = models.ForeignKey(Autor, help_text="Autor do documento.", blank=True, null=True)
 	data = models.DateField(help_text="Data que o documento foi criado, seguindo o formato dd/mm/aaaa.", blank=True, null=True)
-
+	descricao = models.TextField(verbose_name="Descrição", max_length=200, help_text="Breve descrição (200 caracteres, no máximo). .", blank=False, null=False)
 	def documento_dinamico(self, filename):
 		try:
 			extensao = filename.split(".")[1]
@@ -569,9 +569,9 @@ class Documento(models.Model):
 			return os.path.join("documentos", "pecas", unicode(self.peca.numero_registro), "documento1.%s" %extensao)
 
 	documento = models.FileField(upload_to=documento_dinamico, max_length=200, help_text="Vídeo da peça.", validators=[validar_formato_documento])
-
+	
 	def __unicode__(self):
-		return "Documento de %s" %(str(self.peca))
+		return"Documento de %s" %(str(self.peca))
 
 	class Meta:
 		verbose_name = "Documento"
@@ -727,10 +727,13 @@ def apagar_arquivos_imagem(imagem):
 @receiver(signals.pre_save, sender=Imagem)
 def editar_imagens(sender, instance, **kwargs):
 	try:
-		imagem_antiga = Imagem.objects.get(id=instance.id).imagem
-		apagar_arquivos_imagem(imagem_antiga)
-	except ObjectDoesNotExist:
-		pass
+		obj = sender.objects.get(id=instance.id)
+	except sender.DoesNotExist:
+ 		pass
+	else:
+		if not obj.imagem == instance.imagem: # Field has changed
+			imagem_antiga = Imagem.objects.get(id=instance.id).imagem
+			apagar_arquivos_imagem(imagem_antiga)
 
 @receiver(signals.pre_delete, sender=Imagem)
 def apagar_imagens_peca(sender, instance, **kwargs):
@@ -908,10 +911,10 @@ def apagar_documento(sender, instance, **kwargs):
 @receiver(signals.pre_save, sender=Documento)
 def editar_documento(sender, instance, **kwargs):
 	try:
-		documento_antigo = Documento.objects.get(id=instance.id).documento
-		try:
-			os.remove(documento_antigo.path)
-		except OSError:
-			print u"Não foi possível apagar %s." %(documento_antigo.path)
-	except ObjectDoesNotExist:
-		pass
+		obj = sender.objects.get(id=instance.id)
+	except sender.DoesNotExist:
+ 		pass
+	else:
+		if not obj.documento == instance.documento: # Field has changed
+			documento_antiga = Documento.objects.get(id=instance.id).documento
+			os.remove(documento_antiga.path)
