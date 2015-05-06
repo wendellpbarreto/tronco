@@ -52,5 +52,8 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-#ignoring cache folder
-museuvirtual/media/cache/*
+# Media folder
+museuvirtual/media/*
+
+# Static folder
+museuvirtual/static/*
