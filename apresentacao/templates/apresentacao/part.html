@@ -62,18 +62,10 @@
                                 <div class="small-6 column left" style="padding:10px">
                                 {% thumbnail image.imagem "800x600" as im_big %}
                                     {% thumbnail image.imagem "200x200" crop="center"   as im %}
-                                       <!--  <a href="javascript:" data-role="light-box" data-id="{{ image.id }}">
-                                            <img 
-                                                src="{{ im.url }}" 
-                                                data-img="{{ im_big.url }}"
-                                                data-autor="{{ image.autor }}"
-                                                data-descricao="{{ image.descricao }}" 
-                                                />
-                                        </a> -->
                                         <a 
                                             href="{{ im_big.url }}" 
                                             data-lightbox="example-set" 
-                                            data-title="Autor: {{image.autor }} <br> Descrição: {{ image.descricao }} ">
+                                            data-title="Autor: {% firstof image.autor "Não informado" %} <br> Descrição: {% firstof image.descricao "Não informado" %} ">
 
                                             <img class="example-image" src="{{ im.url }}" alt=""/>
                                         </a>
@@ -113,51 +105,8 @@
             </div>
         </div>
     </div>
-    <div class="light-box">
-            <div class="row container">
-                <div class="small-offset-1 large-offset-4 small-22 column media">
-                    <div class="">
-                        <div id='banner' class='row'>
-                            <ul data-orbit>
-                                {% for part in main_parts %}
-                                    
-                                {% endfor %}
-                                {% for image in part.imagens.all %}
-                                    <li data-id="{{ image.id }}">
-                                        {% thumbnail image.imagem "1200x675" crop="center" as im %}
-                                            <img src="{{ im.url }}" >
-                                        {% endthumbnail %}
-                                        <!-- <div class="orbit-caption">
-                                            <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ main_collectanea.pk }}/'>
-                                                <div class='desc column'>
-                                                    <div class='title large-8 columns'>
-                                                        <h5>{{ part.titulo | truncatechars:'50' }}</h5>
-                                                    </div>
-                                                    <div class='others large-16 columns'>
-                                                        <span class="cell-divider"></span>
-                                                        {% if part.descricao %}
-                                                            <h6>{{ part.descricao|truncatechars:'256' }}</h6>
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div> -->
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-
-                        <div class="row media-label">
-                            <div class="autor"><strong></strong></div>
-                            <div class="descricao"><p></p></div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="shadow"></div>
-        </div>
-         <script src="{{ STATIC_URL }}apresentacao/js/lightbox.min.js"></script>
+    
+ <script src="{{ STATIC_URL }}apresentacao/js/lightbox.min.js"></script>
 {% endblock %}
 
 {% block footer %}
