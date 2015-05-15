@@ -65,7 +65,7 @@
                                         <a 
                                             href="{{ im_big.url }}" 
                                             data-lightbox="example-set" 
-                                            data-title="Autor: {% firstof image.autor "Não informado" %} <br> Descrição: {% firstof image.descricao "Não informado" %} ">
+                                            data-title="Autor: {% firstof image.autor "Não informado" %} <br> Data: {% firstof image.data "Não informado" %} <br> Descrição: {% firstof image.descricao "Não informado" %} ">
 
                                             <img class="example-image" src="{{ im.url }}" alt=""/>
                                         </a>
@@ -74,9 +74,10 @@
                                 </div>
                             {% endfor %}
                         {% elif section == 'videos' %}
+                       
                             {% for video in part.videos.all %}
                                 {% if video.video %}
-                                    <video class="small-6 column left" style="padding:10px"controls>
+                                        <video class="large-24 column left" style="padding:10px"controls>
                                         <source src='/media/{{ video.video }}' type='video/mp4'>
                                         <source src='/media/{{ video.video }}' type='video/ogg'>
                                         <p>Seu navegador não suporta vídeos H.264/MP4.</p>
@@ -105,7 +106,6 @@
             </div>
         </div>
     </div>
-    
  <script src="{{ STATIC_URL }}apresentacao/js/lightbox.min.js"></script>
 {% endblock %}
 
