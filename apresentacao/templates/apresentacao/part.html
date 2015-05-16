@@ -89,9 +89,9 @@
                                     <iframe src='{{ video.vimeo }}' width='560' height='315' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                 {% endif %}</div>
                                     <div class="row">
-                                    <div style=" margin: 0.9px 15px 0px 13px; border:2.5px solid #aaa; padding: 10px; ">
+                                    <div style=" margin: 0.9px 15px 0px 13px; border:2px solid #aaa; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof video.autor "Não informado" %}</font>
-                                    <div style="text-align: justify;font-size:19px">
+                                    <div style="text-align: justify;font-size:20px">
                                     <small>Data: {% firstof video.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof video.descricao "Não informado" %}</small></div></div>
 
@@ -104,9 +104,9 @@
                                     <p>Seu navegador não suporta àudios.</p>
                                 </audio>
                                     <div class="row" style="text-align:left">
-                                    <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #aaa; padding: 10px; ">
+                                    <div style=" margin: 1.5px 150px 0px 150px; border:2px solid #aaa; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof audio.autor "Não informado" %}</font>
-                                    <div style="text-align: justify;font-size:19px">
+                                    <div style="text-align: justify;font-size:20px">
                                     <small>Data: {% firstof audio.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof audio.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
@@ -116,9 +116,9 @@
                                 <embed class='large-24 large-centered column' style="margin-top:13px" height='700' src='/media/{{ document.documento }}' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>
                            
                                     <div class="row" style="text-align:left">
-                                    <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #708090; padding: 10px; ">
+                                    <div style=" margin: 1.5px 15px 0px 15px; border:2px solid #708090; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof document.autor "Não informado" %}</font>
-                                    <div style="text-align: justify;font-size:19px">
+                                    <div style="text-align: justify;font-size:20px">
                                     <small>Data: {% firstof document.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof document.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
