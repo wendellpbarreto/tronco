@@ -92,6 +92,7 @@
                                     <div style=" margin: 0.9px 15px 0px 13px; border:2.5px solid #aaa; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof video.autor "Não informado" %}</font>
                                     <div style="text-align: justify;font-size:19px">
+                                    <small>Data: {% firstof video.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof video.descricao "Não informado" %}</small></div></div>
 
                             {% endfor %}
@@ -106,6 +107,7 @@
                                     <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #aaa; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof audio.autor "Não informado" %}</font>
                                     <div style="text-align: justify;font-size:19px">
+                                    <small>Data: {% firstof audio.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof audio.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
 
@@ -117,6 +119,7 @@
                                     <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #708090; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof document.autor "Não informado" %}</font>
                                     <div style="text-align: justify;font-size:19px">
+                                    <small>Data: {% firstof document.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof document.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
                         {% endif %}
