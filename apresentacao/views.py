@@ -247,9 +247,9 @@ class View(GenericView):
         try:
             pk = self.kwargs['pk']
             new = Noticia.objects.get(pk=pk)
+
         except Exception, e:
             # logger.info(str(e))
-
             new = Noticia.objects.all()[0]
 
         data = {

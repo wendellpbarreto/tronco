@@ -73,32 +73,51 @@
                                 {% endthumbnail %}
                                 </div>
                             {% endfor %}
-                        {% elif section == 'videos' %}
-                       
+
+                        {% elif section == 'videos'%}
                             {% for video in part.videos.all %}
                                 {% if video.video %}
-                                        <video class="large-24 column left" style="padding:10px"controls>
+                                    <video class='column' style="margin-top:13px" controls
                                         <source src='/media/{{ video.video }}' type='video/mp4'>
                                         <source src='/media/{{ video.video }}' type='video/ogg'>
                                         <p>Seu navegador não suporta vídeos H.264/MP4.</p>
                                     </video>
+
                                 {% elif video.youtube %}
                                     <iframe src='{{ video.youtube }}' width='560' height='315' frameborder='0' allowfullscreen></iframe>
                                 {% elif video.vimeo %}
                                     <iframe src='{{ video.vimeo }}' width='560' height='315' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                                {% endif %}
+                                {% endif %}</div>
+                                    <div class="row">
+                                    <div style=" margin: 0.9px 15px 0px 13px; border:2.5px solid #aaa; padding: 10px; ">
+                                    <font size="3"> Autor: {% firstof video.autor "Não informado" %}</font>
+                                    <div style="text-align: justify;font-size:19px">
+                                    <small>Descrição: {% firstof video.descricao "Não informado" %}</small></div></div>
+
                             {% endfor %}
                         {% elif section == 'audios' %}
                             {% for audio in part.audios.all %}
-                                <audio class='column' controls>
+                                <audio class='column' style="margin-top:13px" controls>
                                     <source src='/media/{{ audio.audio }}' type="audio/ogg">
                                     <source src='/media/{{ audio.audio }}'type="audio/mpeg">
                                     <p>Seu navegador não suporta àudios.</p>
                                 </audio>
+                                    <div class="row" style="text-align:left">
+                                    <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #aaa; padding: 10px; ">
+                                    <font size="3"> Autor: {% firstof audio.autor "Não informado" %}</font>
+                                    <div style="text-align: justify;font-size:19px">
+                                    <small>Descrição: {% firstof audio.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
+
                         {% elif section == 'documents' %}
                             {% for document in part.documentos.all %}
-                                <embed class='large-24 large-centered column' height='700' src='/media/{{ document.documento }}' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>
+                                <embed class='large-24 large-centered column' style="margin-top:13px" height='700' src='/media/{{ document.documento }}' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>
+                           
+                                    <div class="row" style="text-align:left">
+                                    <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #708090; padding: 10px; ">
+                                    <font size="3"> Autor: {% firstof document.autor "Não informado" %}</font>
+                                    <div style="text-align: justify;font-size:19px">
+                                    <small>Descrição: {% firstof document.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
                         {% endif %}
                     </div>
