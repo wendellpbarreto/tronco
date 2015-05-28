@@ -11,37 +11,39 @@
 {% endblock %}
 
 {% block container %}
+<link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/lightbox.css">
+
     <div id='container' class='clearfix'>
         <div class='row collapse'>
-            <div class='large-8 columns'>
+            <div class='large-24 row'>
                 <section class='info-column'>
                     <ul class='row'>
                         {% if part.imagens %}
-                            <li>
+                            <li class="small-6 column">
                                 <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/photos' {% if section == 'photos' %} class='active' {% endif %}>Fotos</a>
                             </li>
                         {% endif %}
                         {% if part.videos %}
-                            <li>
+                            <li class="small-6 column">
                                 <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/videos' {% if section == 'videos' %} class='active' {% endif %}>Vídeos</a>
                             </li>
                         {% endif %}
                         {% if part.audios %}
-                            <li>
+                            <li class="small-6 column">
                                 <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/audios' {% if section == 'audios' %} class='active' {% endif %}>Áudios</a>
                             </li>
                         {% endif %}
                         {% if part.documentos %}
-                            <li>
+                            <li class="small-6 column">
                                 <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/documents' {% if section == 'documents' %} class='active' {% endif %}>Documentos</a>
                             </li>
                         {% endif %}
                     </ul>
                 </section>
             </div>
-            <div class='large-16 columns'>
+            <div class='large-24 rows'>
                 <section>
-                    <header class='row'>
+                   <!--  <header class='row'>
                         {% if section == 'photos' %}
                             <h4>Fotos</h4>
                         {% elif section == 'videos' %}
@@ -49,29 +51,33 @@
                         {% elif section == 'audios' %}
                             <h4>Áudios</h4>
                         {% elif section == 'documents' %}
-                            <h4>Documentos</h4>
+                            <h4>Documentos</h4> 
                         {% elif section == 'iphan-informations' %}
                             <h4>Informações do IPHAN</h4>
                         {% endif %}
-                    </header>
+                    </header> -->
                     <div class='row' style="text-align:center">
                         {% if section == 'photos' %}
                             {% for image in part.imagens.all %}
-                                {% thumbnail image.imagem "1200x675" as im %}
-                                    <img src="{{ im.url }}">
-                                    <div style="margin-bottom:20px;border:2.5px solid #aaa; padding: 10px;"> 
-                                    <div style="text-align:left">
-                                    <font size="3"> Autor: {% firstof image.autor "Não informado" %}</font></div>
-                                    <div style="text-align: justify;font-size:19px">
-                                    <small>Descrição: {% firstof image.descricao "Não informado" %}</small>
-                                    </div>
-                                </div>
+                                <div class="small-6 column left" style="padding:10px">
+                                {% thumbnail image.imagem "800x600" as im_big %}
+                                    {% thumbnail image.imagem "200x200" crop="center"   as im %}
+                                        <a 
+                                            href="{{ im_big.url }}" 
+                                            data-lightbox="example-set" 
+                                            data-title="Autor: {% firstof image.autor "Não informado" %} <br> Data: {% firstof image.data "Não informado" %} <br> Descrição: {% firstof image.descricao "Não informado" %} ">
+
+                                            <img class="example-image" src="{{ im.url }}" alt=""/>
+                                        </a>
+                                    {% endthumbnail %}
                                 {% endthumbnail %}
+                                </div>
                             {% endfor %}
+
                         {% elif section == 'videos'%}
                             {% for video in part.videos.all %}
                                 {% if video.video %}
-                                    <video class='column' style="margin-top:13px" controls>
+                                    <video class='column' style="margin-top:13px" controls
                                         <source src='/media/{{ video.video }}' type='video/mp4'>
                                         <source src='/media/{{ video.video }}' type='video/ogg'>
                                         <p>Seu navegador não suporta vídeos H.264/MP4.</p>
@@ -83,9 +89,10 @@
                                     <iframe src='{{ video.vimeo }}' width='560' height='315' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                 {% endif %}</div>
                                     <div class="row">
-                                    <div style=" margin: 0.9px 15px 0px 13px; border:2.5px solid #aaa; padding: 10px; ">
+                                    <div style=" margin: 0.9px 15px 0px 13px; border:2px solid #aaa; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof video.autor "Não informado" %}</font>
-                                    <div style="text-align: justify;font-size:19px">
+                                    <div style="text-align: justify;font-size:20px">
+                                    <small>Data: {% firstof video.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof video.descricao "Não informado" %}</small></div></div>
 
                             {% endfor %}
@@ -97,9 +104,10 @@
                                     <p>Seu navegador não suporta àudios.</p>
                                 </audio>
                                     <div class="row" style="text-align:left">
-                                    <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #aaa; padding: 10px; ">
+                                    <div style=" margin: 1.5px 150px 0px 150px; border:2px solid #aaa; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof audio.autor "Não informado" %}</font>
-                                    <div style="text-align: justify;font-size:19px">
+                                    <div style="text-align: justify;font-size:20px">
+                                    <small>Data: {% firstof audio.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof audio.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
 
@@ -108,9 +116,10 @@
                                 <embed class='large-24 large-centered column' style="margin-top:13px" height='700' src='/media/{{ document.documento }}' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>
                            
                                     <div class="row" style="text-align:left">
-                                    <div style=" margin: 1.5px 15px 0px 15px; border:2.5px solid #708090; padding: 10px; ">
+                                    <div style=" margin: 1.5px 15px 0px 15px; border:2px solid #708090; padding: 10px; ">
                                     <font size="3"> Autor: {% firstof document.autor "Não informado" %}</font>
-                                    <div style="text-align: justify;font-size:19px">
+                                    <div style="text-align: justify;font-size:20px">
+                                    <small>Data: {% firstof document.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof document.descricao "Não informado" %}</small></div></div>
                             {% endfor %}
                         {% endif %}
@@ -119,11 +128,13 @@
             </div>
         </div>
     </div>
+ <script src="{{ STATIC_URL }}apresentacao/js/lightbox.min.js"></script>
 {% endblock %}
 
 {% block footer %}
     {% include 'apresentacao/partials/footer.html' %}
 {% endblock %}
+
 
 {% block css %}
 {% endblock %}
