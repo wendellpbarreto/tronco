@@ -2,270 +2,188 @@
 
 {% load thumbnail %}
 
-{% block title %}
-    Bem-vindo ao museu {{ informations.nome|lower }}
-{% endblock %}
-
-{% block header %}
-    {% include 'apresentacao/partials/header.html' %}
-{% endblock %}
 
 {% block container %}
-    <div id='banner' class='row'>
-        <ul data-orbit>
-            {% for part in main_parts %}
-                <li>
+
+<style type="text/css">
+
+  #telapresentacao {
+    margin-top: 64px;
+  }
+  #telapresentacao > div{
+    max-width:900px;
+    color: #043F45; 
+    margin-bottom:32px;
+    text-align:center;
+    padding: 60px 0;
+  }
+  #infocoletanea > div{
+    max-width:900px;
+    color: #043F45; 
+    margin-bottom:32px;
+    text-align:center;
+    padding: 60px 0;
+  }
+  #exposicoes .expo-img{
+    margin: 0;
+    padding: 0;
+    width: 25%;
+  }
+
+  @media(max-width: 768px) {
+    #exposicoes .expo-img{
+      width: 100%;
+    } 
+  }
+  @media(min-width: 768px) {
+    #exposicoes .expo-img{
+      width: 50%;
+    } 
+  }
+  @media(min-width: 920px) {
+    #exposicoes .expo-img{
+      width: 25%;
+    } 
+  }
+  
+  #quemsomos {
+    position: relative;
+    background-color: #f3f3f3;
+    
+    /*padding: 25px 0;*/
+  }
+
+  #quemsomos .mld-grid {
+    padding: 0 !important;
+
+  }
+  #quemsomos > div {
+  color: #043F45;
+  }
+  .quem-somos.mdl-card {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.97);
+
+  }
+  .quem-somos > .mdl-card__actions {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .quem-somos > .mdl-card__title {
+    display: block;
+  }
+  .quem-somos > .mdl-card__title > p {
+    margin-top: 0;
+    font-size: 18px; 
+  }
+  .quem-somos > .mdl-card__actions {
+    display: flex;
+    box-sizing:border-box;
+    align-items: center;
+  }
+  .quem-somos > .mdl-card__title,
+  .quem-somos > .mdl-card__actions,
+  .quem-somos > .mdl-card__actions > .mdl-button {
+    color: #3b3b3b;
+  }
+</style>
+<section id="telapresentacao">
+  <div data-sr='' class="mdl-grid">
+    <div>
+      <h2>Memórias étinicos do Sérido</h2>
+      <h6>Fundado em 10 de Dezembro de 2013 O Museu Virtual “Tronco, ramos e raízes!”, dedica-se à valorização e difusão do patrimônio étnico do Seridó.</h6>
+    </div>
+  </div>
+
+</section>
+<section id="quemsomos">
+  <div class="mdl-grid" style="padding:0">
+      <!-- <div style="color: rgba(233, 86, 42, 0.8);">
+        <h3> Quem nós somos </h3>
+      </div> -->
+      <!-- <div data-sr="enter top" class="quem-somos mdl-card mdl-shadow--2dp "> -->
+          <!-- <div class="mdl-card__title mdl-card--expand"> -->
+        <div data-sr="enter left, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--6-col mdl-grid" style="padding:0; margin:0">
+          <ul data-orbit>
+                    {% for part in main_parts %}
+                  <li data-orbit-slide="main-peca-{{ part.id }}">
                     {% thumbnail part.imagens.0.imagem "1200x675" crop="center" as im %}
-                        <img src="{{ im.url }}">
+                    <img src="{{ im.url }}">
                     {% endthumbnail %}
-                    <div class="orbit-caption">
-                        <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ main_collectanea.pk }}/'>
-                            <div class='desc column'>
-                                <div class='title large-8 columns'>
-                                    <h5>{{ part.titulo | truncatechars:'50' }}</h5>
-                                </div>
-                                <div class='others large-16 columns'>
-                                    <span class="cell-divider"></span>
-                                    {% if part.descricao %}
-                                        <h6>{{ part.descricao|truncatechars:'256' }}</h6>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div id='container' class='clearfix'>
-        <ul class='collectaneas-list row collapse'>
-            {% if main_collectanea %}
-                <li class='large-8 medium-12 small-24 columns'>
-                    <a href='/apresentacao/collectanea/{{ main_collectanea.pk }}/'>
-                        <figure>
-                            <figcaption>
-                                <h5>{{ main_collectanea.nome|truncatechars:45 }}</h5>
-                                <p>Criada em {{ main_collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</p>
-                                <span class='arrow-down'></span>
-                            </figcaption>
-                            {% thumbnail main_collectanea.pecas.all.0.imagens.0.imagem "570x320" crop="center" as im %}
-                                <img src="{{ im.url }}">
-                            {% endthumbnail %}
-                        </figure>
-                    </a>
-                </li>
-            {% endif %}
-            {% if collectaneas %}
-                {% for collectanea in collectaneas %}
-                    <li class='large-8 medium-12 small-24 columns'>
-                        <a href='/apresentacao/collectanea/{{ collectanea.pk }}/'>
-                            <figure>
-                                <figcaption>
-                                    <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
-                                    <p>Criada em {{ collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</p>
-                                    <span class='arrow-down'></span>
-                                </figcaption>
-                                {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "1200x675" crop="center" as im %}
-                                    <img src="{{ im.url }}">
-                                {% endthumbnail %}
-                            </figure>
-                        </a>
-                    </li>
-                {% endfor %}
-            {% endif %}
-        </ul>
-
-        {% if news %}
-            <section class='latest-news'>
-                <header class='row'>
-                    <h5>Últimas notícias</h5>
-                    <span class='arrow-down'></span>
-                    <span class='arrow-down-inner'></span>
-                </header>
-                <ul class='row collapse'>
-                    {% for new in news %}
-                        <li class='large-6 medium-8 small-12 columns'>
-                            <figure>
-                                <figcaption>
-                                    <h6>{{ new.titulo }}</h6>
-                                    <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
-                                    <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
-                                </figcaption>
-                            </figure>
-                        </li>
-                    {% endfor %}
+                  </li>{% endfor %}
                 </ul>
-            </section>
-        {% endif %}
-    </div>
+        </div>
+        <div data-sr="enter left, hustle 20px,wait 1.0s" class="mdl-cell mdl-cell--6-col mdl-grid">
+           <!-- <div class="css">
+            <img src="/static/apresentacao/img/bao.jpg">
+          </div> -->
+          <p><h3>Nossa Concepção</h3></p>
 
-  <!--   <div id='initial' class='bg_squares parallax clearfix'>
-        <header class='row'>
-            <h1 class='column'>Bem-vindo ao museu</h1>
-            <h1 class='column'><span>{{ museu_nome | lower }}</span></h1>
-        </header>
-        <article id='' class='row'>
-            {% if pecas_principais %}
-                <section class='banner large-10 large-centered column'>
-                    <ul class='slides'>
-                        {% for peca in pecas_principais %}
-                        <li>
-                            <a data-get='/apresentacao/controle_pecas/{{ peca.id }}/{{ coletanea_principal.pk }}/' data-target='#large-modal2' data-reveal-id='large-modal2'>
-                                {% if peca.imagens %}
-                                    <img src='/media/{{ peca.imagens.0.grande}}' />
-                                {% else %}
-                                    <img src='/media/imagens/pecas/default/grande.png' />
-                                {% endif %}
-                                <div class='desc'>
-                                    <div class='meta row'>
-                                        <div class='large-10 large-centered column'>
-                                            <div class='row'>
-                                                <div class='title large-5 columns'>
-                                                    <h4>{{ peca.titulo | truncatewords:'7' }}</h4>
-                                                </div>
-                                                <div class='others large-7 columns'>
-                                                {% if peca.descricao %}
-                                                    <h4>{{ peca.descricao|truncatewords:'15' }}</h4>
-                                                {% endif %}
+          <h6>O Museu “Tronco, ramos e raízes!” tem um formato digital e dedica-se à conservação, investigação, difusão e exposição da cultura imaterial das referências indígenas e afro-brasileiras do Seridó, no Estado do Rio Grande do Norte, Brasil. Seu princípio fundamental é disponibilizar gratuitamente informações sobre as práticas culturais, história e memória ligadas às populações seridoenses de procedência indígena e afro-brasileira. Para fins de divulgação, pesquisa e deleite social dispõe de vasto acervo digitalizado de documentos fotográficos, escritos e impressos, depoimentos e entrevistas, artigos, monografias, dissertações, teses, arquivos de áudio e vídeo.
+          </h6>
+        </div>
+        <!-- </div> -->
+      <!-- </div>     -->
+  </div>
+</section>
+<!-- informações peca -->
+<section id="infocoletanea">
+  <div data-sr='' class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col mdl-grid">
+        <div style="width:100%">
+          <h3> Nossas Coletâneas dispõe de peças</h3>
+          <h5>Tais como: Vídeos, fotos, áudios e documentos</h5>
+        </div>
+      </div>
 
-                                                {% if peca.data_criacao.data_especifica %}
-                                                    <h4>Criada dia {{ peca.data_criacao.data_especifica|date:'d \d\e M \d\e Y' }}</h4>
-                                                {% endif %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            {% endif %}
-            <section id='main-header' class='large-10 large-centered columns'>
-                {% if informacoes %}
-                    <p class='dark align-center italic'>{{ informacoes.apresentacao }}</p>
-                    <p class='dark align-right'>Museu fundado dia {{ informacoes.data_fundacao }}</p>
-                    <div style='float: right; 'class='fb-like' data-href='https://www.museuvirtual.info' data-width='30' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'></div>
-                {% else %}
-                    <p class='dark align-center italic'>As informações deste museu ainda não foram cadastradas.</p>
-                {% endif %}
-            </section>
-            </section>
-        </article>
-    </div>
+        <div data-sr="enter left, hustle 20px" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-grid">
+          <div style="width:100%">
+            <i class="fa fa-video-camera" style="font-size: 100px"></i>
+          </div>
+        </div>
+        <div data-sr="enter left, hustle 20px,wait 0.2s" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-grid">
+          <div style="width:100%">
+            <i class="fa fa-camera-retro" style="font-size: 100px"></i>
+          </div>
+        </div>
+        <div data-sr="enter left, hustle 20px,wait 0.3s" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-grid">
+          <div style="width:100%">
+            <i class="fa fa-file-audio-o" style="font-size: 100px"></i>
+          </div>
+        </div>
+        <div data-sr="enter left, hustle 20px,wait 0.4s" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-grid">
+          <div style="width:100%">
+            <i class="fa fa-file-text-o" style="font-size: 100px"></i>
+          </div>
+        </div>  
+  </div>
+</section>
+<!-- Fim de informações peca -->
+<!-- coletaneas -->
 
-    <div id='institutional' class='bg_white clearfix'>
-        <article id='content_main'>
-            <section id='main-header' class='row'>
-                <div class='large-12 columns'>
-                    <h2 class='show-for-medium-up'>Institucional<span class='border'></span></h2>
-                    <h2 class='show-for-small'>Institucional<span class='border'></span></h2>
-                </div>
-            </section>
-            <section id='main' class='row'>
-            {% if informacoes %}
-                <div class='large-12 columns flexslider-control-nav'>
-                    <ul class='controls filtering no-bullet'>
-                        <li>
-                            concepção
-                        </li>
-                        <li>
-                            objetivos
-                        </li>
-                        <li>
-                            descrição técnica
-                        </li>
-                        <li>
-                            características do acervo
-                        </li>
-                    </ul>
-                </div>
-                <div class='large-12 columns flexslider'>
-                    <ul class='slides no-bullet'>
-                        <li>
-                            <p class='dark'>{{ informacoes.concepcao|safe }}</p>
-                        </li>
-                        <li>
-                            <p class='dark'>{{ informacoes.objetivos|safe }}</p>
-                        </li>
-                        <li>
-                            <p class='dark'>{{ informacoes.descricao_tecnica|safe }}</p>
-                        </li>
-                        <li>
-                            <p class='dark'>{{ informacoes.caracteristicas_acervo|safe }}</p>
-                        </li>
-                    </ul>
-                </div>
-            {% else %}
-                <p class='italic dark'> As informações institucionais deste museu não foram cadastradas ainda. Quem sabe em breve? (:</p>
-            {% endif %}
-            </section>
-        </article>
-    </div>
-
-    <div id='news' class='bg_black parallax clearfix'>
-        <article id='content_main'>
-            <section id='main-header' class='row'>
-                <div class='large-12 columns'>
-                    <h2 class='show-for-medium-up white'>Notícias<span class='border'></span></h2>
-                </div>
-            </section>
-            <section id='main' class='row'>
-            {% if news %}
-                <div id='news-control' class='column'>
-                    <a data-get='/apresentacao/news/1/' data-target='#news-control' data-trigger='true'></a>
-                </div>
-            {% else %}
-                <p class='italic light'> Ainda não existe nenhuma notícia. </p>
-            {% endif %}
-            </section>
-        </article>
-    </div>
-
-
-
-    <div id='contact' class='bg_black parallax clearfix'>
-        <article id='content_main'>
-            <section id='main' class='row'>
-                {% if links %}
-                <div class='large-6 columns'>
-                    <h3 class='white'>LINKS</h3>
-                    {% for link in links %}
-                        <a href='{{ link.url }}' target='_blank' class='white'>{{ link.name }}</a>
-                        <br>
-                    {% endfor %}
-                </div>
-                <div class='large-6 columns'>
-                    <h3 class='white'>CONTATO</h3>
-                    <form action='/apresentacao/mail/' method='post' data-default='true'>
-                        {% csrf_token %}
-                        {{ contact_form }}
-                        <input type='submit' value='Enviar'>
-                    </form>
-                </div>
-                {% else %}
-                <div class='large-9 large-centered column'>
-                    <h3 class='white'>CONTATO</h3>
-                    <form action='/apresentacao/mail/' method='post' data-default='true'>
-                        {% csrf_token %}
-                        {{ contact_form }}
-                        <input type='submit' value='Enviar'>
-                    </form>
-                </div>
-                {% endif %}
-            </section>
-        </article>
+<section id="exposicoes">
+  <div class="mdl-grid" style="background: white; padding:0">
+    <!-- <div data-sr="enter left, hustle 20px">
+      <h3> Últimas Exposições Adicionadas</h3>
     </div> -->
-{% endblock %}
+      {% if collectaneas %}
+        {% for collectanea in collectaneas %}
+          <div class="expo-img" style="">
+            <a href='/apresentacao/collectanea/{{ collectanea.pk }}/'>
+                {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "600x400" crop="center" as im %}
+                  <img src="{{ im.url }}" style="width: 100%">
+                {% endthumbnail %}
+            </a>
+          </div>
+        {% endfor %}
+      {% endif %}
+  </div>
+</section>
+<!-- fim coletanea -->
 
-{% block footer %}
-    {% include 'apresentacao/partials/footer.html' %}
-{% endblock %}
+  {% endblock %}
 
-{% block css %}
-{% endblock %}
 
-{% block js %}
-{% endblock %}
+
+  {% block footer %}
+  {% include 'apresentacao/partials/footer.html' %}
+  {% endblock %}

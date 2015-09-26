@@ -1,27 +1,29 @@
-<div id='header' class='clearfix'>
-    <header class='row'>
-        <section class='column'>
-            <div class='logo large-10 columns'>
-                <img src='/static/apresentacao/img/logo/favicon.png' alt='Logo'>
+
+<!-- <div id="header">    
+    <header>
+        <div  class='row'>
+            <div class="small-16 columns">
                 <div class='museum'>
                     {% if informations.nome %}
-                        <h4> museu <strong>{{ informations.nome|lower }}</strong></h4>
+                    <h4> Memórias étinicos do Sérido</h4>
                     {% endif %}
                 </div>
             </div>
-            <div class='search show-for-medium-up large-8 columns'>
+            <div class='search show-for-medium-up medium-8 columns'>
                 <form class='row collapse' action='/apresentacao/collectaneas/search' method='get' data-default='true'>
-                    <div class='large-20 columns'>
-                        <input id='search' name='keywords' type='text' placeholder='pesquisa'>
+                    <div class='small-20 columns'>
+                        <input id='searc    h' name='keywords' type='text' placeholder='pesquisa'>
                     </div>
-                    <div class='large-4 columns'>
+                    <div class='search-button small-4 columns'>
                         <a class='magnifier' data-submit data-icon='8'></a>
-                    </div>
-                    <div style='float: right; top:10px; 'class='fb-like' data-href='https://www.museuvirtual.info' data-width='30' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'></div>
+                        </div>
+                        <div style='float: right; top:10px; 'class='fb-like' data-href='https://www.museuvirtual.info' data-width='30' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'></div>
                 </form>
+            
             </div>
-        </section>
-        <nav class='show-for-medium-up column'>
+        </div>
+       <hr>
+        <nav class='show-for-medium-up column' data-topbar role="navigation">
             <ul class='no-bullet'>
                 <li><a href='/apresentacao/home' {% if slug = 'home'  %} class='active' {% endif %}>Inicial</a></li>
                 <li><a href='/apresentacao/collectaneas' {% if slug = 'collectaneas' %} class='active' {% endif %}>Coletâneas</a></li>
@@ -31,5 +33,6 @@
                 <li><a href='/apresentacao/contact' {% if slug = 'contact' %} class='active' {% endif %}>Contato</a></li>
             </ul>
         </nav>
+
     </header>
-</div>
+</div> -->
