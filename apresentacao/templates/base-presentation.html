@@ -1,125 +1,74 @@
 <!doctype html>
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{% block title %} {% endblock %}</title>
-        <link rel="shortcut icon" href="{{ STATIC_URL }}apresentacao/img/logo/favicon.png">
-        <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/font/opensans.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/font/icomoon.css" />
-        <!-- <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/app.css" /> -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/material.min.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/apresentacao.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/font-awesome.min.css" />
-        
-         <script src="{{ STATIC_URL }}apresentacao/bower_components/jquery/jquery.min.js"></script> 
-        <script src="{{ STATIC_URL }}apresentacao/js/material.min.js"></script>
-        
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %} {% endblock %}</title>
+  <link rel="shortcut icon" href="{{ STATIC_URL }}apresentacao/img/logo/favicon.png">
+  <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/font/opensans.css" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/font/icomoon.css" />
+  <!-- <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/app.css" /> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/material.min.css" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/apresentacao.css" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/font-awesome.min.css" />
 
-    </head>
+  <script src="{{ STATIC_URL }}apresentacao/bower_components/jquery/jquery.min.js"></script> 
+  <script src="{{ STATIC_URL }}apresentacao/js/material.min.js"></script>
 
 
-    <body>
-        <section id='pagina' class=' medium-20 large-16 medium-offset-2 large-offset-4 columns'>
+</head>
 
-    <style>
-    .tronco-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
-      padding-right: 0;
-      
-    }
-    </style>
 
-    <!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Museu “Tronco, ramos e raízes”</span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="/apresentacao/home">Inicial</a>
-        <a class="mdl-navigation__link" href="/apresentacao/collectaneas">Coletâneas</a>
-        <a class="mdl-navigation__link" href="/apresentacao/institutional">Institucional</a>
-        <a class="mdl-navigation__link" href="">Jogos Educativos</a>
-        <a class="mdl-navigation__link" href="/apresentacao/news">Notícias</a>
-        <a class="mdl-navigation__link" href="/apresentacao/contact">Contato</a>
-        <div class="mdl-layout-spacer"></div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                      mdl-textfield--floating-label mdl-textfield--align-right">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <form class='row collapse' action='/apresentacao/collectaneas/search' method='get' data-default='true'>
-                    <input class="mdl-textfield__input" type="text" name="keywords" id="waterfall-exp" placeholder='pesquisa' />
-                </form>
-            </div>
-          </div>
-      </nav>
+<body>
+  <section id='pagina' class=' medium-20 large-16 medium-offset-2 large-offset-4 columns'>
 
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Museu “Tronco, ramos e raízes”</span>
-    <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/apresentacao/home">Inicial</a>
-        <a class="mdl-navigation__link" href="/apresentacao/collectaneas">Coletâneas</a>
-        <a class="mdl-navigation__link" href="/apresentacao/institutional">Institucional</a>
-        <a class="mdl-navigation__link" href="">Jogos Educativos</a>
-        <a class="mdl-navigation__link" href="/apresentacao/news">Notícias</a>
-        <a class="mdl-navigation__link" href="/apresentacao/contact">Contato</a>
-    </nav>
-  </div>
-</div>
-    
+    {% block header %}
+    {% include 'apresentacao/partials/header.html' %}
+    {% endblock %} 
 
     {% block container %} {% endblock %}
-    {% block footer %} {% endblock %}   
-        
-        <!--  Footer -->
 
-        </section>
-        <script src="{{ STATIC_URL }}apresentacao/bower_components/modernizr/modernizr.js"></script>
-        <script src="{{ STATIC_URL }}apresentacao/bower_components/foundation/js/foundation.min.js"></script>
-        <script src="{{ STATIC_URL }}apresentacao/bower_components/foundation/js/foundation/foundation.orbit.js"></script>
-        <script src="{{ STATIC_URL }}apresentacao/js/app.js"></script>
-        <script src="{{ STATIC_URL }}apresentacao/js/vendor/alertify.min.js"></script>
+    {% block footer %}
+    {% include 'apresentacao/partials/footer.html' %}
+    {% endblock %} 
 
-         <script src="{{ STATIC_URL }}apresentacao/js/scrollReveal.min.js"></script>
-        <script>
+  </section>
+  
+  <script src="{{ STATIC_URL }}apresentacao/bower_components/modernizr/modernizr.js"></script>
+  <script src="{{ STATIC_URL }}apresentacao/bower_components/foundation/js/foundation.min.js"></script>
+  <script src="{{ STATIC_URL }}apresentacao/bower_components/foundation/js/foundation/foundation.orbit.js"></script>
+  <script src="{{ STATIC_URL }}apresentacao/js/app.js"></script>
+  <script src="{{ STATIC_URL }}apresentacao/js/vendor/alertify.min.js"></script>
 
-          window.sr = new scrollReveal();
+  <script src="{{ STATIC_URL }}apresentacao/js/scrollReveal.min.js"></script>
+  <script>
 
-        </script>
-        <!-- 
-        
+    window.sr = new scrollReveal();
 
-         Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-                (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-                function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-                e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-                e.src='//www.google-analytics.com/analytics.js';
-                r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-                ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
+  </script>
+  <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
 
-        <!-- Facebook Connect -->
-        <script>    
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
+  <!-- Facebook Connect -->
+  <script>    
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
         <!-- -  -   -    -     -      -      -        Stylesheets:utils -->
         {% block css %} {% endblock %}
         <!-- -  -   -    -     -      -      -        Javascripts:utils -->
         {% block js %} {% endblock %}
-    </body>
+  </body>
 </html>

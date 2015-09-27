@@ -2,94 +2,97 @@
 
 {% load thumbnail %}
 
-
 {% block container %}
 
 <style type="text/css">
-
-  #telapresentacao {
-    margin-top: 64px;
-  }
-  #telapresentacao > div{
-    max-width:900px;
-    color: #043F45; 
-    margin-bottom:32px;
-    text-align:center;
-    padding: 60px 0;
-  }
-  #infocoletanea > div{
-    max-width:900px;
-    color: #043F45; 
-    margin-bottom:32px;
-    text-align:center;
-    padding: 60px 0;
-  }
-  #exposicoes .expo-img{
+ #exposicoes .expo-img{
+    position: relative;
     margin: 0;
     padding: 0;
     width: 25%;
   }
-
-  @media(max-width: 768px) {
-    #exposicoes .expo-img{
-      width: 100%;
-    } 
-  }
-  @media(min-width: 768px) {
-    #exposicoes .expo-img{
-      width: 50%;
-    } 
-  }
-  @media(min-width: 920px) {
-    #exposicoes .expo-img{
-      width: 25%;
-    } 
-  }
-  
-  #quemsomos {
-    position: relative;
-    background-color: #f3f3f3;
-    
-    /*padding: 25px 0;*/
-  }
-
-  #quemsomos .mld-grid {
-    padding: 0 !important;
-
-  }
-  #quemsomos > div {
+.expo-img .info{
+  /*display: none;*/
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  bottom:0;
+  left: 0;
+  background-color: rgba(96,125,139, 0.7);
+  color: #FFF;
+  text-align: center; 
+  overflow: hidden;
+}
+.expo-img:hover .info{
+   -webkit-animation-name: show-info; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 0.3s; /* Chrome, Safari, Opera */
+    animation-name: show-info;
+    animation-duration: 0.3s;
+    height: 100%;
+    padding: 50px;
+}
+.expo-img .author{
+  /*display: none;*/
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  opacity: 0;
+  line-height: 40px;
+  bottom: 0;
+  background-color: #FFF;
   color: #043F45;
-  }
-  .quem-somos.mdl-card {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.97);
+  padding: 0 25px;
+  font-weight: bold;
+  border-bottom: 1px solid #043F45;
+  overflow: hidden;
+}
+.expo-img:hover .author{
+   -webkit-animation-name: show-author; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: show-author;
+    animation-duration: 1s;
+    opacity: 1;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-info {
+    from {height: 0;}
+    to {height: 100%;}
+}
 
+/* Standard syntax */
+@keyframes show-info {
+    from {height: 0;}
+    to {height: 100%;}
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-author {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Standard syntax */
+@keyframes show-author {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+#ultimanoticia > div{
+  color: #043F45;
+}
+ #equipe .equipecont{
+    max-width:1200px;
+    color: #043F45; 
+    margin-bottom:32px;
+    text-align:center;
+    padding: 60px 60px;
+    margin: 0 auto;
   }
-  .quem-somos > .mdl-card__actions {
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-  .quem-somos > .mdl-card__title {
-    display: block;
-  }
-  .quem-somos > .mdl-card__title > p {
-    margin-top: 0;
-    font-size: 18px; 
-  }
-  .quem-somos > .mdl-card__actions {
-    display: flex;
-    box-sizing:border-box;
-    align-items: center;
-  }
-  .quem-somos > .mdl-card__title,
-  .quem-somos > .mdl-card__actions,
-  .quem-somos > .mdl-card__actions > .mdl-button {
-    color: #3b3b3b;
-  }
+
 </style>
+
 <section id="telapresentacao">
   <div data-sr='' class="mdl-grid">
     <div>
-      <h2>Memórias étinicos do Sérido</h2>
+      <h3>Memórias étinicos do Sérido</h3>
       <h6>Fundado em 10 de Dezembro de 2013 O Museu Virtual “Tronco, ramos e raízes!”, dedica-se à valorização e difusão do patrimônio étnico do Seridó.</h6>
     </div>
   </div>
@@ -101,7 +104,7 @@
         <h3> Quem nós somos </h3>
       </div> -->
       <!-- <div data-sr="enter top" class="quem-somos mdl-card mdl-shadow--2dp "> -->
-          <!-- <div class="mdl-card__title mdl-card--expand"> -->
+          <!-- <div class="mdl-card__author mdl-card--expand"> -->
         <div data-sr="enter left, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--6-col mdl-grid" style="padding:0; margin:0">
           <ul data-orbit>
                     {% for part in main_parts %}
@@ -113,13 +116,13 @@
                 </ul>
         </div>
         <div data-sr="enter left, hustle 20px,wait 1.0s" class="mdl-cell mdl-cell--6-col mdl-grid">
-           <!-- <div class="css">
-            <img src="/static/apresentacao/img/bao.jpg">
-          </div> -->
-          <p><h3>Nossa Concepção</h3></p>
+          <h3>Nossa Concepção</h3>
 
-          <h6>O Museu “Tronco, ramos e raízes!” tem um formato digital e dedica-se à conservação, investigação, difusão e exposição da cultura imaterial das referências indígenas e afro-brasileiras do Seridó, no Estado do Rio Grande do Norte, Brasil. Seu princípio fundamental é disponibilizar gratuitamente informações sobre as práticas culturais, história e memória ligadas às populações seridoenses de procedência indígena e afro-brasileira. Para fins de divulgação, pesquisa e deleite social dispõe de vasto acervo digitalizado de documentos fotográficos, escritos e impressos, depoimentos e entrevistas, artigos, monografias, dissertações, teses, arquivos de áudio e vídeo.
-          </h6>
+          <p  style='text-align: justify'>O Museu “Tronco, ramos e raízes!” tem um formato digital e dedica-se à conservação, investigação, difusão e exposição da cultura imaterial das referências indígenas e afro-brasileiras do Seridó, no Estado do Rio Grande do Norte, Brasil. Seu princípio fundamental é disponibilizar gratuitamente informações sobre as práticas culturais, história e memória ligadas às populações seridoenses de procedência indígena e afro-brasileira.
+          </p>
+          <div style="  position: absolute;  right: 20px;  bottom: 20px;">
+            <a href='/apresentacao/institutional/conception' class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> leia mais </a>
+          </div>
         </div>
         <!-- </div> -->
       <!-- </div>     -->
@@ -131,7 +134,7 @@
       <div class="mdl-cell mdl-cell--12-col mdl-grid">
         <div style="width:100%">
           <h3> Nossas Coletâneas dispõe de peças</h3>
-          <h5>Tais como: Vídeos, fotos, áudios e documentos</h5>
+          <h6>Tais como: Vídeos, fotos, áudios e documentos</h6>
         </div>
       </div>
 
@@ -162,15 +165,20 @@
 
 <section id="exposicoes">
   <div class="mdl-grid" style="background: white; padding:0">
-    <!-- <div data-sr="enter left, hustle 20px">
+<!--     <div data-sr="enter left, hustle 20px" style="padding:10px;">
       <h3> Últimas Exposições Adicionadas</h3>
     </div> -->
       {% if collectaneas %}
         {% for collectanea in collectaneas %}
-          <div class="expo-img" style="">
+          <div class="expo-img">
             <a href='/apresentacao/collectanea/{{ collectanea.pk }}/'>
-                {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "600x400" crop="center" as im %}
-                  <img src="{{ im.url }}" style="width: 100%">
+                {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "600x600" crop="center" as im %}
+                  <img data-sr='' src="{{ im.url }}" style="width: 100%">
+                  <div class="info">
+                    <p>Descrição da imagem</p>
+                    
+                  </div>
+                  <div class="author">Titulo</div>
                 {% endthumbnail %}
             </a>
           </div>
@@ -180,10 +188,57 @@
 </section>
 <!-- fim coletanea -->
 
-  {% endblock %}
+<!-- Noticias -->
+<section id="ultimanoticia">
 
+  
+    <div data-sr='' class="mdl-grid">
+    
+      <h3>Últimas Notícias</h3>
+      
+    <div class="mdl-grid" style="background-color: #f3f3f3;">
+      {% if news %}
+                    {% for new in news %}
+                          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">
+                                    <h6>{{ new.titulo }}</h6>
+                                    <p class='date' style="margin-bottom:0">{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+                                    <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
+                                    </div>
+                    {% endfor %}
 
+        {% endif %}
 
-  {% block footer %}
-  {% include 'apresentacao/partials/footer.html' %}
+    </div>
+ </div>
+  
+</section>
+<!-- Fim noticias -->
+
+<!-- Equipe -->
+<section id="equipe">
+  <div data-sr='' class="mdl-grid equipecont">
+      <div class="mdl-cell mdl-cell--12-col mdl-grid">
+        <div style="width:100%">
+          <h3> Nossa Equipe</h3>
+        </div>
+      </div>
+
+        <div data-sr="enter left, hustle 20px" class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-grid">
+          <div style="width:100%">
+            <img src="/static/apresentacao/img/julie.jpg" style="border-radius: 130px; width: 130px">
+          </div>
+        </div>
+        <div data-sr="enter left, hustle 20px,wait 0.2s" class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-grid">
+          <div style="width:100%">
+            <img src="/static/apresentacao/img/muri.jpg" style="border-radius: 130px; width: 130px">
+          </div>
+        </div>
+        <div data-sr="enter left, hustle 20px,wait 0.3s" class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-grid">
+          <div style="width:100%">
+            <img src="/static/apresentacao/img/rummenigge.jpg" style="border-radius: 130px; width: 120px">
+          </div>
+        </div> 
+  
+  </div>
+</section>
   {% endblock %}

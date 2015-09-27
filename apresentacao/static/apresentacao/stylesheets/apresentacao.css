@@ -1,8 +1,6 @@
 body{
 	font-family: 'Open Sans', sans-serif;
-	/*overflow: hidden;*/
 	background-color:#FFF;
-	/*background-image:url(../img/baoba.jpg);*/
 }
 h1,h2,h3,h4,h5 {
 	font-family: 'Open Sans', sans-serif;
@@ -564,3 +562,94 @@ meta.foundation-data-attribute-namespace {
     display: none;
   }
 }
+/*Home*/
+#telapresentacao {
+    margin-top: 64px;
+  }
+  #telapresentacao > div{
+    max-width:900px;
+    color: #043F45; 
+    margin-bottom:32px;
+    text-align:center;
+    padding: 60px 0;
+  }
+  #infocoletanea > div{
+    max-width:900px;
+    color: #043F45; 
+    margin-bottom:32px;
+    text-align:center;
+    padding: 60px 0;
+  }
+ 
+
+  @media(max-width: 768px) {
+    #exposicoes .expo-img{
+      width: 100%;
+    } 
+  }
+  @media(min-width: 768px) {
+    #exposicoes .expo-img{
+      width: 50%;
+    } 
+  }
+  @media(min-width: 920px) {
+    #exposicoes .expo-img{
+      width: 25%;
+    } 
+  }
+
+  #quemsomos {
+    position: relative;
+    background-color: #f3f3f3;
+    
+    /*padding: 25px 0;*/
+  }
+
+  #quemsomos .mld-grid {
+    padding: 0 !important;
+
+  }
+  #quemsomos > div {
+  color: #043F45;
+  }
+
+
+
+  .quem-somos.mdl-card {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.97);
+
+  }
+  .quem-somos > .mdl-card__actions {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .quem-somos > .mdl-card__title {
+    display: block;
+  }
+  .quem-somos > .mdl-card__title > p {
+    margin-top: 0;
+    font-size: 18px; 
+  }
+  .quem-somos > .mdl-card__actions {
+    display: flex;
+    box-sizing:border-box;
+    align-items: center;
+  }
+  .quem-somos > .mdl-card__title,
+  .quem-somos > .mdl-card__actions,
+  .quem-somos > .mdl-card__actions > .mdl-button {
+    color: #3b3b3b;
+  }
+
+   .orbit-next,
+  .orbit-prev {
+  	background-color: transparent !important;
+  }
+
+  .orbit-next span{
+  	border-left-color: #043F45 !important;
+  }
+
+  .orbit-prev span{
+  	border-right-color: #043F45 !important;
+  }
