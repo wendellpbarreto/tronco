@@ -5,6 +5,10 @@
 {% block container %}
 
 <style type="text/css">
+#exposicoes .mdl-grid{
+  text-align: center;
+  color: #043F45;
+}
  #exposicoes .expo-img{
     position: relative;
     margin: 0;
@@ -77,15 +81,68 @@
 }
 #ultimanoticia > div{
   color: #043F45;
+  text-align: center;
+}
+#ultimanoticia .mdl-grid{
+  padding: 50px;
+  background-color: #f3f3f3;
 }
  #equipe .equipecont{
-    max-width:1200px;
+  position: relative;
+    max-width:900px;
     color: #043F45; 
     margin-bottom:32px;
     text-align:center;
     padding: 60px 60px;
     margin: 0 auto;
   }
+
+   #equipe .expoe-img{
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  #equipe .expoe-img img{
+    -webkit-filter: sepia(1);
+  }
+
+  #equipe .expoe-img:hover img{
+    -webkit-filter: sepia(0);
+  }
+
+.expoe-img .authore{
+  /*display: none;*/
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  opacity: 0;
+  bottom: 0;
+  background-color: #FFF;
+  color: #043F45;
+  padding: 0 25px;
+  font-weight: bold;
+  border-bottom: 1px solid #043F45;
+  overflow: hidden;
+}
+.expoe-img:hover .authore{
+   -webkit-animation-name: show-author; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: show-author;
+    animation-duration: 1s;
+    opacity: 1;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-authore {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Standard syntax */
+@keyframes show-authore {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
 
 </style>
 
@@ -164,6 +221,11 @@
 <!-- coletaneas -->
 
 <section id="exposicoes">
+    <div data-sr=''class="mdl-cell mdl-cell--12-col mdl-grid">
+        <div style="width:100%; padding-top:10px">
+          <h3> Útimas Coletâneas</h3>
+        </div>
+    </div>
   <div class="mdl-grid" style="background: white; padding:0">
 <!--     <div data-sr="enter left, hustle 20px" style="padding:10px;">
       <h3> Últimas Exposições Adicionadas</h3>
@@ -175,10 +237,10 @@
                 {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "600x600" crop="center" as im %}
                   <img data-sr='' src="{{ im.url }}" style="width: 100%">
                   <div class="info">
-                    <p>Descrição da imagem</p>
+                    <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
                     
                   </div>
-                  <div class="author">Titulo</div>
+                  <div class="author">Criada em {{ collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</div>
                 {% endthumbnail %}
             </a>
           </div>
@@ -190,26 +252,22 @@
 
 <!-- Noticias -->
 <section id="ultimanoticia">
-
-  
-    <div data-sr='' class="mdl-grid">
-    
-      <h3>Últimas Notícias</h3>
-      
-    <div class="mdl-grid" style="background-color: #f3f3f3;">
-      {% if news %}
-                    {% for new in news %}
-                          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">
-                                    <h6>{{ new.titulo }}</h6>
-                                    <p class='date' style="margin-bottom:0">{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
-                                    <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
-                                    </div>
-                    {% endfor %}
-
-        {% endif %}
-
+    <div data-sr=''class="mdl-cell mdl-cell--12-col">
+      <div style="width:100%; padding-top:30px">
+        <h3> Útimas Notícias</h3>
+      </div>
     </div>
- </div>
+    <div class="mdl-grid">
+      {% if news %}
+        {% for new in news %}
+          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">
+            <strong><h5>{{ new.titulo }}</h5></strong>
+            <p class='date' style="margin-bottom:0">{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+            <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
   
 </section>
 <!-- Fim noticias -->
@@ -223,22 +281,26 @@
         </div>
       </div>
 
-        <div data-sr="enter left, hustle 20px" class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-grid">
-          <div style="width:100%">
+      <div data-sr="enter left, hustle 20px" class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-grid">
+        <div class="expoe-img">
             <img src="/static/apresentacao/img/julie.jpg" style="border-radius: 130px; width: 130px">
-          </div>
+            <div class="authore">Dra. Julie Antoinette Cavignac </div>
         </div>
+      </div>
+        
         <div data-sr="enter left, hustle 20px,wait 0.2s" class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-grid">
-          <div style="width:100%">
-            <img src="/static/apresentacao/img/muri.jpg" style="border-radius: 130px; width: 130px">
+          <div class="expoe-img">
+              <img src="/static/apresentacao/img/muri.jpg" style="border-radius: 130px; width: 130px">
+              <div class="authore">Dr. Muirakytan Kennedy de Macedo </div>
           </div>
         </div>
+        
         <div data-sr="enter left, hustle 20px,wait 0.3s" class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-grid">
-          <div style="width:100%">
-            <img src="/static/apresentacao/img/rummenigge.jpg" style="border-radius: 130px; width: 120px">
-          </div>
-        </div> 
-  
+          <div class="expoe-img">
+              <img src="/static/apresentacao/img/rummenigge.jpg" style="border-radius: 130px; width: 120px">
+              <div class="authore">Dr. Rummenigge Rudson Dantas </div>
+          </div> 
+        </div>
   </div>
 </section>
   {% endblock %}
