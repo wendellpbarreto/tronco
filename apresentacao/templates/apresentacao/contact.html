@@ -9,7 +9,32 @@
 {% endblock %}
 
 {% block container %}
-    <div id='container' class='clearfix'>
+<div id="orbit-descricoes">
+<div class="mdl-grid" style="padding:0; height:400px; ">
+    <div data-sr="enter right, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--12-col"  style="padding:40px;">
+        <h5>Formulário de contato</h5>        
+            <form action='/apresentacao/mail/' method='post' >
+                {% csrf_token %}
+                {{ contact_form }}
+            </form>
+            <button type='submit' class='button tiny'>Enviar</button>
+    </div>
+    {% if news %}
+        <section class='latest-news'>         
+            {% for new in news %}        
+                <h6>{{ new.titulo }}</h6>
+                <p class='text-justify'>{{ new.descricao_breve }}</p>
+                <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+                <a href='' class='underline'>continue lendo</a>                
+            {% endfor %}       
+        </section>
+    {% endif %}
+</div>     
+</div>
+
+
+
+  <!--   <div id='container' class='clearfix'>
         <div class='row collapse'>
             <section class='address-contact large-10 columns'>
                 <header>
@@ -23,8 +48,8 @@
                 </div>
             </section>
             <section class='large-14 columns'>
-                <header>
-                     <h5>Formulário de contato</h5>
+                <header> -->
+          <!--            <h5>Formulário de contato</h5>
                 </header>
                 <form action='/apresentacao/mail/' method='post'>
                     {% csrf_token %}
@@ -56,7 +81,7 @@
                 </ul>
             </section>
         {% endif %}
-    </div>
+    </div> -->
 {% endblock %}
 
 {% block footer %}

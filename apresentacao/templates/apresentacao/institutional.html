@@ -9,7 +9,86 @@
 {% endblock %}
 
 {% block container %}
-    <div id='container' class='clearfix'>
+<div id="orbit-descricoes">
+<div class="mdl-grid" style="padding:0">
+
+  <div class="controls mdl-cell mdl-cell--4-col" style="background:#37474F; margin:0" >
+      <a data-orbit-link="concepcao" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-pencil-square-o" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;  concepção
+      </a>
+      <a data-orbit-link="quemsomosnos" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-users" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; Quem nos somos
+      </a>
+      <a  data-orbit-link="missao" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+         <i class="fa fa-cubes" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;  missão
+      </a>
+      <a data-orbit-link="objetivos" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-map" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; objetivos
+      </a>
+      <a data-orbit-link="descricaotecnica" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-cogs" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; descrição técnica
+      </a>
+      <a data-orbit-link="caracacervo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-university" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;características do acervo
+      </a>
+    </div>
+
+
+ <div data-sr="enter right, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--8-col"  style="padding:0; margin:0">
+  <div class="orbit-container">
+    <ul class="example-orbit-content" data-orbit >
+      <li data-orbit-slide="concepcao">
+        <div>
+          <!-- <h3>{{ informations.concepcao|safe }}</h3> -->
+          <h3> Concepção</h3>
+          <p>O Museu “Tronco, ramos e raízes!” tem um formato digital e dedica-se à conservação, investigação, difusão e exposição da cultura imaterial das referências indígenas e afro-brasileiras do Seridó, no Estado do Rio Grande do Norte, Brasil. Seu princípio fundamental é disponibilizar gratuitamente informações sobre as práticas culturais, história e memória ligadas às populações seridoenses de procedência indígena e afro-brasileira. Para fins de divulgação, pesquisa e deleite social dispõe de vasto acervo digitalizado de documentos fotográficos, escritos e impressos, depoimentos e entrevistas, artigos, monografias, dissertações, teses, arquivos de áudio e vídeo.</p>
+        </div>
+      </li>
+      <li data-orbit-slide="quemsomosnos">
+        <div>
+        <!--   <h2>{{ informations.nome }}</h2>
+          <h6>Fundado em {{ informations.data_fundacao }}</h6>
+          <h5 class='text-justify'>{{ informations.apresentacao|safe }}</h5> -->
+          <h4>Museu "Tronco, Ramos e Raízes"</h4>
+          <h6 style="margin-top:-12px">Fundado em 10 de Dezembro de 2013</h6>
+          <p>O Museu Virtual “Tronco, ramos e raízes!”, dedica-se à valorização e difusão do patrimônio étnico do Seridó (Rio Grande do Norte), especialmente da cultura imaterial afro-brasileira e indígena. Apresenta um formato expositivo que se utiliza de tecnologia e recursos interativos para a apresentação de seu conteúdo com fins de pesquisa e deleite cultural. Neste sentido, registra e disponibiliza documentos (escritos, orais, fotográficos e audiovisuais) de natureza histórica, memorialística e arqueológica. O Museu criado em 2013, surgiu como um produto do Programa de Extensão “Tronco, ramos e raizes! - Patrimônio étnico do Seridó – RN”(PROEXT- Sesu) desenvolvido entre os anos de 2012 e 2013, com o fim promover a cultura imaterial indígena e afro-brasileira da região seridoense. O programa tem financiamento do Ministério da Educação e execução pela Universidade Federal do Rio Grande do Norte.</p>
+        </div>
+      </li>
+      <li data-orbit-slide="missao">
+        <div>
+          <!-- <h3>{{ informations.missao|safe }}</h3> -->
+          <h3>Missão</h3>
+          <p>Preservar, conservar e divulgar a cultura, a memória e a história das referências indígenas e afro-brasileiras do Seridó, assegurando o acesso livre às informações museais promovidas através de políticas claras e coerentes e de ações educativas ao público visitante.</p>
+        </div>
+      </li>
+      <li data-orbit-slide="objetivos">
+        <div>
+          <!-- <h3>{{ informations.objetivos|safe }}</h3> -->
+          <h3>Objetivos</h3>
+          <p>::: Mostrar a diversidade étnica como elemento fundamental e fundador da nossa cultura; ::: Celebrar e valorizar a cultura imaterial indígena e afro-brasileira, apresentadas em sua história e práticas ao longo dos tempos no Seridó norte-rio-grandense; ::: Aproximar o cidadão usuário de sua cultura ao disponibiliza-la como fonte de pesquisa e deleite estético; ::: Valorizar a cultura afro-brasileira e indígena do Seridó através de suas práticas tradicionais, inovações e experiência no tempo; ::: Valorizar o respeito e tolerância pela diversidade da Cultura Brasileira; ::: Favorecer o intercâmbio entre pesquisadores; ::: Realizar exposições temporárias sobre temas relacionadas à cultura seridoense em suas diversas manifestações étnicas; ::: Disponibilizar materiais didáticos produzidos pelos comunitários e pesquisadores.</p>
+        </div>
+      </li>
+      <li data-orbit-slide="descricaotecnica">
+        <div>
+          <!-- <h3>{{ informations.descricao_tecnica|safe }}</h3> -->
+          <h3>Descrição Técnica</h3>
+          <p>|Equipe|: ::: Dra. Julie Antoinette Cavignac - Departamento de Antropologia, Universidade Federal do Rio Grande do Norte (Campus Natal) - Coordenadora ::: Dr. Muirakytan Kennedy de Macedo - Departamento de História do Ceres, Universidade Federal do Rio Grande do Norte (Campus Caicó). ::: Dr. Rummenigge Rudson Dantas - Escola de Ciências e Tecnologia (UFRN) |Apoio Técnico|: ::: Árison Rodrigo Brito ::: Franco Fonseca ::: Mariclécia Araújo ::: Rianna de Carvalho</p>
+        </div>
+      </li>
+      <li data-orbit-slide="caracacervo">
+        <div>
+          <!-- <h3>{{ informations.caracteristicas_acervo|safe }}</h3> -->
+          <h3>Características do Acervo</h3>
+          <p>Acervo formado por bens museais virtuais, em formato digital, que se referem à cultura indígena e afro-brasileira do Seridó, região de clima semiárido no Rio Grande do Norte, nordeste do Brasil.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
+
+<!--     <div id='container' class='clearfix'>
         <div class='row collapse'>
             <div class='large-8 columns'>
                 <section class='info-column'>
@@ -73,7 +152,7 @@
                 </section>
             </div>
         </div>
-    </div>
+    </div> -->
 {% endblock %}
 
 {% block footer %}

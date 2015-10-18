@@ -12,37 +12,64 @@
 
 {% block container %}
 <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/lightbox.css">
+<!-- <div id="orbit-coletaneas">
+<div class="mdl-grid" style="padding:0">
 
-    <div id='container' class='clearfix'>
-        <div class='row collapse'>
-            <div class='large-24 row'>
-                <section class='info-column'>
-                    <ul class='row'>
-                        {% if part.imagens %}
-                            <li class="small-6 column">
-                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/photos' {% if section == 'photos' %} class='active' {% endif %}>Fotos</a>
-                            </li>
+  <div class="controls mdl-cell mdl-cell--12-col" style="background:#37474F; margin:0;width: 900px;" >
+      <a data-orbit-link="fotos" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-pencil-square-o" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; Fotos
+      </a>
+      <a data-orbit-link="videos" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-users" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; Vídeos
+      </a>
+      <a  data-orbit-link="audios" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+         <i class="fa fa-cubes" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;  Áudios
+      </a>
+      <a data-orbit-link="documentos" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-map" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; Documentos
+      </a>
+    </div>
+
+</div>
+</div> -->
+<div id="orbit-coletaneas">
+    <div class="controls-ct mdl-cell mdl-cell--12-col" style="margin:0;width: 900px;" >
+        <div class='mdl-grid' style="padding:0">
+               <div class="controls mdl-cell mdl-cell--12-col" style="background:#37474F; margin:0;" >
+
+                        <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/photos' {% if section == 'photos' %} {% endif %}  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        {% if not part.imagens %}
+                           disabled
                         {% endif %}
-                        {% if part.videos %}
-                            <li class="small-6 column">
-                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/videos' {% if section == 'videos' %} class='active' {% endif %}>Vídeos</a>
-                            </li>
+                        >
+                        <i class="fa fa-camera-retro" style= "font-size: 25px;"></i></i>&nbsp;&nbsp;&nbsp;&nbsp;Fotos</a>
+                 
+                        <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/videos' {% if section == 'videos' %} {% endif %}  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        {% if not part.videos %}
+                            disabled
                         {% endif %}
-                        {% if part.audios %}
-                            <li class="small-6 column">
-                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/audios' {% if section == 'audios' %} class='active' {% endif %}>Áudios</a>
-                            </li>
+                        >
+                        <i class="fa fa-video-camera" style="font-size: 25px"></i>&nbsp;&nbsp;&nbsp;&nbsp;Vídeos</a>
+                        
+                        <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/audios' {% if section == 'audios' %} {% endif %}  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        {% if not part.audios %}
+                           disabled
                         {% endif %}
-                        {% if part.documentos %}
-                            <li class="small-6 column">
-                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/documents' {% if section == 'documents' %} class='active' {% endif %}>Documentos</a>
-                            </li>
+                        >
+                        <i class="fa fa-file-audio-o" style="font-size: 25px"></i>&nbsp;&nbsp;&nbsp;&nbsp;Áudios</a>
+                        
+                        <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/documents' {% if section == 'documents' %}  {% endif %}  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        {% if not part.documentos %}
+                            disabled
                         {% endif %}
-                    </ul>
-                </section>
+                        >
+                        <i class="fa fa-file-text-o" style="font-size: 25px"></i>&nbsp;&nbsp;&nbsp;&nbsp;Documentos</a>
+                        
+                    
+               
             </div>
-            <div class='large-24 rows'>
-                <section>
+            <div class="controls mdl-cell mdl-cell--12-col" style="padding:60px">
+                
                    <!--  <header class='row'>
                         {% if section == 'photos' %}
                             <h4>Fotos</h4>
@@ -56,10 +83,10 @@
                             <h4>Informações do IPHAN</h4>
                         {% endif %}
                     </header> -->
-                    <div class='row' style="text-align:center">
+                    
                         {% if section == 'photos' %}
                             {% for image in part.imagens.all %}
-                                <div class="small-6 column left" style="padding:10px">
+                            
                                 {% thumbnail image.imagem "800x600" as im_big %}
                                     {% thumbnail image.imagem "200x200" crop="center"   as im %}
                                         <a 
@@ -67,11 +94,11 @@
                                             data-lightbox="example-set" 
                                             data-title="Autor: {% firstof image.autor "Não informado" %} <br> Data: {% firstof image.data "Não informado" %} <br> Descrição: {% firstof image.descricao "Não informado" %} ">
 
-                                            <img class="example-image" src="{{ im.url }}" alt=""/>
+                                            <img class="example-image" src="{{ im.url }}" alt="" style="padding:10px" />
                                         </a>
                                     {% endthumbnail %}
                                 {% endthumbnail %}
-                                </div>
+                               
                             {% endfor %}
 
                         {% elif section == 'videos'%}
@@ -87,11 +114,11 @@
                                     <iframe src='{{ video.youtube }}' width='560' height='315' frameborder='0' allowfullscreen></iframe>
                                 {% elif video.vimeo %}
                                     <iframe src='{{ video.vimeo }}' width='560' height='315' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                                {% endif %}</div>
+                                {% endif %}
                                     <div class="row">
-                                    <div style=" margin: 0.9px 15px 0px 13px; border:2px solid #aaa; padding: 10px; ">
-                                    <font size="3"> Autor: {% firstof video.autor "Não informado" %}</font>
+                                    <div style=" margin: 0px 122px 0px 122px; border:2px solid #aaa; padding: 10px; ">
                                     <div style="text-align: justify;font-size:20px">
+                                    <font size="3"> Autor: {% firstof video.autor "Não informado" %}</font><br>
                                     <small>Data: {% firstof video.data "Não informado" %}</small> <br>
                                     <small>Descrição: {% firstof video.descricao "Não informado" %}</small></div></div>
 
@@ -120,14 +147,16 @@
                                     <font size="3"> Autor: {% firstof document.autor "Não informado" %}</font>
                                     <div style="text-align: justify;font-size:20px">
                                     <small>Data: {% firstof document.data "Não informado" %}</small> <br>
-                                    <small>Descrição: {% firstof document.descricao "Não informado" %}</small></div></div>
+                                    <small>Descrição: {% firstof document.descricao "Não informado" %}</small></div></div>  
                             {% endfor %}
                         {% endif %}
                     </div>
-                </section>
+              
             </div>
         </div>
     </div>
+    </div> 
+</div>
  <script src="{{ STATIC_URL }}apresentacao/js/lightbox.min.js"></script>
 {% endblock %}
 

@@ -1,6 +1,8 @@
 body{
+	background-image:url(../img/background_fabric_of_squares_gray.png);
 	font-family: 'Open Sans', sans-serif;
-	background-color:#FFF;
+	/*background-color:#E7882C;*/
+	
 }
 h1,h2,h3,h4,h5 {
 	font-family: 'Open Sans', sans-serif;
@@ -9,17 +11,21 @@ h1,h2,h3,h4,h5 {
 #pagina header {
 	position: fixed;
 	box-shadow: 0 0 10px white;
-	z-index: 10000;	
+	max-width: 900px;
+	z-index: 9999;	
 }
+
 #pagina header, #pagina header .mdl-layout__drawer-button {
-	background-image:url(../img/background_fabric_of_squares_gray.png);
+	/*background-image:url(../img/teste.jpg);*/
 	color: #3b3b3b;
 	/*margin-top: 15px;*/
+	background-color:#424242;
 }
 
 #pagina header a {
 	font-size: 16px;
 	color: rgba(233, 86, 42, 0.8);
+	padding: 0 10px;
 }
 
 #pagina header a:hover {
@@ -565,20 +571,22 @@ meta.foundation-data-attribute-namespace {
 /*Home*/
 #telapresentacao {
     margin-top: 64px;
+    background-color: #fff;
+    padding: 15px;
   }
   #telapresentacao > div{
     max-width:900px;
     color: #043F45; 
-    margin-bottom:32px;
+    /*margin-bottom:32px;*/
     text-align:center;
     padding: 60px 0;
   }
   #infocoletanea > div{
     max-width:900px;
     color: #043F45; 
-    margin-bottom:32px;
     text-align:center;
-    padding: 60px 0;
+    /*padding: 60px 0;*/
+    background-color: #f3f3f3;
   }
  
 
@@ -600,7 +608,7 @@ meta.foundation-data-attribute-namespace {
 
   #quemsomos {
     position: relative;
-    background-color: #f3f3f3;
+    background-color: #fff;
     
     /*padding: 25px 0;*/
   }
@@ -653,3 +661,256 @@ meta.foundation-data-attribute-namespace {
   .orbit-prev span{
   	border-right-color: #043F45 !important;
   }
+  #exposicoes{
+  	background-color: #f3f3f3;
+  }
+  #exposicoes .mdl-grid{
+  text-align: center;
+  color: #043F45;
+  margin-top: 0;
+}
+ #exposicoes .expo-img{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+  }
+.expo-img .info{
+  /*display: none;*/
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  bottom:0;
+  left: 0;
+  background-color: rgba(96,125,139, 0.7);
+  color: #FFF;
+  text-align: center; 
+  overflow: hidden;
+}
+.expo-img:hover .info{
+   -webkit-animation-name: show-info; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 0.3s; /* Chrome, Safari, Opera */
+    animation-name: show-info;
+    animation-duration: 0.3s;
+    height: 100%;
+    padding: 50px;
+}
+.expo-img .author{
+  /*display: none;*/
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  opacity: 0;
+  line-height: 40px;
+  bottom: 0;
+  background-color: #FFF;
+  color: #043F45;
+  padding: 0 25px;
+  font-weight: bold;
+  border-bottom: 1px solid #043F45;
+  overflow: hidden;
+}
+.expo-img:hover .author{
+   -webkit-animation-name: show-author; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: show-author;
+    animation-duration: 1s;
+    opacity: 1;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-info {
+    from {height: 0;}
+    to {height: 100%;}
+}
+
+/* Standard syntax */
+@keyframes show-info {
+    from {height: 0;}
+    to {height: 100%;}
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-author {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Standard syntax */
+@keyframes show-author {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+#ultimanoticia{
+	background-color: #fff
+}
+#ultimanoticia > div{
+  color: #043F45;
+  text-align: center;
+  margin: 0 !important;
+   
+}
+#ultimanoticia .mdl-grid{
+  padding: 25px;
+ ;
+}
+#equipe{
+	background-color: #f3f3f3
+}
+ #equipe .equipecont{
+  position: relative;
+    max-width:900px;
+    color: #043F45; 
+    margin-bottom:32px;
+    text-align:center;
+    padding: 60px 60px;
+    margin: 0 auto;
+  }
+
+   #equipe .expoe-img{
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  #equipe .expoe-img img{
+    -webkit-filter: sepia(1);
+  }
+
+  #equipe .expoe-img:hover img{
+    -webkit-filter: sepia(0);
+  }
+
+.expoe-img .authore{
+  /*display: none;*/
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  opacity: 0;
+  bottom: 0;
+  background-color: #FFF;
+  color: #043F45;
+  padding: 0 25px;
+  font-weight: bold;
+  border-bottom: 1px solid #043F45;
+  overflow: hidden;
+}
+.expoe-img:hover .authore{
+   -webkit-animation-name: show-author; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: show-author;
+    animation-duration: 1s;
+    opacity: 1;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-authore {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Standard syntax */
+@keyframes show-authore {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+/*instituicao*/
+/* coletanea*/
+#orbit-descricoes{
+	background-color: #f3f3f3;
+    margin-top: 64px !important;
+}
+#orbit-descricoes .controls{
+    padding-top:30px !important;
+}
+#orbit-descricoes .controls a{
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    box-shadow: none;
+    text-align: left;
+    font-size: 12px;
+}
+#orbit-descricoes .controls a:hover{
+    color:#E7882C;
+}
+#orbit-descricoes .example-orbit-content li{
+    padding-left:25px;
+    padding-right:25px;
+    text-align: justify;
+}
+/*fim de instituicao*/
+.demo-card-image.mdl-card {
+  width: 256px;
+  height: 256px;
+}
+.demo-card-image > .mdl-card__actions {
+  height: 72px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.demo-card-image__filename {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.demo-card-image__filename  span{
+  color: #fff;
+  font-size: 12px;
+  display: block;
+}
+.demo-card-image__filename  a{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    font-size: 18px;
+    background-color: #E7882C !important; 
+}
+.demo-card-image__filename  a i{
+    font-size: 18px;
+    background-color: transparent !important;
+
+  }
+  #coletaneatotal {
+    background-color: #f3f3f3;
+    margin-top:64px;
+  }
+  #coletaneatotal > div{
+    max-width:900px;
+    color: #043F45; 
+    text-align:center;
+    padding: 6px 30px;
+  }
+  /*fim coletanea*/
+  /*midias*/
+  #orbit-coletaneas{
+  background-color: #f3f3f3;
+    margin-top: 64px !important;
+}
+#orbit-coletaneas .controls-ct{
+    padding:0;
+}
+#orbit-coletaneas .controls{
+    padding:13px 0 !important;
+}
+#orbit-coletaneas .controls a{
+
+    border: 0;
+    background-color: transparent;
+    box-shadow: none;
+    
+    font-size: 13px;
+    
+    padding-left:12px
+}
+#orbit-coletaneas .controls a i{
+  vertical-align: middle;
+}
+#orbit-coletaneas .controls{
+  text-align: center;
+  width: 100%;
+}
+a[disabled] {
+  pointer-events: none;
+}
+/*fim de midias*/
