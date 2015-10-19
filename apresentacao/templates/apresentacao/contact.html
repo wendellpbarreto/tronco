@@ -9,79 +9,27 @@
 {% endblock %}
 
 {% block container %}
-<div id="orbit-descricoes">
+<div id="orbit-descricoest">
 <div class="mdl-grid" style="padding:0; height:400px; ">
-    <div data-sr="enter right, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--12-col"  style="padding:40px;">
-        <h5>Formulário de contato</h5>        
-            <form action='/apresentacao/mail/' method='post' >
-                {% csrf_token %}
-                {{ contact_form }}
-            </form>
-            <button type='submit' class='button tiny'>Enviar</button>
+  <h4 data-sr="enter right,wait 0.5s" style="margin:36px;color: #FF8800">Formulário de contato</h4>   <div data-sr="enter right, hustle 20px,wait 0.8s" class="mdl-cell mdl-cell--10-col mdl-cell--6-col-tablet mdl-cell--2-col-phone">
+      <form action='/apresentacao/mail/' method='post'>
+        {% csrf_token %}
+        {{ contact_form }}<br>
+      <button type='submit' class='button tiny' style="margin-bottom:20px">Enviar</button>
+      </form>
     </div>
     {% if news %}
-        <section class='latest-news'>         
-            {% for new in news %}        
-                <h6>{{ new.titulo }}</h6>
-                <p class='text-justify'>{{ new.descricao_breve }}</p>
-                <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
-                <a href='' class='underline'>continue lendo</a>                
-            {% endfor %}       
-        </section>
+      <section class='latest-news'>         
+        {% for new in news %}        
+          <h6>{{ new.titulo }}</h6>
+          <p class='text-justify'>{{ new.descricao_breve }}</p>
+          <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
+          <a href='' class='underline'>continue lendo</a>                
+        {% endfor %}       
+      </section>
     {% endif %}
 </div>     
 </div>
-
-
-
-  <!--   <div id='container' class='clearfix'>
-        <div class='row collapse'>
-            <section class='address-contact large-10 columns'>
-                <header>
-                    <h5>Endereço e contatos</h5>
-                </header>
-                <div class='desc row'>
-                    <h6>UFRN – CCHLA – PPGAS</h6>
-                    <h6>Campus Universitário s/n</h6>
-                    <h6>Lagoa Nova, Natal/RN - 59078-970</h6>
-                    <h6>Telefax: (084) 3342-2242.</h6>
-                </div>
-            </section>
-            <section class='large-14 columns'>
-                <header> -->
-          <!--            <h5>Formulário de contato</h5>
-                </header>
-                <form action='/apresentacao/mail/' method='post'>
-                    {% csrf_token %}
-                    {{ contact_form }}
-                    <button type='submit' class='button tiny'>Enviar</button>
-                </form>
-            </section>
-        </div>
-        {% if news %}
-            <section class='latest-news'>
-                <header class='row'>
-                    <h5>Últimas notícias</h5>
-                    <span class='arrow-down'></span>
-                    <span class='arrow-down-inner'></span>
-                </header>
-                <ul class='row collapse'>
-                    {% for new in news %}
-                        <li class='column'>
-                            <figure>
-                                <figcaption>
-                                    <h6>{{ new.titulo }}</h6>
-                                    <p class='text-justify'>{{ new.descricao_breve }}</p>
-                                    <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
-                                    <a href='' class='underline'>continue lendo</a>
-                                </figcaption>
-                            </figure>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endif %}
-    </div> -->
 {% endblock %}
 
 {% block footer %}

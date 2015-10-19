@@ -1,26 +1,12 @@
-<style>
-    .tronco-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
-      padding-right: 0;
-      
-    }
-    .mdl-layout__header .mdl-navigation__link{
-        color: #fff !important;
-    }
-    .mdl-layout__drawer .mdl-navigation__link{
-        color: #09B5A9 !important;
-    }
-    .mdl-textfield{
-        color: #CCC;
-    }
-    .material-icons{
-        color: #CCC;
-    }
-    </style>
-
-    <!-- Always shows a header, even in smaller screens. -->
+<!-- Always shows a header, even in smaller screens. -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
+    <div class="mdl-layout__header-row" style="box-shadow: 0px 2px 12px #888888;">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--hide-desktop mdl-cell--7-col-tablet mdl-cell--3-col-phone" style="text-align:center" >
+    <div style="color:#043F45; font-size:20px">Museu: "Tronco, Ramos e Raízes"</div>
+  </div>
+
+
       <!-- Title -->
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
@@ -34,17 +20,17 @@
         <a class="mdl-navigation__link" href="/apresentacao/contact">Contato</a>
         <div class="mdl-layout-spacer"></div>
       </nav>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                      mdl-textfield--floating-label mdl-textfield--align-right">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <form class='row collapse' action='/apresentacao/collectaneas/search' method='get' data-default='true'>
-                    <input class="mdl-textfield__input" type="text" name="keywords" id="waterfall-exp" placeholder='pesquisa' />
-                </form>
-            </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                    mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <form class='row collapse' action='/apresentacao/collectaneas/search' method='get' data-default='true'>
+              <input class="mdl-textfield__input" type="text" name="keywords" id="waterfall-exp" placeholder='pesquisa' />
+              </form>
           </div>
+        </div>
 
     </div>
   </header>

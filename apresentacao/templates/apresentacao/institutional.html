@@ -12,7 +12,7 @@
 <div id="orbit-descricoes">
 <div class="mdl-grid" style="padding:0">
 
-  <div class="controls mdl-cell mdl-cell--4-col" style="background:#37474F; margin:0" >
+  <div class="controls mdl-cell mdl-cell--4-col" style="background:#382F2F; opacity: 5.9;margin:0" >
       <a data-orbit-link="concepcao" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         <i class="fa fa-pencil-square-o" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;  concepção
       </a>
@@ -39,47 +39,39 @@
     <ul class="example-orbit-content" data-orbit >
       <li data-orbit-slide="concepcao">
         <div>
-          <!-- <h3>{{ informations.concepcao|safe }}</h3> -->
           <h3> Concepção</h3>
-          <p>O Museu “Tronco, ramos e raízes!” tem um formato digital e dedica-se à conservação, investigação, difusão e exposição da cultura imaterial das referências indígenas e afro-brasileiras do Seridó, no Estado do Rio Grande do Norte, Brasil. Seu princípio fundamental é disponibilizar gratuitamente informações sobre as práticas culturais, história e memória ligadas às populações seridoenses de procedência indígena e afro-brasileira. Para fins de divulgação, pesquisa e deleite social dispõe de vasto acervo digitalizado de documentos fotográficos, escritos e impressos, depoimentos e entrevistas, artigos, monografias, dissertações, teses, arquivos de áudio e vídeo.</p>
+          <p>{{ informations.concepcao|safe }}</p>
         </div>
       </li>
       <li data-orbit-slide="quemsomosnos">
         <div>
-        <!--   <h2>{{ informations.nome }}</h2>
-          <h6>Fundado em {{ informations.data_fundacao }}</h6>
-          <h5 class='text-justify'>{{ informations.apresentacao|safe }}</h5> -->
-          <h4>Museu "Tronco, Ramos e Raízes"</h4>
-          <h6 style="margin-top:-12px">Fundado em 10 de Dezembro de 2013</h6>
-          <p>O Museu Virtual “Tronco, ramos e raízes!”, dedica-se à valorização e difusão do patrimônio étnico do Seridó (Rio Grande do Norte), especialmente da cultura imaterial afro-brasileira e indígena. Apresenta um formato expositivo que se utiliza de tecnologia e recursos interativos para a apresentação de seu conteúdo com fins de pesquisa e deleite cultural. Neste sentido, registra e disponibiliza documentos (escritos, orais, fotográficos e audiovisuais) de natureza histórica, memorialística e arqueológica. O Museu criado em 2013, surgiu como um produto do Programa de Extensão “Tronco, ramos e raizes! - Patrimônio étnico do Seridó – RN”(PROEXT- Sesu) desenvolvido entre os anos de 2012 e 2013, com o fim promover a cultura imaterial indígena e afro-brasileira da região seridoense. O programa tem financiamento do Ministério da Educação e execução pela Universidade Federal do Rio Grande do Norte.</p>
+          <h3>{{ informations.nome }}</h3>
+          <h6 style="margin-top:-12px">Fundado em {{ informations.data_fundacao }}</h6>
+          <p class='text-justify'>{{ informations.apresentacao|safe }}</p>
         </div>
       </li>
       <li data-orbit-slide="missao">
         <div>
-          <!-- <h3>{{ informations.missao|safe }}</h3> -->
           <h3>Missão</h3>
-          <p>Preservar, conservar e divulgar a cultura, a memória e a história das referências indígenas e afro-brasileiras do Seridó, assegurando o acesso livre às informações museais promovidas através de políticas claras e coerentes e de ações educativas ao público visitante.</p>
+          <p>{{ informations.missao|safe }}</p>
         </div>
       </li>
       <li data-orbit-slide="objetivos">
         <div>
-          <!-- <h3>{{ informations.objetivos|safe }}</h3> -->
           <h3>Objetivos</h3>
-          <p>::: Mostrar a diversidade étnica como elemento fundamental e fundador da nossa cultura; ::: Celebrar e valorizar a cultura imaterial indígena e afro-brasileira, apresentadas em sua história e práticas ao longo dos tempos no Seridó norte-rio-grandense; ::: Aproximar o cidadão usuário de sua cultura ao disponibiliza-la como fonte de pesquisa e deleite estético; ::: Valorizar a cultura afro-brasileira e indígena do Seridó através de suas práticas tradicionais, inovações e experiência no tempo; ::: Valorizar o respeito e tolerância pela diversidade da Cultura Brasileira; ::: Favorecer o intercâmbio entre pesquisadores; ::: Realizar exposições temporárias sobre temas relacionadas à cultura seridoense em suas diversas manifestações étnicas; ::: Disponibilizar materiais didáticos produzidos pelos comunitários e pesquisadores.</p>
+          <p>{{ informations.objetivos|safe }}</p>
         </div>
       </li>
       <li data-orbit-slide="descricaotecnica">
         <div>
-          <!-- <h3>{{ informations.descricao_tecnica|safe }}</h3> -->
           <h3>Descrição Técnica</h3>
-          <p>|Equipe|: ::: Dra. Julie Antoinette Cavignac - Departamento de Antropologia, Universidade Federal do Rio Grande do Norte (Campus Natal) - Coordenadora ::: Dr. Muirakytan Kennedy de Macedo - Departamento de História do Ceres, Universidade Federal do Rio Grande do Norte (Campus Caicó). ::: Dr. Rummenigge Rudson Dantas - Escola de Ciências e Tecnologia (UFRN) |Apoio Técnico|: ::: Árison Rodrigo Brito ::: Franco Fonseca ::: Mariclécia Araújo ::: Rianna de Carvalho</p>
+          <p>{{ informations.descricao_tecnica|safe }}</p>
         </div>
       </li>
       <li data-orbit-slide="caracacervo">
         <div>
-          <!-- <h3>{{ informations.caracteristicas_acervo|safe }}</h3> -->
           <h3>Características do Acervo</h3>
-          <p>Acervo formado por bens museais virtuais, em formato digital, que se referem à cultura indígena e afro-brasileira do Seridó, região de clima semiárido no Rio Grande do Norte, nordeste do Brasil.</p>
+          <p>{{ informations.caracteristicas_acervo|safe }}</p>
         </div>
       </li>
     </ul>
@@ -87,72 +79,6 @@
 </div>
 </div>
 </div>
-
-<!--     <div id='container' class='clearfix'>
-        <div class='row collapse'>
-            <div class='large-8 columns'>
-                <section class='info-column'>
-                    <ul class='row'>
-                        <li>
-                            <a href='/apresentacao/institutional/who-we-are' {% if section == 'who-we-are' %} class='active' {% endif %}>Quem nós somos</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/conception' {% if section == 'conception' %} class='active' {% endif %}>Concepção</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/mission' {% if section == 'mission' %} class='active' {% endif %}>Missão</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/goals' {% if section == 'goals' %} class='active' {% endif %}>Objetivos</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/technical-description' {% if section == 'technical-description' %} class='active' {% endif %}>Descrição técnica</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/acquis-characteristics' {% if section == 'acquis-characteristics' %} class='active' {% endif %}>Características do acervo</a>
-                        </li>
-                    </ul>
-                </section>
-            </div>
-            <div class='large-16 columns'>
-                <section>
-                    <header class='row'>
-                        {% if section == 'who-we-are' %}
-                            <h4>Quem nós somos</h4>
-                        {% elif section == 'conception' %}
-                            <h4>Concepção</h4>
-                        {% elif section == 'mission' %}
-                            <h4>Missão</h4>
-                        {% elif section == 'goals' %}
-                            <h4>Objetivos</h4>
-                        {% elif section == 'technical-description' %}
-                            <h4>Descrição técnica</h4>
-                        {% elif section == 'acquis-characteristics' %}
-                            <h4>Características do acervo</h4>
-                        {% endif %}
-                    </header>
-                    <div class='desc row'>
-                        {% if section == 'who-we-are' %}
-                            <h5>Museu {{ informations.nome }}</h5>
-                            <h6>Fundado em {{ informations.data_fundacao }}</h6>
-                            <h6 class='text-justify'>{{ informations.apresentacao|safe }}</h6>
-                        {% elif section == 'conception' %}
-                            <h6 class='text-justify'>{{ informations.concepcao|safe }}</h6>
-                        {% elif section == 'mission' %}
-                            <h6 class='text-justify'>{{ informations.missao|safe }}</h6>
-                        {% elif section == 'goals' %}
-                            <h6 class='text-justify'>{{ informations.objetivos|safe }}</h6>
-                        {% elif section == 'technical-description' %}
-                            <h6 class='text-justify'>{{ informations.descricao_tecnica|safe }}</h6>
-                        {% elif section == 'acquis-characteristics' %}
-                            <h6 class='text-justify'>{{ informations.caracteristicas_acervo|safe }}</h6>
-                        {% endif %}
-
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div> -->
 {% endblock %}
 
 {% block footer %}

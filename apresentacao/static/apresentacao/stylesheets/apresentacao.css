@@ -1,6 +1,7 @@
 body{
-	background-image:url(../img/background_fabric_of_squares_gray.png);
+	/*background-image:url(../img/background_fabric_of_squares_gray.png);*/
 	font-family: 'Open Sans', sans-serif;
+  background-image:url(../img/texturam-.jpg);
 	/*background-color:#E7882C;*/
 	
 }
@@ -16,10 +17,10 @@ h1,h2,h3,h4,h5 {
 }
 
 #pagina header, #pagina header .mdl-layout__drawer-button {
-	/*background-image:url(../img/teste.jpg);*/
+	background-image:url(../img/background_fabric_of_squares_gray.png);
 	color: #3b3b3b;
 	/*margin-top: 15px;*/
-	background-color:#424242;
+	/*background-color:  #424242;*/
 }
 
 #pagina header a {
@@ -570,7 +571,7 @@ meta.foundation-data-attribute-namespace {
 }
 /*Home*/
 #telapresentacao {
-    margin-top: 64px;
+    margin-top: 56px;
     background-color: #fff;
     padding: 15px;
   }
@@ -746,22 +747,28 @@ meta.foundation-data-attribute-namespace {
   color: #043F45;
   text-align: center;
   margin: 0 !important;
-   
 }
 #ultimanoticia .mdl-grid{
   padding: 25px;
  ;
 }
+/*noticias completas*/
+.noticias-completas {
+padding: 15px 100px 15px 100px;
+
+}
+/*fim noticias completas*/
 #equipe{
-	background-color: #f3f3f3
+	background-color: #382F2F;
+  opacity: 0.94;
 }
  #equipe .equipecont{
   position: relative;
     max-width:900px;
-    color: #043F45; 
+    color: #fff; 
     margin-bottom:32px;
     text-align:center;
-    padding: 60px 60px;
+    padding: 3px 43px;
     margin: 0 auto;
   }
 
@@ -815,7 +822,8 @@ meta.foundation-data-attribute-namespace {
 /* coletanea*/
 #orbit-descricoes{
 	background-color: #f3f3f3;
-    margin-top: 64px !important;
+    margin-top: 56px !important;
+      opacity: 0.93;
 }
 #orbit-descricoes .controls{
     padding-top:30px !important;
@@ -873,7 +881,7 @@ meta.foundation-data-attribute-namespace {
   }
   #coletaneatotal {
     background-color: #f3f3f3;
-    margin-top:64px;
+    margin-top:56px;
   }
   #coletaneatotal > div{
     max-width:900px;
@@ -885,7 +893,7 @@ meta.foundation-data-attribute-namespace {
   /*midias*/
   #orbit-coletaneas{
   background-color: #f3f3f3;
-    margin-top: 64px !important;
+    margin-top: 56px !important;
 }
 #orbit-coletaneas .controls-ct{
     padding:0;
@@ -914,3 +922,49 @@ a[disabled] {
   pointer-events: none;
 }
 /*fim de midias*/
+/*header*/
+.tronco-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+  padding-right: 0;    
+}
+.mdl-layout__header .mdl-navigation__link{
+  color: #3A1D1D !important;
+}
+.mdl-layout__drawer .mdl-navigation__link{
+  color: #3A1D1D !important;
+}
+.mdl-textfield{
+  color: #3A1D1D;
+}
+.material-icons{
+  color: #3A1D1D;
+}
+/*Fim header*/
+/*Fooder*/
+.mdl-mega-footer{
+  background-image:url(../media/imagens/bg_squares.png) !important;
+  background-image: url(../img/bg_squares.png) !important;
+}
+/*fim fooder*/
+/*contact - formulario de inscrição*/
+#orbit-descricoest .teste{
+  width: 400px;
+  margin-bottom: 12px;
+  padding: 6px;
+}
+#orbit-descricoest .testemen{
+  width: 500px;
+  margin-bottom: 12px;
+  padding: 6px;
+}
+  #orbit-descricoest{
+  margin:0 !important;
+  margin-top: 56px !important;
+  background-color: #382F2F;
+  opacity: 0.93;
+}
+#orbit-descricoest .mdl-cell{
+  left: 27px;
+  top: -22px; 
+  position: relative;
+}
+/*Fim formulario*/
