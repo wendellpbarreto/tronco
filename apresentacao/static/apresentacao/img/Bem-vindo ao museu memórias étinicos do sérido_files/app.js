@@ -307,16 +307,3 @@ $(document).foundation({
 
     return false;
   });
-  // animação do video midias
-  function abrir(URL) {
- 
-  var width = 950;
-  var height = 550;
- 
-  var left = 200;
-  var top = 50;
- 
-  window.open(URL,'janela', 'width='+width+', height='+height+', top='+top+', left='+left+', scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no');
- 
-};
-// Fim da animação

@@ -54,7 +54,7 @@ class View(GenericView):
             main_collectanea = None
 
         try:
-            collectaneas = Coletanea.objects.all().order_by('-id')[1:6]
+            collectaneas = Coletanea.objects.all().order_by('-id')[1:9]
         except:
             collectaneas = None
 

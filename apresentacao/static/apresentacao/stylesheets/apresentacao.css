@@ -1,0 +1,970 @@
+body{
+	/*background-image:url(../img/background_fabric_of_squares_gray.png);*/
+	font-family: 'Open Sans', sans-serif;
+  background-image:url(../img/texturam-.jpg);
+	/*background-color:#E7882C;*/
+	
+}
+h1,h2,h3,h4,h5 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+#pagina header {
+	position: fixed;
+	box-shadow: 0 0 10px white;
+	max-width: 900px;
+	z-index: 9999;	
+}
+
+#pagina header, #pagina header .mdl-layout__drawer-button {
+	background-image:url(../img/background_fabric_of_squares_gray.png);
+	color: #3b3b3b;
+	/*margin-top: 15px;*/
+	/*background-color:  #424242;*/
+}
+
+#pagina header a {
+	font-size: 16px;
+	color: rgba(233, 86, 42, 0.8);
+	padding: 0 10px;
+}
+
+#pagina header a:hover {
+	font-weight: bold;
+}
+#pagina header a.active {
+	color: #3b3b3b;
+	font-weight: bold;
+}
+
+#pagina .mdl-layout__container {
+	position: relative;
+}
+
+#pagina .mdl-layout__drawer > .mdl-layout-title{
+	line-height: initial;
+	padding: 10px !important;
+	font-size: 23px;
+	text-align: center;
+}
+#pagina .mdl-layout__obfuscator,
+#pagina .mdl-layout__drawer {
+	position: fixed;
+	z-index: 10001;	
+}
+
+#pagina .mdl-layout__drawer {
+	position: fixed;
+	z-index: 10002;	
+}
+
+
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+meta.foundation-data-attribute-namespace { font-family: false; }
+
+/* line 300, ../bower_components/foundation/scss/foundation/components/_global.scss */
+meta.foundation-version {
+  font-family: "/5.2.1/";
+}
+
+/* line 305, ../bower_components/foundation/scss/foundation/components/_global.scss */
+meta.foundation-mq-small {
+  font-family: "/only screen and (max-width: 40em)/";
+  width: 0em;
+}
+
+/* line 310, ../bower_components/foundation/scss/foundation/components/_global.scss */
+meta.foundation-mq-medium {
+  font-family: "/only screen and (min-width:40.063em)/";
+  width: 40.063em;
+}
+
+/* line 315, ../bower_components/foundation/scss/foundation/components/_global.scss */
+meta.foundation-mq-large {
+  font-family: "/only screen and (min-width:64.063em)/";
+  width: 64.063em;
+}
+
+/* line 320, ../bower_components/foundation/scss/foundation/components/_global.scss */
+meta.foundation-mq-xlarge {
+  font-family: "/only screen and (min-width:90.063em)/";
+  width: 90.063em;
+}
+
+/* line 325, ../bower_components/foundation/scss/foundation/components/_global.scss */
+meta.foundation-mq-xxlarge {
+  font-family: "/only screen and (min-width:120.063em)/";
+  width: 120.063em;
+}
+
+/* line 330, ../bower_components/foundation/scss/foundation/components/_global.scss */
+meta.foundation-data-attribute-namespace {
+  font-family: false;
+}
+
+/* line 340, ../bower_components/foundation/scss/foundation/components/_global.scss */
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@-webkit-keyframes rotate {
+  /* line 49, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 50, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  /* line 53, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  /* line 54, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes rotate {
+  /* line 57, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  from {
+    -o-transform: rotate(0deg);
+  }
+
+  /* line 58, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  to {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  /* line 62, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  from {
+    transform: rotate(0deg);
+  }
+
+  /* line 63, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Orbit Graceful Loading */
+/* line 67, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.slideshow-wrapper {
+  position: relative;
+}
+/* line 70, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.slideshow-wrapper ul {
+  list-style-type: none;
+  margin: 0;
+}
+/* line 77, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.slideshow-wrapper ul li,
+.slideshow-wrapper ul li .orbit-caption {
+  display: none;
+}
+/* line 80, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.slideshow-wrapper ul li:first-child {
+  display: block;
+}
+/* line 83, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.slideshow-wrapper .orbit-container {
+  background-color: transparent;
+}
+/* line 86, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.slideshow-wrapper .orbit-container li {
+  display: block;
+}
+/* line 88, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.slideshow-wrapper .orbit-container li .orbit-caption {
+  display: block;
+}
+
+/* line 94, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.preloader {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+  border: solid 3px;
+  border-color: #555 #fff;
+  -webkit-border-radius: 1000px;
+  border-radius: 1000px;
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: rotate;
+  -moz-animation-duration: 1.5s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -o-animation-name: rotate;
+  -o-animation-duration: 1.5s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+  animation-name: rotate;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* line 126, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  background: none;
+}
+/* line 132, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  -webkit-transform: translateZ(0);
+}
+/* line 141, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container img {
+  display: block;
+  max-width: 100%;
+}
+/* line 143, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.fade > * {
+  -webkit-transform: translate3d(0, 0, 0);
+  opacity: 0.01;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+/* line 149, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.fade > *.animate-in {
+  opacity: 1;
+  z-index: 20;
+  transition: opacity 500ms ease-in-out;
+  -moz-transition: opacity 500ms ease-in-out;
+  -webkit-transition: opacity 500ms ease-in-out;
+}
+/* line 156, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.fade > *.animate-out {
+  opacity: 0.01;
+  z-index: 10;
+  transition: opacity 500ms ease-in-out;
+  -moz-transition: opacity 500ms ease-in-out;
+  -webkit-transition: opacity 500ms ease-in-out;
+}
+/* line 164, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.swipe-next > * {
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+/* line 166, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.swipe-next > *.animate-in {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+/* line 177, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.swipe-next > *.animate-out {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  -o-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+/* line 190, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.swipe-prev > * {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  -o-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+/* line 196, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.swipe-prev > *.animate-in {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+/* line 207, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container.swipe-prev > *.animate-out {
+  -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  -o-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+/* line 220, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  -o-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+/* line 231, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container > *.active {
+  opacity: 1;
+  top: 0;
+  left: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+/* line 242, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slides-container > * .orbit-caption {
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  color: white;
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+}
+/* line 259, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slide-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  color: white;
+  background: rgba(0, 0, 0, 0);
+  z-index: 10;
+}
+/* line 264, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-slide-number span {
+  font-weight: 700;
+  padding: 0.3125rem;
+}
+/* line 270, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-timer {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  height: 6px;
+  width: 100px;
+  z-index: 10;
+}
+/* line 277, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-timer .orbit-progress {
+  height: 3px;
+  background-color: #e9562a;
+  display: block;
+  width: 0%;
+  position: relative;
+  right: 20px;
+  top: 5px;
+}
+/* line 290, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-timer > span {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 11px;
+  height: 14px;
+  border: solid 4px #fff;
+  border-top: none;
+  border-bottom: none;
+}
+/* line 304, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-timer.paused > span {
+  right: -4px;
+  top: 0px;
+  width: 11px;
+  height: 14px;
+  border: inset 8px;
+  border-right-style: solid;
+  border-color: transparent transparent transparent #fff;
+}
+/* line 312, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-timer.paused > span.dark {
+  border-color: transparent transparent transparent #333;
+}
+/* line 321, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container:hover .orbit-timer > span {
+  display: block;
+}
+/* line 325, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-prev,
+.orbit-container .orbit-next {
+  position: absolute;
+  top: 45%;
+  margin-top: -25px;
+  width: 36px;
+  height: 60px;
+  line-height: 50px;
+  color: white;
+  background-color: #505050;
+  text-indent: -9999px !important;
+  z-index: 10;
+}
+/* line 337, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-prev:hover,
+.orbit-container .orbit-next:hover {
+  background-color: #e9562a;
+}
+/* line 341, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-prev > span,
+.orbit-container .orbit-next > span {
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  display: block;
+  width: 0;
+  height: 0;
+  border: inset 10px;
+}
+/* line 351, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-prev {
+  left: 0;
+}
+/* line 352, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-prev > span {
+  border-right-style: solid;
+  border-color: transparent;
+  border-right-color: #fafafa;
+}
+/* line 357, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-prev:hover > span {
+  border-right-color: white;
+}
+/* line 361, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-next {
+  right: 0;
+}
+/* line 362, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-next > span {
+  border-color: transparent;
+  border-left-style: solid;
+  border-left-color: #fafafa;
+  left: 50%;
+  margin-left: -4px;
+}
+/* line 369, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-container .orbit-next:hover > span {
+  border-left-color: white;
+}
+
+/* line 375, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-bullets-container {
+  text-align: center;
+}
+
+/* line 376, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-bullets {
+  margin: 0 auto 30px auto;
+  overflow: hidden;
+  position: relative;
+  top: 10px;
+  float: none;
+  text-align: center;
+  display: block;
+}
+/* line 385, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-bullets li {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  background: #cccccc;
+  float: none;
+  margin-right: 6px;
+  -webkit-border-radius: 1000px;
+  border-radius: 1000px;
+}
+/* line 395, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-bullets li.active {
+  background: #999999;
+}
+/* line 399, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.orbit-bullets li:last-child {
+  margin-right: 0;
+}
+
+/* line 406, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.touch .orbit-container .orbit-prev,
+.touch .orbit-container .orbit-next {
+  display: none;
+}
+/* line 409, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+.touch .orbit-bullets {
+  display: none;
+}
+
+@media only screen and (min-width: 40.063em) {
+  /* line 418, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  .touch .orbit-container .orbit-prev,
+  .touch .orbit-container .orbit-next {
+    display: inherit;
+  }
+  /* line 421, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  .touch .orbit-bullets {
+    display: block;
+  }
+}
+@media only screen and (max-width: 40em) {
+  /* line 428, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  .orbit-stack-on-small .orbit-slides-container {
+    height: auto !important;
+  }
+  /* line 429, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  .orbit-stack-on-small .orbit-slides-container > * {
+    position: relative;
+    margin-left: 0% !important;
+  }
+  /* line 436, ../bower_components/foundation/scss/foundation/components/_orbit.scss */
+  .orbit-stack-on-small .orbit-timer,
+  .orbit-stack-on-small .orbit-next,
+  .orbit-stack-on-small .orbit-prev,
+  .orbit-stack-on-small .orbit-bullets {
+    display: none;
+  }
+}
+/*Home*/
+#telapresentacao {
+    margin-top: 56px;
+    background-color: #fff;
+    padding: 15px;
+  }
+  #telapresentacao > div{
+    max-width:900px;
+    color: #043F45; 
+    /*margin-bottom:32px;*/
+    text-align:center;
+    padding: 60px 0;
+  }
+  #infocoletanea > div{
+    max-width:900px;
+    color: #043F45; 
+    text-align:center;
+    /*padding: 60px 0;*/
+    background-color: #f3f3f3;
+  }
+ 
+
+  @media(max-width: 768px) {
+    #exposicoes .expo-img{
+      width: 100%;
+    } 
+  }
+  @media(min-width: 768px) {
+    #exposicoes .expo-img{
+      width: 50%;
+    } 
+  }
+  @media(min-width: 920px) {
+    #exposicoes .expo-img{
+      width: 25%;
+    } 
+  }
+
+  #quemsomos {
+    position: relative;
+    background-color: #fff;
+    
+    /*padding: 25px 0;*/
+  }
+
+  #quemsomos .mld-grid {
+    padding: 0 !important;
+
+  }
+  #quemsomos > div {
+  color: #043F45;
+  }
+
+
+
+  .quem-somos.mdl-card {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.97);
+
+  }
+  .quem-somos > .mdl-card__actions {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .quem-somos > .mdl-card__title {
+    display: block;
+  }
+  .quem-somos > .mdl-card__title > p {
+    margin-top: 0;
+    font-size: 18px; 
+  }
+  .quem-somos > .mdl-card__actions {
+    display: flex;
+    box-sizing:border-box;
+    align-items: center;
+  }
+  .quem-somos > .mdl-card__title,
+  .quem-somos > .mdl-card__actions,
+  .quem-somos > .mdl-card__actions > .mdl-button {
+    color: #3b3b3b;
+  }
+
+   .orbit-next,
+  .orbit-prev {
+  	background-color: transparent !important;
+  }
+
+  .orbit-next span{
+  	border-left-color: #043F45 !important;
+  }
+
+  .orbit-prev span{
+  	border-right-color: #043F45 !important;
+  }
+  #exposicoes{
+  	background-color: #f3f3f3;
+  }
+  #exposicoes .mdl-grid{
+  text-align: center;
+  color: #043F45;
+  margin-top: 0;
+}
+ #exposicoes .expo-img{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+  }
+.expo-img .info{
+  /*display: none;*/
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  bottom:0;
+  left: 0;
+  background-color: rgba(96,125,139, 0.7);
+  color: #FFF;
+  text-align: center; 
+  overflow: hidden;
+}
+.expo-img:hover .info{
+   -webkit-animation-name: show-info; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 0.3s; /* Chrome, Safari, Opera */
+    animation-name: show-info;
+    animation-duration: 0.3s;
+    height: 100%;
+    padding: 50px;
+}
+.expo-img .author{
+  /*display: none;*/
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  opacity: 0;
+  line-height: 40px;
+  bottom: 0;
+  background-color: #FFF;
+  color: #043F45;
+  padding: 0 25px;
+  font-weight: bold;
+  border-bottom: 1px solid #043F45;
+  overflow: hidden;
+}
+.expo-img:hover .author{
+   -webkit-animation-name: show-author; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: show-author;
+    animation-duration: 1s;
+    opacity: 1;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-info {
+    from {height: 0;}
+    to {height: 100%;}
+}
+
+/* Standard syntax */
+@keyframes show-info {
+    from {height: 0;}
+    to {height: 100%;}
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-author {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Standard syntax */
+@keyframes show-author {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+#ultimanoticia{
+	background-color: #fff
+}
+#ultimanoticia > div{
+  color: #043F45;
+  text-align: center;
+  margin: 0 !important;
+}
+#ultimanoticia .mdl-grid{
+  padding: 25px;
+ ;
+}
+/*noticias completas*/
+.noticias-completas {
+padding: 15px 100px 15px 100px;
+
+}
+/*fim noticias completas*/
+#equipe{
+	background-color: #382F2F;
+  opacity: 0.94;
+}
+ #equipe .equipecont{
+  position: relative;
+    max-width:900px;
+    color: #fff; 
+    margin-bottom:32px;
+    text-align:center;
+    padding: 3px 43px;
+    margin: 0 auto;
+  }
+
+   #equipe .expoe-img{
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  #equipe .expoe-img img{
+    -webkit-filter: sepia(1);
+  }
+
+  #equipe .expoe-img:hover img{
+    -webkit-filter: sepia(0);
+  }
+
+.expoe-img .authore{
+  /*display: none;*/
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  opacity: 0;
+  bottom: 0;
+  background-color: #FFF;
+  color: #043F45;
+  padding: 0 25px;
+  font-weight: bold;
+  border-bottom: 1px solid #043F45;
+  overflow: hidden;
+}
+.expoe-img:hover .authore{
+   -webkit-animation-name: show-author; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: show-author;
+    animation-duration: 1s;
+    opacity: 1;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes show-authore {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Standard syntax */
+@keyframes show-authore {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+/*instituicao*/
+/* coletanea*/
+#orbit-descricoes{
+	background-color: #f3f3f3;
+    margin-top: 56px !important;
+      opacity: 0.93;
+}
+#orbit-descricoes .controls{
+    padding-top:30px !important;
+}
+#orbit-descricoes .controls a{
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    box-shadow: none;
+    text-align: left;
+    font-size: 12px;
+}
+#orbit-descricoes .controls a:hover{
+    color:#E7882C;
+}
+#orbit-descricoes .example-orbit-content li{
+    padding-left:25px;
+    padding-right:25px;
+    text-align: justify;
+}
+/*fim de instituicao*/
+.demo-card-image.mdl-card {
+  width: 256px;
+  height: 256px;
+}
+.demo-card-image > .mdl-card__actions {
+  height: 72px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.demo-card-image__filename {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.demo-card-image__filename  span{
+  color: #fff;
+  font-size: 12px;
+  display: block;
+}
+.demo-card-image__filename  a{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    font-size: 18px;
+    background-color: #E7882C !important; 
+}
+.demo-card-image__filename  a i{
+    font-size: 18px;
+    background-color: transparent !important;
+
+  }
+  #coletaneatotal {
+    background-color: #f3f3f3;
+    margin-top:56px;
+  }
+  #coletaneatotal > div{
+    max-width:900px;
+    color: #043F45; 
+    text-align:center;
+    padding: 6px 30px;
+  }
+  /*fim coletanea*/
+  /*midias*/
+  #orbit-coletaneas{
+  background-color: #f3f3f3;
+    margin-top: 56px !important;
+}
+#orbit-coletaneas .controls-ct{
+    padding:0;
+}
+#orbit-coletaneas .controls{
+    padding:13px 0 !important;
+}
+#orbit-coletaneas .controls a{
+
+    border: 0;
+    background-color: transparent;
+    box-shadow: none;
+    
+    font-size: 13px;
+    
+    padding-left:12px
+}
+#orbit-coletaneas .controls a i{
+  vertical-align: middle;
+}
+#orbit-coletaneas .controls{
+  text-align: center;
+  width: 100%;
+}
+a[disabled] {
+  pointer-events: none;
+}
+/*fim de midias*/
+/*header*/
+.tronco-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+  padding-right: 0;    
+}
+.mdl-layout__header .mdl-navigation__link{
+  color: #3A1D1D !important;
+}
+.mdl-layout__drawer .mdl-navigation__link{
+  color: #3A1D1D !important;
+}
+.mdl-textfield{
+  color: #3A1D1D;
+}
+.material-icons{
+  color: #3A1D1D;
+}
+/*Fim header*/
+/*Fooder*/
+.mdl-mega-footer{
+  background-image:url(../media/imagens/bg_squares.png) !important;
+  background-image: url(../img/bg_squares.png) !important;
+}
+/*fim fooder*/
+/*contact - formulario de inscrição*/
+#orbit-descricoest .teste{
+  width: 400px;
+  margin-bottom: 12px;
+  padding: 6px;
+}
+#orbit-descricoest .testemen{
+  width: 500px;
+  margin-bottom: 12px;
+  padding: 6px;
+}
+  #orbit-descricoest{
+  margin:0 !important;
+  margin-top: 56px !important;
+  background-color: #382F2F;
+  opacity: 0.93;
+}
+#orbit-descricoest .mdl-cell{
+  left: 27px;
+  top: -22px; 
+  position: relative;
+}
+/*Fim formulario*/
