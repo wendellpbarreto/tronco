@@ -51,7 +51,7 @@
                     
                         {% thumbnail image.imagem "800x600" as im_big %}
                             {% thumbnail image.imagem "200x200" crop="center"   as im %}
-                                <a style="margin-left:50px"
+                                <a class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
                                     href="{{ im_big.url }}" 
                                     data-lightbox="example-set" 
                                     data-title="Autor: {% firstof image.autor "Não informado" %} <br> Data: {% firstof image.data "Não informado" %} <br> Descrição: {% firstof image.descricao "Não informado" %} ">
