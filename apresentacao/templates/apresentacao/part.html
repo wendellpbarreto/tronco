@@ -50,13 +50,13 @@
                     {% for image in part.imagens.all %}
                     
                         {% thumbnail image.imagem "800x600" as im_big %}
-                            {% thumbnail image.imagem "200x200" crop="center"   as im %}
+                            {% thumbnail image.imagem "175x175" crop="center"   as im %}
                                 <a class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
                                     href="{{ im_big.url }}" 
                                     data-lightbox="example-set" 
                                     data-title="Autor: {% firstof image.autor "Não informado" %} <br> Data: {% firstof image.data "Não informado" %} <br> Descrição: {% firstof image.descricao "Não informado" %} ">
 
-                                    <img class="example-image" src="{{ im.url }}" alt="" style="padding:10px" />
+                                    <img class="example-image" src="{{ im.url }}" alt="" style="margin:0;" />
                                 </a>
                             {% endthumbnail %}
                         {% endthumbnail %}
