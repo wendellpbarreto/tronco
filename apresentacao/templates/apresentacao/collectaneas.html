@@ -28,13 +28,10 @@ Bem-vindo ao museu {{ informations.nome|lower }}
   }
 </style> 
 <section id="coletaneatotal">
-<div class="mdl-grid">
-
-                     
+<div class="mdl-grid">                     
     {% if collectaneas %}
     {% for collectanea in collectaneas %}
       <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-grid">
-      <!-- Qando adiciona um video, doc. audio ele n salva a imagem relacionada -->
        {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "256x256" crop="center" as im %}
         <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background: url({{im.url}}) center / cover;">
 
