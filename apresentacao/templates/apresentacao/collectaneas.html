@@ -48,13 +48,13 @@ Bem-vindo ao museu {{ informations.nome|lower }}
         </div>
         {% endthumbnail %}
         {% if not collectanea.pecas.all.0.imagens.0.imagem %}
-          <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image:url(../media/2.jpg)">
+          <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image:url(../media/logotronco.jpg); background-repeat: no-repeat;  background-position: center center;">
 
           <div class="mdl-card__title mdl-card--expand"></div>
           <div class="mdl-card__actions">
             <span class="demo-card-image__filename">
+            {{ collectanea.nome|truncatechars:45 }}
             Coletânea sem foto
-            <span>{{ collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</span>
             <a href='/apresentacao/collectanea/{{ collectanea.pk }}/'class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
               <i class="material-icons">add</i>
             </a>
