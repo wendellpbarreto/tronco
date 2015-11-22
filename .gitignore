@@ -49,8 +49,14 @@ coverage.xml
 *.log
 *.pot
 
+# Mac DS_Store
+.DS_Store
+
 # Sphinx documentation
 docs/_build/
 
-#ignoring cache folder
-museuvirtual/media/cache/*
+# Media folder
+museuvirtual/media/*
+
+# Static folder
+museuvirtual/static/*
