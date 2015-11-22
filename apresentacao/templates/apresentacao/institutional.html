@@ -9,71 +9,76 @@
 {% endblock %}
 
 {% block container %}
-    <div id='container' class='clearfix'>
-        <div class='row collapse'>
-            <div class='large-8 columns'>
-                <section class='info-column'>
-                    <ul class='row'>
-                        <li>
-                            <a href='/apresentacao/institutional/who-we-are' {% if section == 'who-we-are' %} class='active' {% endif %}>Quem nós somos</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/conception' {% if section == 'conception' %} class='active' {% endif %}>Concepção</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/mission' {% if section == 'mission' %} class='active' {% endif %}>Missão</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/goals' {% if section == 'goals' %} class='active' {% endif %}>Objetivos</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/technical-description' {% if section == 'technical-description' %} class='active' {% endif %}>Descrição técnica</a>
-                        </li>
-                        <li>
-                            <a href='/apresentacao/institutional/acquis-characteristics' {% if section == 'acquis-characteristics' %} class='active' {% endif %}>Características do acervo</a>
-                        </li>
-                    </ul>
-                </section>
-            </div>
-            <div class='large-16 columns'>
-                <section>
-                    <header class='row'>
-                        {% if section == 'who-we-are' %}
-                            <h4>Quem nós somos</h4>
-                        {% elif section == 'conception' %}
-                            <h4>Concepção</h4>
-                        {% elif section == 'mission' %}
-                            <h4>Missão</h4>
-                        {% elif section == 'goals' %}
-                            <h4>Objetivos</h4>
-                        {% elif section == 'technical-description' %}
-                            <h4>Descrição técnica</h4>
-                        {% elif section == 'acquis-characteristics' %}
-                            <h4>Características do acervo</h4>
-                        {% endif %}
-                    </header>
-                    <div class='desc row'>
-                        {% if section == 'who-we-are' %}
-                            <h5>Museu {{ informations.nome }}</h5>
-                            <h6>Fundado em {{ informations.data_fundacao }}</h6>
-                            <h6 class='text-justify'>{{ informations.apresentacao|safe }}</h6>
-                        {% elif section == 'conception' %}
-                            <h6 class='text-justify'>{{ informations.concepcao|safe }}</h6>
-                        {% elif section == 'mission' %}
-                            <h6 class='text-justify'>{{ informations.missao|safe }}</h6>
-                        {% elif section == 'goals' %}
-                            <h6 class='text-justify'>{{ informations.objetivos|safe }}</h6>
-                        {% elif section == 'technical-description' %}
-                            <h6 class='text-justify'>{{ informations.descricao_tecnica|safe }}</h6>
-                        {% elif section == 'acquis-characteristics' %}
-                            <h6 class='text-justify'>{{ informations.caracteristicas_acervo|safe }}</h6>
-                        {% endif %}
+<div id="orbit-descricoes">
+<div class="mdl-grid" style="padding:0">
 
-                    </div>
-                </section>
-            </div>
-        </div>
+  <div class="controls mdl-cell mdl-cell--4-col" style="background:#382F2F; opacity: 5.9;margin:0" >
+      <a data-orbit-link="concepcao" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-pencil-square-o" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;  concepção
+      </a>
+      <a data-orbit-link="quemsomosnos" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-users" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; Quem nos somos
+      </a>
+      <a  data-orbit-link="missao" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+         <i class="fa fa-cubes" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;  missão
+      </a>
+      <a data-orbit-link="objetivos" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-map" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; objetivos
+      </a>
+      <a data-orbit-link="descricaotecnica" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-cogs" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp; descrição técnica
+      </a>
+      <a data-orbit-link="caracacervo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <i class="fa fa-university" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;características do acervo
+      </a>
     </div>
+
+
+ <div data-sr="enter right, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--8-col"  style="padding:0; margin:0">
+  <div class="orbit-container">
+    <ul class="example-orbit-content" data-orbit >
+      <li data-orbit-slide="concepcao">
+        <div>
+          <h3> Concepção</h3>
+          <p>{{ informations.concepcao|safe }}</p>
+        </div>
+      </li>
+      <li data-orbit-slide="quemsomosnos">
+        <div>
+          <h3>{{ informations.nome }}</h3>
+          <h6 style="margin-top:-12px">Fundado em {{ informations.data_fundacao }}</h6>
+          <p class='text-justify'>{{ informations.apresentacao|safe }}</p>
+        </div>
+      </li>
+      <li data-orbit-slide="missao">
+        <div>
+          <h3>Missão</h3>
+          <p>{{ informations.missao|safe }}</p>
+        </div>
+      </li>
+      <li data-orbit-slide="objetivos">
+        <div>
+          <h3>Objetivos</h3>
+          <p>{{ informations.objetivos|safe }}</p>
+        </div>
+      </li>
+      <li data-orbit-slide="descricaotecnica">
+        <div>
+          <h3>Descrição Técnica</h3>
+          <p>{{ informations.descricao_tecnica|safe }}</p>
+        </div>
+      </li>
+      <li data-orbit-slide="caracacervo">
+        <div>
+          <h3>Características do Acervo</h3>
+          <p>{{ informations.caracteristicas_acervo|safe }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
 {% endblock %}
 
 {% block footer %}

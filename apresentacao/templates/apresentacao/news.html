@@ -9,31 +9,23 @@
 {% endblock %}
 
 {% block container %}
-    <div id='container' class='clearfix'>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style=" background-color:#fff;padding:20px; padding-top:64px">
+  <h4 style="color:#3F4545">Últimas Notícias</h4>
+    <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-card__supporting-text" style="width:100%">
         {% if news %}
-            <section class='latest-news'>
-                <header class='row'>
-                    <h5>Últimas notícias</h5>
-                    <span class='arrow-down'></span>
-                    <span class='arrow-down-inner'></span>
-                </header>
-                <ul class='row collapse'>
-                    {% for new in news %}
-                        <li class='column'>
-                            <figure>
-                                <figcaption>
-                                    <h6>{{ new.titulo }}</h6>
-                                    <p class='text-justify'>{{ new.descricao_breve }}</p>
-                                    <p class='date'>{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
-                                    <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
-                                </figcaption>
-                            </figure>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </section>
+          {% for new in news %}
+            <li style="border-bottom:1.5px solid">
+              <h5>{{ new.titulo }}</h5>
+              <p class='text-justify' style="margin-bottom:0">{{ new.descricao_breve }}</p>
+              <p class='date' style="text-align:right;margin:0">{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>                              
+              <a href='/apresentacao/new/{{ new.pk }}/' class="mdl-button">Continue lendo</a>
+            </li>         
+          {% endfor %} 
         {% endif %}
+      </div>
     </div>
+</section>
 {% endblock %}
 
 {% block footer %}

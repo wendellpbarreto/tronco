@@ -1,53 +1,32 @@
-<div id='footer' class='clearfix'>
-    <footer class='row collapse'>
-        <section class='large-8 columns'>
-            <header>
-                <h6>Contato</h6>
-            </header>
-            <div>
-                <p>UFRN – CCHLA – PPGAS</p>
-                <p>Campus Universitário s/n</p>
-                <p>Lagoa Nova, Natal/RN - 59078-970</p>
-                <p>Telefax: (084) 3342-2242.</p>
-
-                <a href='https://www.facebook.com/patrimonio.Serido'class='underline'>Entre em contato</a>
-            </div>
-        </section>
-        <section class='large-8 columns'>
-            <header>
-                <h6>Links</h6>
-                <span class='cell-divider'></span>
-            </header>
-            <div>
-                {% for link in links %}
-                    <a href='{{ link.url }}' target='_blank'>{{ link.name }}</a>
-                {% endfor %}
-            </div>
-        </section>
-        <section class='large-8 columns'>
-            <header>
-                <h6>Redes</h6>
-                <span class='cell-divider'></span>
-            </header>
-            <div>
-
-            </div>
-        </section>
-    </footer>
-    <div class='copyright row'>
-        <p>
-            © 2015 GTMV. Todos os direitos reservados aos respectivos autores.</h1>
-        </p>
+<footer class="mdl-mega-footer" style="box-shadow: 0px 0px 12px #888888;">
+  <div class="mdl-mega-footer__middle-section mdl-grid"  style="max-width:1200px;">
+    <div class="mdl-mega-footer__drop-down-section" style="color:#4D4141;">
+      <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+      <h1 class="mdl-mega-footer__heading" style="color:#4D4141;font-size:18px">Contato</h1>
+      <ul class="mdl-mega-footer__link-list" style="text-align:left">
+        <li>UFRN – CCHLA – PPGAS</li>
+        <li>Campus Universitário s/n</li>
+        <li>Lagoa Nova, Natal/RN - 59078-970</li>
+        <li>Telefax: (084) 3342-2242</li>
+        <li><a href="/apresentacao/contact" >Entre em contato</a></li>
+      </ul>
     </div>
-</div>
-
-<div id='tiny-modal' class='reveal-modal tiny'></div>
-<div id='tiny-modal2' class='reveal-modal tiny'></div>
-<div id='small-modal' class='reveal-modal small'></div>
-<div id='small-modal2' class='reveal-modal small'></div>
-<div id='medium-modal' class='reveal-modal medium'></div>
-<div id='medium-modal2' class='reveal-modal medium'></div>
-<div id='large-modal' class='reveal-modal large'></div>
-<div id='large-modal2' class='reveal-modal large'></div>
-<div id='xlarge-modal' class='reveal-modal xlarge'></div>
-<div id='xlarge-modal2' class='reveal-modal xlarge'></div>
+      <div class="mdl-mega-footer__drop-down-section" style="margin-left:20px;color:#4D4141;">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading" style="color:#4D4141; font-size:18px">Links</h1>
+          <ul class="mdl-mega-footer__link-list" style="text-align:left">
+          {% for link in links %}
+              <a href='{{ link.url }}' target='_blank'>{{ link.name }}</a>
+          {% endfor %}
+          </ul>
+      </div>
+      
+      <div class='copyright row'>
+      
+        <p>
+           <img src="/media/logotroncoap.jpg"style="background-position: center center; width=100% "> 
+            &nbsp;&nbsp;© 2015 GTMV. Todos os direitos reservados aos respectivos autores.</h1>
+        </p>
+      </div>
+  </div>
+</footer>

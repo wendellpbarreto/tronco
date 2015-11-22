@@ -11,51 +11,51 @@
 {% endblock %}
 
 {% block container %}
-    <div id='container' class='clearfix'>
-        <div class='row collapse'>
-            <div class='large-8 columns'>
-                <section class='search-column'>
-                    <header class='row'>
-                        <h5>Pesquisa</h5>
-                    </header>
-                    <form action='/apresentacao/collectanea/{{ collectanea.pk }}/search' method='get' data-default='true' class='search row collapse'>
-                        <div class='large-20 columns'>
-                            <input id='search' name='keywords' type='text' placeholder='frases, palavras, termos e etc'>
-                        </div>
-                        <div class='large-4 columns'>
-                            <a class='magnifier' data-submit data-icon='8'></a>
-                        </div>
-                    </form>
-                </section>
-            </div>
-            <section class='large-16 columns'>
-                <header class='row'>
-                    <h5>Coletânea {{ collectanea.nome|lower }}</h5>
-                    <h6>{{ collectanea.descricao }}</h6>
-                </header>
-                <ul class='collectaneas-list row collapse'>
-                    {% if parts %}
-                        {% for part in parts %}
-                            <li class='large-12 medium-12 small-24 columns'>
-                                <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/'>
-                                    <figure>
-                                        <figcaption>
-                                            <h5>{{ part.titulo|truncatechars:45 }}</h5>
-                                            <p>{{ part.descricao|truncatechars:100 }}</p>
-                                            <span class='arrow-down'></span>
-                                        </figcaption>
-                                        {% thumbnail part.imagens.0.media "570x320" crop="center" as im %}
-                                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                                        {% endthumbnail %}
-                                    </figure>
-                                </a>
-                            </li>
-                        {% endfor %}
-                    {% endif %}
-                </ul>
-            </section>
+<section id="coletaneatotal">
+<div data-sr="enter right, hustle 20px,wait 0.3s" >
+    <h4>Coletânea {{ collectanea.nome|lower }}</h4>
+    <h6>{{ collectanea.descricao }}</h6>
+</div>
+<div class="mdl-grid">
+
+    {% if parts %}
+    {% for part in parts %}
+      <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-grid">
+       {% thumbnail part.imagens.0.media "256x256" crop="center" as im %}
+        <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background: url({{im.url}})center / cover;">
+
+          <div class="mdl-card__title mdl-card--expand"></div>
+          <div class="mdl-card__actions" style="padding:1px">
+            <span class="demo-card-image__filename">
+            {{ part.titulo|truncatechars:45 }}
+            <p>{{ part.descricao|truncatechars:100 }}</p>
+             <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/'class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+              <i class="material-icons">add</i>
+            </a>
+            </span>
+          </div>
         </div>
-    </div>
+        {% endthumbnail %}
+          
+        {% if not part.imagens.0.media %}
+          <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image:url(/static/apresentacao/img/2.jpg)">
+          <div class="mdl-card__title mdl-card--expand"></div>
+          <div class="mdl-card__actions" style="padding:1px">
+            <span class="demo-card-image__filename">
+            Colêtanea sem foto
+            <p>{{ part.descricao|truncatechars:100 }}</p>
+             <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/'class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">add</i>
+            </a>
+            </span>
+          </div>
+        </div>
+         {% endif %}
+      </div>
+     {% endfor %}
+    {% endif %}
+</section>
+</div>
 {% endblock %}
 
 {% block footer %}
