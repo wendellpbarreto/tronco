@@ -42,8 +42,8 @@
 </section>
 <!-- informações peca -->
 <section id="infocoletanea">
-  <div data-sr='' class="mdl-grid">
-    <div class="mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-grid">
+    <div data-sr='' class="mdl-cell mdl-cell--12-col mdl-grid">
       <div style="width:100%">
         <h3>Coletâneas multimídias</h3>
         <h6>Todas as informações sobre obras de nossa cultura em um só lugar.</h6>
@@ -94,10 +94,17 @@
               <img data-sr='' src="{{ im.url }}" style="width: 100%">
               <div class="info">
                 <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
-                
               </div>
               <div class="author">Criada em {{ collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</div>
             {% endthumbnail %}
+
+            {% if not collectanea.pecas.all.0.imagens.0.imagem %}
+              <img data-sr='' src="/static/apresentacao/img/logotroncohome.jpg" style="padding-top:20px;width: 100%">
+              <div class="info">
+                <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
+              </div>
+              <div class="author">Coletânea sem foto</div>
+         {% endif %}
           </a>
         </div>
       {% endfor %}

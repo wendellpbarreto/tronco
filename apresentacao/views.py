@@ -50,6 +50,7 @@ class View(GenericView):
         try:
             main_collectanea = Coletanea.objects.all().order_by('-id')[0]
             main_parts = main_collectanea.pecas.all().order_by('?')[:5]
+
         except Exception, e:
             main_collectanea = None
 
