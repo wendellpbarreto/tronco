@@ -14,7 +14,7 @@
 
 </section>
 <section id="quemsomos">
-  <div class="mdl-grid" style="padding:0;">
+  <div class="mdl-grid" style="padding:0;padding-top: 30px;padding-bottom: 30px;">
     <div data-sr="enter left, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--7-col mdl-grid mdl-cell--12-col-tablet" style="padding:0; margin:0">
       <ul data-orbit>
         {% for part in main_parts %}
@@ -43,7 +43,7 @@
 <!-- informações peca -->
 <section id="infocoletanea">
   <div class="mdl-grid">
-    <div data-sr='' class="mdl-cell mdl-cell--12-col mdl-grid">
+    <div data-sr='' class="mdl-cell mdl-cell--12-col mdl-grid"  style="padding-left:67px; padding-right:67px">
       <div style="width:100%" style="color:#ffffff">
         <h4>COLETÂNEAS MULTIMÍDIAS</h4>
         <h6>Todas as informações sobre obras de nossa cultura em um só lugar.</h6>
@@ -89,7 +89,7 @@
 <section id="exposicoes">
   <div data-sr=''class="mdl-cell mdl-cell--6-col mdl-grid">
     <div style="width:100%; padding-top:10px">
-      <h3> Útimas Coletâneas</h3>
+      <h4> ÚLTIMAS COLETÂNEAS</h4>
       <h6>Conheça algumas de nossas coletâneas abaixo</h6>
     </div>
   </div>
@@ -118,6 +118,9 @@
         </div>
       {% endfor %}
     {% endif %}
+    <div style="position: relative; width:100%; text-align: right; padding: 30px">
+      <a href='/apresentacao/collectaneas/' class='underline' style="color:#51c18d; ">Ver mais</a>
+    </div>
   </div>
 </section>
 <!-- fim coletanea -->
@@ -126,8 +129,8 @@
 {% if news %}
 <section id="ultimanoticia">
   <div data-sr="enter left "class="mdl-cell mdl-cell--12-col">
-    <div style="width:100%; padding-top:10px">
-      <h3> Útimas Notícias</h3>
+    <div style="width:100%; padding-top:10px;">
+      <h4> ÚLTIMAS NOTÍCIAS</h4>
       <h6> Acompanhe as últimas notícias que está acontecendo nas memórias do seridó.</h6>
     </div>
   </div>
@@ -151,7 +154,7 @@
   <div data-sr='' class="mdl-grid equipecont">
     <div class="mdl-cell mdl-cell--12-col mdl-grid">
       <div style="width:100%">
-        <h3> Nossa Equipe</h3>
+        <h4> NOSSA EQUIPE</h4>
       </div>
     </div>
 
