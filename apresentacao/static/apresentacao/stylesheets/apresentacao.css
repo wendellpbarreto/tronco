@@ -817,11 +817,12 @@ padding-bottom: 45px;
 /* coletanea*/
 #orbit-descricoes{
 	background-color: #f3f3f3;
-    margin-top: 56px !important;
-      opacity: 0.93;
+  margin-top: 56px !important;
+  opacity: 0.93;
 }
 #orbit-descricoes .controls{
     padding-top:30px !important;
+    background-color: #00341C !important;
 }
 #orbit-descricoes .controls a{
     width: 100%;
@@ -830,6 +831,7 @@ padding-bottom: 45px;
     box-shadow: none;
     text-align: left;
     font-size: 12px;
+    color: #A1FCD2;
 }
 #orbit-descricoes .controls a:hover{
     color:#E7882C;
@@ -952,8 +954,9 @@ a[disabled] {
   #orbit-descricoest{
   margin:0 !important;
   margin-top: 56px !important;
-  background-color: #382F2F;
+  background-color: #00341C;
   opacity: 0.93;
+  padding-bottom: 20px;
 }
 #orbit-descricoest .mdl-cell{
   left: 27px;
@@ -978,7 +981,15 @@ a[disabled] {
 @media(max-width: 1024px) {
     .logo{
       display: block;
-    } 
+    }
+    .logo-header {
+      width: 100%
+    }
+    .logo-pequeno{
+      position: absolute;
+      left: 40% !important;
+      bottom: 10px;
+    }
   }
 .noticia{
   border-right:1px solid;
