@@ -13,9 +13,9 @@
 {% block container %}
 <link rel="stylesheet" href="{{ STATIC_URL }}apresentacao/stylesheets/lightbox.css">
 <div id="orbit-coletaneas">
-        <div class='mdl-grid' style="padding:0">
+        <div class='mdl-grid' style="padding:0; padding-top:40px">
             <div class="controls-ct mdl-cell mdl-cell--12-col" style="margin:0;width: 900px;" >
-               <div class="controls mdl-cell mdl-cell--12-col" style="background:#382F2F; opacity:0.83;margin:0;" >
+               <div class="controls mdl-cell mdl-cell--12-col" style="background:#382F2F; opacity:0.83;margin:0;background-color:#1a774c" >
 
                     <a href='/apresentacao/part/{{ part.pk }}/collectanea/{{ collectanea.pk }}/photos' {% if section == 'photos' %} {% endif %}  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                     {% if not part.imagens %}

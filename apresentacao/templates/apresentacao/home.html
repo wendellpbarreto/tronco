@@ -4,18 +4,18 @@
 
 {% block container %}
 
-<section id="telapresentacao">
+<section id="telapresentacao" style="background-color: #1a774c">
   <div data-sr='' class="mdl-grid">
     <div>
-      <h3>Memórias étnicos do Seridó</h3>
-      <h6>Fundado em 10 de Dezembro de 2013 O Museu Virtual “Tronco, ramos e raízes!”, dedica-se à valorização e difusão do patrimônio étnico do Seridó.</h6>
+      <h4>MEMÓRIAS ÉTNICAS DO SERIDÓ</h4>
+      <h6 style="font-family: 'Open Sans', sans-serif ">Fundado em 10 de Dezembro de 2013 O Museu Virtual “Tronco, ramos e raízes!”, dedica-se à valorização e difusão do patrimônio étnico do Seridó.</h6>
     </div>
   </div>
 
 </section>
 <section id="quemsomos">
-  <div class="mdl-grid" style="padding:0; box-shadow:0px 2px 12px #888888;">
-    <div data-sr="enter left, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--8-col mdl-grid mdl-cell--12-col-tablet" style="padding:0; margin:0">
+  <div class="mdl-grid" style="padding:0;padding-top: 30px;padding-bottom: 30px;">
+    <div data-sr="enter left, hustle 20px,wait 0.5s" class="mdl-cell mdl-cell--7-col mdl-grid mdl-cell--12-col-tablet" style="padding:0; margin:0">
       <ul data-orbit>
         {% for part in main_parts %}
         <li data-orbit-slide="main-peca-{{ part.id }}">
@@ -25,7 +25,7 @@
         </li>{% endfor %}
       </ul>
     </div>
-        <div data-sr="enter left, hustle 20px,wait 1.0s" class="mdl-cell mdl-cell--4-col mdl-grid mdl-cell--12-col-tablet">
+        <div data-sr="enter left, hustle 20px,wait 1.0s" class="mdl-cell mdl-cell--5-col mdl-grid mdl-cell--12-col-tablet">
           <div class="mdl-cell mdl-cell--12-col mdl-grid">
             <h4 style='margin: 0px 0 5px;'>Nossa Concepção</h4>
 
@@ -34,7 +34,7 @@
           </div>
           <div class="mdl-cell mdl-cell--12-col mdl-grid" style="margin:0">
             <div style="  position: absolute;  right: 20px;  bottom: 20px;">
-              <a href='/apresentacao/institutional/conception' class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> leia mais </a>
+              <a href='/apresentacao/institutional/conception' class="mdl-button mdl-js-button" style="color: #1a774c;"> leia mais </a>
             </div>
           </div>
         </div>
@@ -43,32 +43,40 @@
 <!-- informações peca -->
 <section id="infocoletanea">
   <div class="mdl-grid">
-    <div data-sr='' class="mdl-cell mdl-cell--12-col mdl-grid">
-      <div style="width:100%">
-        <h3>Coletâneas multimídias</h3>
+    <div data-sr='' class="mdl-cell mdl-cell--12-col mdl-grid"  style="padding-left:67px; padding-right:67px">
+      <div style="width:100%" style="color:#ffffff">
+        <h4>COLETÂNEAS MULTIMÍDIAS</h4>
         <h6>Todas as informações sobre obras de nossa cultura em um só lugar.</h6>
       </div>
       <div data-sr="enter left, hustle 20px" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
         <div style="width:100%">
-          <i class="fa fa-video-camera" style="font-size: 100px"></i>
+          <div class="icon">
+          <i class="fa fa-video-camera"></i>
+          </div>
           <h6>Vídeos</h6>
         </div>
       </div>
       <div data-sr="enter left, hustle 20px,wait 0.2s" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
         <div style="width:100%">
-          <i class="fa fa-camera-retro" style="font-size: 100px"></i>
+          <div class="icon">
+          <i class="fa fa-camera"></i>
+          </div>
           <h6>Fotos</h6>
         </div>
       </div>
       <div data-sr="enter left, hustle 20px,wait 0.3s" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
         <div style="width:100%">
-          <i class="fa fa-file-audio-o" style="font-size: 100px"></i>
+          <div class="icon">
+          <i class="fa fa-volume-up"></i>
+          </div>
           <h6>Audios</h6>
         </div>
       </div>
       <div data-sr="enter left, hustle 20px,wait 0.4s" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
         <div style="width:100%">
-          <i class="fa fa-file-text-o" style="font-size: 100px"></i>
+          <div class="icon">
+          <i class="fa fa-file-text-o"></i>
+          </div>
           <h6>Documentos</h6>
         </div>
       </div>  
@@ -79,62 +87,66 @@
 <!-- coletaneas -->
 
 <section id="exposicoes">
-  <div data-sr=''class="mdl-cell mdl-cell--12-col mdl-grid">
+  <div data-sr=''class="mdl-cell mdl-cell--6-col mdl-grid">
     <div style="width:100%; padding-top:10px">
-      <h3> Útimas Coletâneas</h3>
+      <h4> ÚLTIMAS COLETÂNEAS</h4>
       <h6>Conheça algumas de nossas coletâneas abaixo</h6>
     </div>
   </div>
-  <div class="mdl-grid" style="background: white; padding:0">
+  <div class="mdl-grid" style="background: #1a774c; padding:0">
     {% if collectaneas %}
       {% for collectanea in collectaneas %}
-        <div class="expo-img">
-          <a href='/apresentacao/collectanea/{{ collectanea.pk }}/'>
-            {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "600x600" crop="center" as im %}
-              <img data-sr='' src="{{ im.url }}" style="width: 100%">
-              <div class="info">
-                <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
-              </div>
-              <div class="author">Criada em {{ collectanea.data_criacao|date:'d \d\e F \d\e Y' }}</div>
-            {% endthumbnail %}
+        <div class="mdl-cell mdl-cel--4-col">
+          <div class="expo-img" style="margin:0 auto">
+            <a href='/apresentacao/collectanea/{{ collectanea.pk }}/'>
+              {% thumbnail collectanea.pecas.all.0.imagens.0.imagem "600x600" crop="center" as im %}
+                <img data-sr='' src="{{ im.url }}" style="width: 100%; border-radius: 50%; border-style: solid; border-color:#fff">
+                <div class="info">
+                  <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
+                </div>
+              {% endthumbnail %}
 
-            {% if not collectanea.pecas.all.0.imagens.0.imagem %}
-              <img data-sr='' src="/static/apresentacao/img/logotroncohome.jpg" style="padding-top:20px;width: 100%">
-              <div class="info">
-                <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
-              </div>
-              <div class="author">Coletânea sem foto</div>
-         {% endif %}
-          </a>
+              {% if not collectanea.pecas.all.0.imagens.0.imagem %}
+                <img data-sr='' src="/static/apresentacao/img/logotroncohome.jpg" style="padding-top:20px;width: 100%">
+                <div class="info">
+                  <h5>{{ collectanea.nome|truncatechars:45 }}</h5>
+                </div>
+                <div class="author">Coletânea sem foto</div>
+           {% endif %}
+            </a>
+          </div>
         </div>
       {% endfor %}
     {% endif %}
+    <div style="position: relative; width:100%; text-align: right; padding: 30px">
+      <a href='/apresentacao/collectaneas/' class='underline' style="color:#51c18d; ">Ver mais</a>
+    </div>
   </div>
 </section>
 <!-- fim coletanea -->
 
 <!-- Noticias -->
+{% if news %}
 <section id="ultimanoticia">
   <div data-sr="enter left "class="mdl-cell mdl-cell--12-col">
-    <div style="width:100%; padding-top:10px">
-      <h3> Útimas Notícias</h3>
+    <div style="width:100%; padding-top:10px;">
+      <h4> ÚLTIMAS NOTÍCIAS</h4>
       <h6> Acompanhe as últimas notícias que está acontecendo nas memórias do seridó.</h6>
     </div>
   </div>
   <div class="mdl-grid">
-    {% if news %}
       {% for new in news %}
-    <div data-sr="enter left" class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-card mdl-shadow--3dp" >
+    <div data-sr="enter left" class="noticia mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
         <div>
           <strong><h5>{{ new.titulo }}</h5></strong>
           <p class='date' style="margin-bottom:0">{{ new.data_de_criacao|date:'d \d\e F \d\e Y'  }}</p>
-          <a href='/apresentacao/new/{{ new.pk }}/' class='underline'>continue lendo</a>
+          <a href='/apresentacao/new/{{ new.pk }}/' class='underline' style="color:#51c18d">continue lendo</a>
         </div>
     </div>
       {% endfor %}
-    {% endif %}
   </div>
 </section>
+{% endif %}
 <!-- Fim noticias -->
 
 <!-- Equipe -->
@@ -142,7 +154,7 @@
   <div data-sr='' class="mdl-grid equipecont">
     <div class="mdl-cell mdl-cell--12-col mdl-grid">
       <div style="width:100%">
-        <h3> Nossa Equipe</h3>
+        <h4> NOSSA EQUIPE</h4>
       </div>
     </div>
 
@@ -166,6 +178,6 @@
         <div class="authore">Dr. Rummenigge Rudson Dantas </div>
       </div> 
     </div>
-  </div>
+  </div>  
 </section>
 {% endblock %}

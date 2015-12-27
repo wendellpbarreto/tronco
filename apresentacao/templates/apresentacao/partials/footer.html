@@ -1,9 +1,10 @@
-<footer class="mdl-mega-footer" style="box-shadow: 0px 0px 12px #888888;">
-  <div class="mdl-mega-footer__middle-section mdl-grid"  style="max-width:1200px;">
-    <div class="mdl-mega-footer__drop-down-section" style="color:#4D4141;">
+<footer class="mdl-mega-footer">
+  <div class="mdl-mega-footer__middle-section mdl-grid"  style="max-width:1200px; text-align:center">
+
+    <div class="footer mdl-mega-footer__drop-down-section mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="color:#ffffff;">
       <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-      <h1 class="mdl-mega-footer__heading" style="color:#4D4141;font-size:18px">Contato</h1>
-      <ul class="mdl-mega-footer__link-list" style="text-align:left">
+      <h1 class="mdl-mega-footer__heading" style="color:#ffffff;font-size:17px">CONTATO</h1>
+      <ul class="mdl-mega-footer__link-list" style="text-align:left;padding-left:80px">
         <li>UFRN – CCHLA – PPGAS</li>
         <li>Campus Universitário s/n</li>
         <li>Lagoa Nova, Natal/RN - 59078-970</li>
@@ -11,21 +12,21 @@
         <li><a href="/apresentacao/contact" >Entre em contato</a></li>
       </ul>
     </div>
-      <div class="mdl-mega-footer__drop-down-section" style="margin-left:20px;color:#4D4141;">
+
+ 
+      <div class="mdl-mega-footer__drop-down-section mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="margin-left:20px;color:#ffffff;">
           <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-          <h1 class="mdl-mega-footer__heading" style="color:#4D4141; font-size:18px">Links</h1>
-          <ul class="mdl-mega-footer__link-list" style="text-align:left">
+          <h1 class="mdl-mega-footer__heading" style="color:#ffffff; font-size:17px">LINKS</h1>
+          <ul class="mdl-mega-footer__link-list" style="text-align:left;padding-left:80px">
           {% for link in links %}
               <a href='{{ link.url }}' target='_blank'>{{ link.name }}</a>
           {% endfor %}
           </ul>
       </div>
-      
       <div class='copyright row'>
       
-        <p>
-           <img src="/media/logotroncoap.jpg"style="background-position: center center; width=100% "> 
-            &nbsp;&nbsp;© 2015 GTMV. Todos os direitos reservados aos respectivos autores.</h1>
+        <p style="margin:0; padding-top:20px; color:#51c18d">
+            &nbsp;© 2015 GTMV. Todos os direitos reservados aos respectivos autores.</h1>
         </p>
       </div>
   </div>
